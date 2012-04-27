@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+
+#signup_menu, #signin_menu{
+	background-color: #222;
+	background-repeat: repeat-x;
+	background-image: -khtml-gradient(linear, left top, left bottom, from(#333),
+		to(#222) );
+	background-image: -moz-linear-gradient(top, #333, #222);
+	background-image: -ms-linear-gradient(top, #333, #222);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333),
+		color-stop(100%, #222) );
+	background-image: -webkit-linear-gradient(top, #333, #222);
+	background-image: -o-linear-gradient(top, #333, #222);
+	background-image: linear-gradient(top, #333, #222);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=  '#333333',
+		endColorstr=  '#222222', GradientType=  0 );
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0
+		rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0
+		rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0
+		rgba(0, 0, 0, 0.1);
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	display: none;
+	position: fixed;
+	z-index: 100;
+	border: 1px transparent;
+	text-align: left;
+	padding: 12px;
+	right: 0px;
+	margin-top: 40px;
+	margin-right: 263px;
+	color: #999;
+	font-size: 12px;
+	margin-left: -4px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-image: initial;
+	border: solid;
+}
+
+#signin_menu{
+	width: 220px;
+}
+
+#signup_menu{
+	width: 290px;
+}
+
+#signup_menu input[type="text"],#signup_menu input[type="password"],#signup_menu input[type="email"],#signin_menu input[type="text"],#signin_menu input[type="password"]
+	{
+	display: block;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border: 1px solid lightSlateGray font-size:  13px;
+	margin: 0 0 5px;
+	padding: 5px;
+	width: 203px;
+}
+
+#signup_menu input[type="file"] {
+	border: 0;
+}
+
+#signup_menu p, #signin_menu p {
+	margin: 0;
+}
+
+#signup_menu a, #signin_menu a{
+	color: #6AC;
+}
+
+#signup_menu label, #signin_menu label {
+	font-weight: normal;
+}
+
+#signin_menu span,#signup_menu span {
+	color: lightSlateGray;
+}
+
+.help-block {
+padding-bottom: 20px;
+font-size: 10px;
+padding-top: 5px;

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/6/trunk/WebContent/JSP/public
+END
+header.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/6/trunk/WebContent/JSP/public/header.jsp
+END
+home.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/6/trunk/WebContent/JSP/public/home.jsp
+END
+css_includes.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/6/trunk/WebContent/JSP/public/css_includes.jsp
+END
+footer.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/6/trunk/WebContent/JSP/public/footer.jsp
+END
+js_includes.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/6/trunk/WebContent/JSP/public/js_includes.jsp
+END

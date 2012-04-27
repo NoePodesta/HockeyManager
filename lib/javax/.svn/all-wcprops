@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/11/trunk/lib/javax
+END
+javax.servlet.jsp.jar
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/11/trunk/lib/javax/javax.servlet.jsp.jar
+END
+javax.ejb.jar
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/11/trunk/lib/javax/javax.ejb.jar
+END
+javax.persistence.jar
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/11/trunk/lib/javax/javax.persistence.jar
+END
+javax.servlet.jar
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/11/trunk/lib/javax/javax.servlet.jar
+END
+javax.resource.jar
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/11/trunk/lib/javax/javax.resource.jar
+END
+javax.jms.jar
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/11/trunk/lib/javax/javax.jms.jar
+END
+javax.annotation.jar
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/11/trunk/lib/javax/javax.annotation.jar
+END
+javax.servlet.jsp.jstl.jar
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/11/trunk/lib/javax/javax.servlet.jsp.jstl.jar
+END

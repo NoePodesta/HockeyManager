@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/4/trunk/src/hibernate
+END
+HibernateUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/5/trunk/src/hibernate/HibernateUtil.java
+END
+DBCreator.java
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/5/trunk/src/hibernate/DBCreator.java
+END

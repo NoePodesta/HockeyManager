@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="../CSS/base.css" rel="stylesheet" type="text/css" />
+<title>Insert title here</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<div class="navigation">
+			<ul>
+
+				<li class="home"><a class="selected" href="javascript:void(0);" title="">Home</a></li>
+
+				<li class="noticias"><a href="noticias.asp" title="">Noticias</a></li>
+
+				<li class="elcalcio"><a href="calcio.asp" title="">El Calcio</a></li>
+
+				<li class="torneo"><a href="torneo.asp" title="">Torneo</a></li>
+
+				<li class="fotos"><a href="galerias.asp" title="">Fotos</a></li>
+
+				<li class="contacto"><a href="contact.asp" title="">Contácto</a></li>								
+
+			</ul>
+			<br clear="all" />
+			</div>	
+		</div>
+			<div class="content">holaa</div>
+			<div class="footer"><br clear="all" /></div>
+
+				
+		
+		</div>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+import model.Team;
+import model.Tournament;
+import DAO.TeamDao;
+import DAO.TournamentDao;
+
+public class llamada {
+
+	// en posicion 0,0,0 de la respuesta
+	// 00 - OK
+	// 01 - Cantidad impar de equipos
+	// 99 - Falló - volver a probar
+	
+	// la salida devuelve 
+	// res [nro de partido][fecha][equipo1|equipo2]
+	
+	public static void main(String[] args) {
+
+		
+		Tournament tournament = TournamentDao.getTournamentByName("HSRA");
+		
+		String[] inicio = {"","A","B","C","D","E","F","G","H","I","J","K","L","M","N"};
+	
+		
+		String[][][] res = new String[(inicio.length-1)/2][inicio.length-2][3];
+
+		int i,j;
+		
+		res = fixture.GeneraFixture(inicio,tournament);	
+		if (res[0][0][0].equals("01")) {
+			System.out.println("Hay una cantidad impar de equipos");
+		}
+		else
+		{
+			while (res[0][0][0].equals("99")) {
+				res = fixture.GeneraFixture(inicio,tournament);
+			}
+
+			System.out.print("            ");
+			for (j=1;j<=inicio.length-2;j++) {
+				if (j > 9)
+					System.out.print("  "+"F"+j);
+				else
+					System.out.print("  "+"F "+j);					
+			}
+			System.out.println(" ");
+			
+			for (i=1;i<=(inicio.length-1)/2;i++){
+				System.out.print(" Partido "+i+" -");
+				for (j=1;j<=inicio.length-2;j++) {
+					System.out.print("  "+res[i][j][1]+"-"+res[i][j][2]);
+				}
+				System.out.println(" ");
+			}
+		}
+		
+	}
+
+}

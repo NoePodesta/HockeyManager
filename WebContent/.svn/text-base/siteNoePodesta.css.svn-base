@@ -1,0 +1,273 @@
+@CHARSET "ISO-8859-1";
+
+#container {
+	background:none repeat scroll 0 0 snow;
+	border: 1px solid #e4e4e4;
+	-moz-border-radius: 1em;
+	border-radius: 1em;
+}
+
+body {
+	-moz-border-radius: 5em 5em 5em 5em;
+	background: white url('diarios.jpg') repeat scroll 0% 0%;
+	font-family:Verdana;
+	font-size:0.7em;
+}
+
+#header_login {
+	color: BurlyWood  /*CadetBlue  Crimson DarkGray  DarkSalmon*/ 
+}
+
+#header_title {
+width:69%;
+
+}
+
+#header_date {
+	color: #9a9a9a;
+}
+
+.menubar {
+	-moz-border-radius: 1em 1em 1em 1em;
+	background: none repeat scroll 0 0 WhiteSmoke;
+	border: 1px solid #E0E0E0;
+}
+
+.menubarListItem:hover {
+	color: Violet !important;
+}
+
+.menubarListItem {
+	color: #456a8f;
+	font-size: 1.2em;
+}
+
+.menubarSublist {
+	-moz-border-radius: 0 0 1em 1em;
+	background: none repeat scroll 0 0 #F3F3F3;
+	border-bottom: 1px solid #E0E0E0;
+	border-left: 1px solid #E0E0E0;
+	border-right: 1px solid #E0E0E0;
+	color: #456A8F !important;
+	font-size: 0.8em !important;
+}
+
+.liLabel {
+	color: #456a8f !important;
+	font-size: 1em !important;
+}
+
+.liLabel:hover {
+	color: Violet !important;
+}
+
+.content {
+	color: #7f7f7f;
+}
+
+.headerTitle {
+	color: Cornsilk;
+	font-size:5.3em;
+	text-shadow:0 1px 14px coral;
+	margin-bottom:10px;
+}
+
+.headerSubtitle {
+	color: DarkSalmon;
+	font-size: 1.2em;
+}
+
+.articleTitle {
+	font-size: 2em;
+	color: DarkSalmon;
+}
+.portfolioArticleTitle{
+	font-size: 1.5em;
+	color: DarkSalmon;
+}
+
+.loginLabel {
+	color: #7F7F7F;
+}
+
+#inputTitleArticle {
+	font-size: x-large;
+	color: AppWorkspace;
+}
+
+#textareaArticle {
+	font-size: large;
+	color: #335577;
+}
+
+.galleria-container {
+	background-color: #F2F2F2;
+	border: 1px solid #CCCCCC;
+	-moz-border-radius: 1em 1em 1em 1em;
+}
+
+.galleria-info-text {
+	-moz-border-radius: 0.5em 0.5em 0.5em 0.5em;
+	background-color: black !important;
+	opacity: 0.7;
+}
+
+#abstractareaArticle {
+	font-size: large;
+	color: #335577;
+}
+
+#textareaArticle {
+	font-size: large;
+	color: #335577;
+}
+
+#readyLabel {
+	font-size: large;
+	color: #335577;
+}
+
+#sectionArticle {
+	font-size: medium;
+	color: #335577;
+}
+
+.writeLabels {
+	font-size: large;
+	font-family: serif;
+	color: #335577;
+}
+
+.recommendatedArticle {
+	border: 1px solid SlateGray;
+	-moz-border-radius: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.recommendatedArticleHome {
+	border: 1px solid SlateGray;
+	-moz-border-radius: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.recomArticleTitle {
+	font-size: 1.3em;
+	color: SlateGray;
+}
+
+.articleAbstract {
+	font-style: italic;
+	border-bottom: 1px solid burlywood;
+}
+
+.portfolioArticleAbstract {
+	font-size:1em;
+	font-style:italic;
+	padding-bottom:0.5em;
+	
+}
+
+.addThisButton {
+	float: right;
+}
+
+a{
+	color: darksalmon;
+}
+
+#user_menu{
+	color: darkSalmon;
+}
+
+#section{
+   text-align: center;
+   color: darkSalmon;
+	font-size: 2em;
+	
+}
+
+.menubarListItem a{
+	color: burlywood;
+}
+
+.headerTitle_error {
+	color: Cornsilk;
+	font-size:5.3em;
+	text-shadow:0 1px 14px coral;
+	margin-bottom:10px;
+}
+
+#header_title_error {
+	color: DarkSalmon;
+	font-size: 1.2em;
+}
+
+
+.headerSubtitle_error {
+	color: DarkSalmon;
+	font-size: 1.2em;
+	text-align: center;
+	display: block;
+	margin-bottom: 0.7em;
+}
+
+#image_denied{
+	margin: 2em;
+	height: 15em;
+	}
+	
+.submitButton{
+	color: burlywood;
+	font-size: 1.1em;
+	
+}
+.submitButton:hover{
+	color: salmon !important;
+	
+}
+.portfolioSubmitButton{
+	color: Crimson;
+	font-size: 1.1em;
+}
+.portfolioSubmitButton:hover{
+	color: salmon !important;
+	
+}
+
+
+#modificarMail{
+	margin-top: 3em;
+	padding: 1em;
+
+
+}
+
+#modificarInfo{
+	font-weight:bold;
+	margin: 1em;
+	display: block;
+}
+
+#infoDes{
+	display: block;
+}
+#modificarInfoAbajo{
+	display: block;
+}
+	
+
+#email{
+	display: block;
+	margin: 0 auto;
+}
+
+#errorArticulo{
+	font-size:1.5em;
+	font-style:italic;
+	font-weight:bold;
+	margin-top:3em;
+	text-align:center;
+}
+.articleInfo{
+	border-bottom:1px solid burlyWood;
+}
+
+

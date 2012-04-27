@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE securityfilter-config PUBLIC
+    "-//SecurityFilter.org//DTD Security Filter Configuration 2.0//EN"
+    "http://www.securityfilter.org/dtd/securityfilter-config_2_0.dtd">
+<securityfilter-config>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Secure Page</web-resource-name>
+            <url-pattern>/createTournamentServlet</url-pattern>
+        </web-resource-collection>
+
+	<auth-constraint>
+	<role-name>inthisrole</role-name>
+	</auth-constraint>
+
+    </security-constraint>
+
+   <login-config>
+      <auth-method>FORM</auth-method>
+      <form-login-config>
+         <form-login-page>/sinLoguear.jsp</form-login-page> <!--Usuario que no existe  -->
+         <form-error-page>/usuarioInexistente.jsp</form-error-page>  <!--No estas Logeado  -->
+         <form-default-page>/Login</form-default-page>
+      </form-login-config>
+      </login-config>
+   	<realm className="servlets.MyRealm">
+   	</realm>
+
+	</securityfilter-config>

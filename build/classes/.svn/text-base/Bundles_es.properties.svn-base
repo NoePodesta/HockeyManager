@@ -1,0 +1,83 @@
+#<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body><pre>
+char_encoding = utf-8
+
+#Please translate the phrases on the right of the equals signs below!
+no_flash = Error (El explorador deber&iacute;a de mostrar contenido de flash en lugar de esto!)
+private_policy = Terminos de uso
+register = Registrarse
+create_user = Crear un usuario nuevo
+add_user = Agregar Usuario
+nickname = Usuario
+password = Contrase&ntilde;a
+repeat = Repetir
+name = Nombre
+surname = Apellido
+email = Mail
+collage = Instituci&oacute;n
+photo = Agregar foto
+
+classes = Clases
+no_classes = No hay clases creadas
+
+photo_change = Cambiar Imagen
+choose_photo = Eliga una nueva imagen
+
+contact = Esta pagina fue creada por myPhysics &copy
+contact_doubts = En caso de algun inconveniente contactese a:
+contact_mails = sofi.braun@gmail.com o juan.ignacio.molteni@gmail.com
+
+edit_info = Editar Informaci&oacute;n
+
+pofile = Perfil
+friends_all = Ver todos
+information = Informaci&oacute;n
+friends = Amigos
+change_image = Cambiar Imagen
+search = Buscar
+edit = Editar
+requests = Solicitudes
+
+login = Iniciar Sesi&oacute;n
+incorrect_pass = Usuario o contrase&ntilde;a incorrecta
+click_here = hace click ac&aacute;.
+no_user = Si no ten&eacute;s un usuario
+remember_pass = si te olvidaste la contrase&ntilde;a, por favor contactate con el
+administrator = administrador o 
+copyright = Copyright © 2010, MyPhysics
+
+logout = Cerr&oacute; sesi&oacute;n
+logout_text = Ha cerrado la sesi&oacute;n de myPhysics
+
+create_class = Crear Clase
+new_class = Nueva Clase
+description = Descripci&oacute;n
+
+presentation = Presentaci&acute;n
+
+encontrar_amigos = Encontrar Amigos
+no_results = La b&uacute;squeda no ha producido ning&uacute;n resultado. Pruebe de nuevo.
+no_friends = No tiene amigos hasta el momento. B&uacute;squelos f&aacute;cilmente mediante la barra de b&uacute;squeda.
+add = Enviar Solicitud
+select_friends = Seleccione los amigos
+
+simulation = Simulaci&oacute;n
+
+clase_cargada = La clase ya estaba cargada
+delete = Eliminar
+share = Compartir
+
+wrong_captcha = Captcha equivocado, pruebe nuevamente
+
+submit = Aceptar
+change = Cambiar
+friend_requests = Solicitudes de Amistad
+accept = Aceptar
+decline = Rechazar
+
+no_classes= No ten&eacute;s clases todav&iacute;a
+
+description3 = El objetivo de MyPhysics es ofrecer al profesor de f&iacute;sica la posibilidad de crear sus propias clases interactivas, de las cuales se puede obtener una simulaci&oacute;n para que sus alumnos puedan entender mejor los problemas.
+
+description2 = Usted podr&aacute; trabajar en su casa para luego mostrar sus clases por medio de esta herramienta.
+
+#</PRE></BODY></HTML>

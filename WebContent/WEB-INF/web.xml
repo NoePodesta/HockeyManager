@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>hockeyManager</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<filter>
+		<filter-name>Security Filter</filter-name>
+		<filter-class>org.securityfilter.filter.SecurityFilter</filter-class>
+
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/securityfilter-config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>validate</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+	</filter>
+
+	<filter-mapping>
+		<filter-name>Security Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>HomeServlet</servlet-name>
+		<servlet-class>servlet.Home</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>HomeServlet</servlet-name>
+		<url-pattern>/Home</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<description></description>
+		<display-name>TournamentManager</display-name>
+		<servlet-name>TournamentManager</servlet-name>
+		<servlet-class>servlet.TournamentManager</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>TournamentManager</servlet-name>
+		<url-pattern>/TournamentManager</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UserServlet</servlet-name>
+		<servlet-class>servlet.UserManager</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserServlet</servlet-name>
+		<url-pattern>/UserManager</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>TeamManager</servlet-name>
+		<servlet-class>servlet.TeamManager</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>TeamManager</servlet-name>
+		<url-pattern>/TeamManager</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>PlayerManager</servlet-name>
+		<servlet-class>servlet.PlayerManager</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PlayerManager</servlet-name>
+		<url-pattern>/PlayerManager</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MatchManager</servlet-name>
+		<servlet-class>servlet.MatchManager</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MatchManager</servlet-name>
+		<url-pattern>/MatchManager</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AddUser</servlet-name>
+		<servlet-class>servlet.AddUser</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AddUser</servlet-name>
+		<url-pattern>/AddUser</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>ImageController</servlet-name>
+		<servlet-class>servlet.ImageController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ImageController</servlet-name>
+		<url-pattern>/ImageController</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>servlet.Logout</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/Logout</url-pattern>
+	</servlet-mapping>
+	
+<servlet>
+		<servlet-name>Comment</servlet-name>
+		<servlet-class>servlet.CommentManager</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Comment</servlet-name>
+		<url-pattern>/Comment</url-pattern>
+	</servlet-mapping>
+
+
+		<servlet>
+		<servlet-name>Autocomplete</servlet-name>
+		<servlet-class>servlet.Autocomplete</servlet-class>
+	</servlet>
+		<servlet>
+			<display-name>UsernameCheck</display-name>
+			<servlet-name>UsernameCheck</servlet-name>
+			<servlet-class>servlet.UsernameCheck</servlet-class>
+		</servlet>
+		
+
+	<servlet-mapping>
+		<servlet-name>Autocomplete</servlet-name>
+		<url-pattern>/Autocomplete</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UsernameCheck</servlet-name>
+		<url-pattern>/UsernameCheck</url-pattern>
+	</servlet-mapping>
+
+</web-app>

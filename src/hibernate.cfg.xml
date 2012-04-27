@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+    
+        <!-- Settings for a local HSQL (testing) database. -->
+        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+        <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
+        <property name="connection.url">jdbc:hsqldb:hsql://127.0.0.1:9001/hockeyManager</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password"></property>
+        <property name="connection.pool_size">1</property>
+        <property name="show_sql">true</property>
+        <!-- Enable Hibernate's automatic session context management -->  
+     	<property name="current_session_context_class">thread</property>
+        
+	
+        <mapping class="model.User"/>
+        <mapping class="model.Team"/>
+        <mapping class="model.Fixture"/>
+        <mapping class="model.Match"/>
+        <mapping class="model.Player"/>
+        <mapping class="model.Tournament"/>
+        <mapping class="model.UserAdmin"/>
+        <mapping class="model.Captain"/>
+        <mapping class="model.Administrador"/>
+        <mapping class="model.YellowCard"/>
+        <mapping class="model.RedCard"/>
+        <mapping class="model.GreenCard"/>
+        <mapping class="model.Goal"/>
+        <mapping class="model.Comment"/>
+ 
+        
+
+    </session-factory>
+
+</hibernate-configuration>

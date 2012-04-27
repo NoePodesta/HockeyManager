@@ -1,0 +1,636 @@
+@charset "utf-8";
+
+/* Reset */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+/* ======================  Start CSS Document */
+
+html {
+	width:100%;
+	margin:0 auto;
+	text-align:center;
+	}
+	
+body {
+	width:100%;
+	margin:0 auto;
+	background:#3a3a3a;
+	text-align:center;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#FFF;	
+	line-height:14px;
+	background:url(../image/hockey.jpg) top center #000;
+			background-attachment:fixed;	
+	}
+
+.wrapper {
+	text-align:center;
+	margin:0 auto;
+	width:930px;
+	}
+
+/* ======================  Begin Header */	
+.header {
+    height: 64px;
+	}
+	
+	.logo{
+		text-align:left;
+		height:157px;	
+		}
+	.logo img{
+		padding-top:16px;
+	}
+		
+/* Navigation */
+	.navigation{
+			background: url(../image/header.png) no-repeat scroll center top transparent;
+			height: 78px;
+			padding-top: 12px;
+			width: 930px;
+		}
+		
+		.navigation ul{
+				list-style: none outside none;
+				padding: 0 0 0 8px;
+				width: 917px;
+		}
+		
+		.navigation li{
+				display: inline;
+				height: 54px;
+		}
+		
+		.navigation li a{
+			float: left;			
+			background:url(../image/navegacion.png) no-repeat top center;
+			display: block;
+			width: 111px;
+			height: 54px;
+			text-indent:-9999px;
+		}
+		
+/* *    Normal Links */
+			li.home a {   			  width: 130px; background-position: 0 0; }	
+			li.home a:hover {			background-position: 0 -54px; }
+			li.home a.selected {			background-position: 0 -54px; }
+			li.noticias a {     width: 144px; background-position: -130px 0; }	
+			li.noticias a:hover {     background-position: -130px -54px; }
+			li.noticias a.selectedn {     background-position: -130px -54px; }
+			li.elcalcio a {     width: 155px; background-position: -274px 0; }	
+			li.elcalcio a:hover {     background-position: -274px -54px; }	
+			li.elcalcio a.selectede {     background-position: -274px -54px; }	
+			li.torneo a {     width: 163px; background-position: -429px 0; }	
+			li.torneo a:hover {     background-position: -429px -54px; }
+			li.torneo a.selected {     background-position: -429px -54px; }			
+			li.fotos a {     width: 144px; background-position: -592px 0; }	
+			li.fotos a:hover {     background-position: -592px -54px; }
+			li.fotos a.selected {     background-position: -592px -54px; }		
+			li.contacto a {     width: 181px; background-position: -736px 0; }	
+			li.contacto a:hover {     background-position: -736px -54px; }		
+			li.contacto a.selected {     background-position: -736px -54px; }						
+			
+			
+	
+/* ======================  Begin Content */		
+
+/* General */		
+.content{
+	background: url(../image/content.png);
+	overflow:visible;
+	text-align:center;
+	background-position:50% 0;
+	background-repeat:no-repeat repeat;
+ 	overflow-x:visible;
+ 	overflow-y:visible;
+  	text-align:center;
+	}	
+	
+
+
+		
+/* Phones / Weather / Location / Tables */
+		.task a:focus{
+			color:#61C441;
+		}
+
+		.task a:hover{
+			text-decoration:none;
+		}
+		
+		.task a.sele{
+			color:#61C441;
+		}
+
+		.task a.unsele{
+			color:#FFFFFF;
+		}
+
+	.row-3{
+		}	
+			
+	.row3-col-1{
+		float:left;
+		width:220px;
+		}		
+	
+		.menu_torneo{
+			width:220px;
+			height:38px;
+			background:url(../images/contMenuTop.png) no-repeat scroll right top transparent;
+		}	
+		
+		.menu_torneo h3{
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			padding-bottom: 12px;
+			padding-left: 30px;
+			padding-top: 12px;
+			text-align: left;
+		}	
+
+		.menu_torneo_mid{
+			width:220px;
+			background:url(../images/contMenuMid.png) repeat-y scroll right top transparent;
+			padding-bottom:9px;				
+		}	
+
+		.menu_torneo_mid a:focus{
+			color:#61C441;
+		}
+
+		.menu_torneo_mid a:hover{
+			text-decoration:none;
+		}
+		
+		.menu_torneo_mid p{
+			text-align:left;
+			padding-left: 30px;
+		}
+
+		.menu_torneo_mid a.sele{
+			color:#61C441;
+		}
+
+		.menu_torneo_mid a.unsele{
+			color:#FFFFFF;
+		}
+
+		.menu_torneo_bottom{
+			width:220px;
+			height:10px;
+			background:url(../images/contMenuBot.png) no-repeat scroll right top transparent;
+			padding-bottom:9px;	
+		}	
+
+			
+		.phones{
+			width:220px;
+			height:104px;
+			background:url(../images/contTel.png) no-repeat scroll right top transparent;
+			padding-bottom:9px;	
+		}
+
+		.phones h3{
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			padding-bottom: 12px;
+			padding-left: 30px;
+			padding-top: 12px;
+			text-align: left;
+		}
+		.phones p{
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 9px;
+			line-height: 10px;
+			padding-right: 12px;
+			padding-top: 2px;
+			text-align: right;	
+		}
+			
+		
+		.weather{
+			width:220px;
+			height:104px;
+			background:url(../images/contPron.png) no-repeat scroll right top transparent;
+			padding-bottom:9px;				
+		}	
+		
+		.botverpronostico{
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			margin-left: 37px;
+			padding-top: 48px;
+			text-align: right;
+			width: 170px;
+			
+		}	
+		
+		.botverpronostico a{
+			color: #FFFFFF;
+			text-decoration: none;
+		}
+		
+		.weather h3{
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			padding-bottom: 12px;
+			padding-left: 30px;
+			padding-top: 12px;
+			text-align: left;
+		}
+		
+		.location{
+			width:220px;
+			height:104px;
+			background:url(../images/contDir.png) no-repeat scroll right top transparent;
+			padding-bottom:9px;				
+		}	
+		
+		.location h3{
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			padding-bottom: 12px;
+			padding-left: 30px;
+			padding-top: 12px;
+			text-align: left;
+		}
+		
+		.row3-col-2{
+			float:left;		
+			width: 710px;
+			height:336px;
+		}		
+					
+		.tables{
+			background: url("../images/bgTabla.png") no-repeat scroll right top transparent;
+			height: 329px;
+			padding-left: 9px;
+			width: 689px;
+		}	
+
+		.tables th { font-weight:bold; text-align:center; color:orange;}
+		
+		.tables td { font-weight:bold; text-align:center; }
+		
+		.tables a { color:#FFF; text-decoration:none;}
+		
+		.tablacont{
+			line-height: 3;
+			padding-left: 25px;
+			padding-top: 5px;
+		}
+
+		.tablacontf{
+			line-height: 3;
+			margin-left:8px;
+			background:#1e1d1d;
+		}
+
+		.tablascontfsele{
+			text-align:center;
+			background-color:#1e1d1d;
+		}
+
+		.tablascontfunsele{
+			text-align:center;
+			background-color:#2E2D2D;
+		}
+		
+		.titulo3 {font-weight:bold; text-align:center; color:orange;}
+		
+		.tablacontf th { font-weight:bold; text-align:center; color:orange;}
+		
+		.tablacontf td { font-weight:bold; text-align:center; }
+		
+		.tablacontf a { color:#FFF; text-decoration:none;}		
+		
+		.tablasele{
+			line-height:2.5;
+			margin-right:-15px;
+		}
+		
+		.tablasInternas{
+			clear: both;
+			padding-right: 5px;
+			padding-left: 5px;
+			width:100%;
+			background:#1e1d1d;
+		}
+		
+		.tablasInternas td, th{
+			border-bottom:1px dotted #666666;
+		}
+		
+
+/*	paginas*/
+		.scroll-pane3
+		{
+			margin:0px 0 0 0;
+			width: 685px;
+			height: 465px;
+			overflow:hidden;
+		}
+/*	Fin 	*/
+
+/*	noticias*/
+		.scroll-pane2
+		{
+			margin:0px 0 0px 0px;
+			width: 215px;
+			height: 280px;
+			overflow:hidden;
+		}
+/*	Fin 	*/
+
+/*	Panel	*/
+		.scroll-pane
+		{
+			margin:5px 0 0px 40px;
+			width: 510px;
+			height: 270px;
+			overflow: hidden;
+			line-height:2;
+		}
+/*	Fin 	*/
+		
+		.tablasombreado{
+			background-color: #000;
+		}
+		
+		.tablascentro{
+			text-align:center;
+		}
+		
+		.tablascentrosele{
+			text-align:center;
+			background-color:#1e1d1d;
+		}
+		
+	
+
+/* ======================  Begin Footer */			
+.footer{
+	background: url(../image/footer.png) no-repeat top center;
+	height:46px;
+	}
+	
+/* Sitemap */
+	.sitemap{
+		font-family: Arial,Helvetica,sans-serif;
+		height: 50px;
+		padding-top: 8px;
+		}		
+		
+		.sitemap ul{
+   			list-style: none outside none;
+		}
+
+		.sitemap li{
+			text-align:center;
+			/*padding:0 6px;			*/
+			color:#c5c4c4;
+			display:inline;
+		}					
+		
+		.sitemap li a{
+			color:#c5c4c4;
+			text-decoration:none;			
+		}	
+		
+		.sitemap li a:hover{
+			color:#c5c4c4;
+			text-decoration:underline;			
+		}							
+		
+/* Signature */
+	.signature{
+		text-align:right;
+		}	
+		
+/* ======================  Interior */	
+
+
+/* Sponsors */
+		
+		.intsponsors{
+			width:220px;
+			height:208px;
+			background:url(../images/bgSponsors.png) no-repeat scroll right top transparent;
+			overflow:hidden;
+		}
+		
+		.intsponsors img{
+		    height: 115px;
+		    padding-left: 35px;
+		    width: 160px;
+		}
+		
+/* Noticias */
+		
+		.intnoticias{
+			background: url("../images/noticias/bgNoticias.png") no-repeat scroll center top transparent;
+			float: left;
+			height: 538px;
+			margin-left: 6px;
+			width: 690px;
+		}
+				
+		.intnoticias h3{
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			padding-bottom: 30px;
+			padding-left: 41px;
+			padding-top: 16px;
+			text-align: left;			
+		}
+				
+		.intnoticias h4{
+			float:left;
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 14px;
+			padding-bottom: 12px;
+			padding-left: 13px;
+			text-align: left;
+		}
+				
+		.intnoticias img{
+			float: left;
+			padding-left: 25px;
+		}
+				
+		.intnoticias p{
+			float: left;
+			padding-left: 13px;
+			text-align: left;
+			width: 480px;
+			line-height: 1.6;
+		}
+		
+		.intnoticias a{
+		color:#FFF;
+		text-decoration:none;
+		}		
+		
+		.intnoticias a:hover{
+		color:#FFF;
+		text-decoration:underline;
+		}				
+				
+		.intnoticiascont{
+			padding-bottom: 25px;
+		}
+
+		.intnoticiascont img{		
+	    float: left;
+	    padding-left: 25px;
+		}
+		
+/* Contenido Variable */
+		.frame_variable{
+			float: left;
+			margin-left: 6px;
+			width: 690px;
+		}
+
+		.frame_variable h3{
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			padding-bottom: 30px;
+			padding-left: 41px;
+			padding-top: 16px;
+			text-align: left;		
+		}
+
+		.frame_variable h4{
+			float:left;
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 14px;
+			padding-bottom: 12px;
+			padding-left: 13px;
+			text-align: left;
+		}
+
+		.frame_variable a{
+			color:#FFF;
+			text-decoration:none;
+		}		
+		
+		.frame_variable a:hover{
+			color:#FFF;
+			text-decoration:underline;
+		}				
+				
+		.frame_variable p{
+			padding-left: 13px;
+			text-align: left;
+			line-height: 1.6;
+		}
+
+		.top_variable{
+			background:url(../images/bg-comiezo.png) no-repeat;
+			height:45px;			
+		}
+
+		.mid_variable{
+			background:url(../images/bg-medio.png) repeat-y;
+			min-height:483px;
+		}
+
+		.bot_variable{
+			background:url(../images/bg-cierre.png) no-repeat;
+			height:11px;
+			margin-bottom: 8px;
+		}
+				
+/* El Calcio */
+
+		.intelcalcio{
+			background: url("../images/noticias/bgNoticias.png") no-repeat scroll center top transparent;
+			float: left;
+			height: 538px;
+			margin-left: 6px;
+			width: 690px;
+		}
+		
+		.intelcalcio h3{
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			padding-bottom: 30px;
+			padding-left: 41px;
+			padding-top: 16px;
+			text-align: left;			
+		}
+		
+		.intelcalcio p{
+			float: left;
+			padding-left: 13px;
+			text-align: left;
+			width: 665px;
+			line-height: 1.6;
+		}
+		
+		a{
+		color:#FFF;
+		text-decoration:none;
+		}		
+		
+		a:hover{
+		color:#FFF;
+		text-decoration:underline;
+		}

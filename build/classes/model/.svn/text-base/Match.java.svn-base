@@ -1,0 +1,199 @@
+package model;
+
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "Match")
+public class Match {
+	
+	private int id_Match;
+	private Fixture Fixture;
+	private Team local;
+	private Team guest;
+	private Date date;
+	private List<Player> highScoring; //el que hizo gol
+	private List<Player> playerRCard; //tarjetas rojas
+	private List<Player> playerYCard; //tarjetas amarillas
+	private List<Player> playerGCcard; //tarjetas verdes
+	private int resultLocal;
+	private int resultGuest;
+	private int fecha;
+	
+	public Match(){
+		this.highScoring = new ArrayList<Player>();
+		this.playerGCcard = new ArrayList<Player>();
+		this.playerRCard = new ArrayList<Player>();
+		this.playerYCard = new ArrayList<Player>();
+	}
+	
+	@Id
+	@GeneratedValue
+	@Column(name="Id_Match")
+	public int getId_Match() {
+		return id_Match;
+	}
+	public void setId_Match(int idMatch) {
+		id_Match = idMatch;
+	}
+	
+	@OneToOne
+	public Team getLocal() {
+		return local;
+	}
+	public void setLocal(Team local) {
+		this.local = local;
+	}
+	
+	@OneToOne
+	public Fixture getFixture() {
+		return Fixture;
+	}
+	public void setFixture(Fixture fixture) {
+		Fixture = fixture;
+	}
+	
+	@OneToOne
+	public Team getGuest() {
+		return guest;
+	}
+	public void setGuest(Team guest) {
+		this.guest = guest;
+	}
+	
+	@Temporal(TemporalType.DATE)
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	
+	@OneToMany (cascade = CascadeType.ALL)
+	@JoinTable(name = "Match_RedCard", 
+			joinColumns = { @JoinColumn(name = "Match") }, 
+			inverseJoinColumns = { @JoinColumn(name = "Player") })
+	public List<Player> getPlayerRCard() {
+		return playerRCard;
+	}
+	public void setPlayerRCard(List<Player> playerRCard) {
+		this.playerRCard = playerRCard;
+	}
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Match_Scoring", 
+			joinColumns = { @JoinColumn(name = "Match") }, 
+			inverseJoinColumns = { @JoinColumn(name = "Player") })
+	
+	public List<Player> getHighScoring() {
+		return highScoring;
+	}
+
+	public void setHighScoring(List<Player> highScoring) {
+		this.highScoring = highScoring;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Match_GreenCard", 
+			joinColumns = { @JoinColumn(name = "Match") }, 
+			inverseJoinColumns = { @JoinColumn(name = "Player") })
+	
+	public List<Player> getPlayerGCcard() {
+		return playerGCcard;
+	}
+
+	public void setPlayerGCcard(List<Player> playerGCcard) {
+		this.playerGCcard = playerGCcard;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Match_YellowCard", 
+			joinColumns = { @JoinColumn(name = "Match") }, 
+			inverseJoinColumns = { @JoinColumn(name = "Player") })
+	public List<Player> getPlayerYCard() {
+		return playerYCard;
+	}
+	public void setPlayerYCard(List<Player> playerYCard) {
+		this.playerYCard = playerYCard;
+	}
+	
+	@Column(name ="Fecha_Nro")
+	public int getFecha() {
+		return fecha;
+	}
+	public void setFecha(int fecha) {
+		this.fecha = fecha;
+	}
+	@Column(name ="LocalResult")
+	public int getResultLocal() {
+		return resultLocal;
+	}
+	public void setResultLocal(int resultLocal) {
+		this.resultLocal = resultLocal;
+	}
+	@Column(name ="GuestResult")
+	public int getResultGuest() {
+		return resultGuest;
+	}
+	public void setResultGuest(int resultGuest) {
+		this.resultGuest = resultGuest;
+	}
+	
+	public void addGcard(Player player) {
+		playerGCcard.add(player);
+		
+	}
+	
+	public void removeGcard(Player player) {
+		playerGCcard.remove(player);
+		
+	}
+	
+	public void addRcard(Player player) {
+		playerRCard.add(player);
+		
+	}
+	
+	public void removeRcard(Player player) {
+		playerRCard.remove(player);
+		
+	}
+	public void addYcard(Player player) {
+		playerYCard.add(player);
+		
+	}
+	
+	public void removeYcard(Player player) {
+		playerYCard.remove(player);
+		
+	}
+	
+	public void addGoales(Player player) {
+		highScoring.add(player);
+		
+	}
+	
+	public void removeGoales(Player player) {
+		highScoring.remove(player);
+		
+	}
+
+}

@@ -1,0 +1,96 @@
+package DAO;
+
+import hibernate.HibernateUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Fixture;
+import model.Team;
+import model.Tournament;
+import model.User;
+
+import org.hibernate.FlushMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+public class TournamentDao extends GenericDao {
+
+
+	public static Tournament getTournamentByName (String name) {
+		List<Tournament> tournamentList = new ArrayList<Tournament>();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		try {
+			String query = "from Tournament where name ='" + name + "' ";
+			tournamentList = session.createQuery(query).list();
+			
+		} finally {
+			session.close();
+		}
+		return tournamentList.get(0);
+	}
+	
+	public static List<Tournament> getTournamentsByName (String name) {
+		List<Tournament> tournamentList = new ArrayList<Tournament>();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		try {
+			String query = "from Tournament where name ='" + name + "' ";
+			tournamentList = session.createQuery(query).list();
+			
+		} finally {
+			session.close();
+		}
+		return tournamentList;
+	}
+	
+
+	
+	public static List<Tournament> getAllTournaments() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		final String consult = "FROM Tournament";
+		Query query = session.createQuery(consult);
+		List<Tournament> tournaments = query.list();
+		return tournaments;
+     }
+		
+	public static String addTeam(String tournamentName, String teamName, String history, String description) {
+		Team team = new Team();
+		System.out.println(team);
+		team.setName(teamName);
+		team.setHistory(history);
+		team.setDescription(description);
+		List<Team> teams = TeamDao.getTeamsByName(teamName);
+		for(Team teams2 : teams){
+			if(teams2.getName().equals(teamName)){
+			return "fail";
+			}
+		}
+		Tournament tournament = getTournamentByName(tournamentName);
+		team.setTournament(tournament);
+		teams.add(team);
+		tournament.setTeams(teams);
+		persist(team);
+		persist(tournament);
+		return "success";
+		
+	}
+	
+	public static void deleteTeam(String tournamentName, String teamName) {
+		Tournament tournament = TournamentDao.getTournamentByName(tournamentName);
+		List<Team> teams = TeamDao.getTeamsByName(teamName);
+		for (Team teamAux : teams) {
+			if (teamAux.getName().equals(teamName)){
+				teams.remove(teamAux);
+				tournament.setTeams(teams);
+				TournamentDao.persist(tournament);
+				TeamDao.delete(teamAux);
+				return;
+			}
+		}
+	
+	}
+
+	
+}

@@ -1,0 +1,154 @@
+package model;
+import java.util.ArrayList;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+
+@Entity
+@Table(name = "Player")
+
+public class Player {
+	
+	private int idplayer;
+	private String name;
+	private String lastName;
+	private String email;
+	private byte[] photo;
+	private String position;
+	private Team team;
+	private int goals;
+	private int rCards; //tarjetas rojas
+	private int yCards; //tarjetas amarillas
+	private int gCards; //tarjetas verdes
+
+	public Player(){
+		this.goals = 0;
+		this.rCards = 0;
+		this.yCards = 0;
+		this.gCards = 0;
+	}
+	
+	@Id
+	@GeneratedValue
+	@Column(name="Id_Player")
+	public int getIdplayer() {
+		return idplayer;
+	}
+	public void setIdplayer(int idplayer) {
+		this.idplayer = idplayer;
+	}
+	
+	@Column(name ="Player_Name", nullable=false)
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Column(name ="Player_LastName", nullable=false)
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	@Column(name ="Player_Email")
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@Column(name ="Player_Position")
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	
+	@Column(name ="Player_Goals")
+	public int getGoals() {
+		return goals;
+	}
+	public void setGoals(int goals) {
+		this.goals = goals;
+	}
+	
+	public void addGoals (int goals){
+		int totalGoals = getGoals() + goals;
+		setGoals(totalGoals);
+		
+	}
+	
+	@Column(name ="Player_RedCards")
+	public int getrCards() {
+		return rCards;
+	}
+	
+	
+	public void setrCards(int rCards) {
+		this.rCards = rCards;
+	}
+	
+	public void addRCards (int rCards){
+		int totalRCards = getrCards() + rCards;
+		setrCards(totalRCards);
+		
+	}
+	
+	@Column(name ="Player_YellowCards")
+	public int getyCards() {
+		return yCards;
+	}
+	public void setyCards(int yCards) {
+		this.yCards = yCards;
+	}
+	public void addYCards (int yCards){
+		int totalYCards = getyCards() + yCards;
+		setyCards(totalYCards);
+		
+	}
+	
+	@Column(name ="Player_GreenCards")
+	public int getgCards() {
+		return gCards;
+	}
+	public void setgCards(int gCards) {
+		this.gCards = gCards;
+	}
+	public void addGCards (int gCards){
+		int totalGCards = getgCards() + gCards;
+		setrCards(totalGCards);
+	}
+	
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	public Team getTeam() {
+		return team;
+	}
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+	
+	@Lob
+	@Column(name= "Player_Photo")
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	
+
+}

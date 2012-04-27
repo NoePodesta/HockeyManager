@@ -1,0 +1,43 @@
+package servlet;
+
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import enums.Action;
+import enums.PageJSP;
+
+@SuppressWarnings("serial")
+public abstract class MainServlet extends HttpServlet {
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		
+		String actionString = request.getParameter("action");
+		Action action = null;
+		if (actionString!=null){
+			action = Action.valueOf(actionString);
+		}
+		
+		PageJSP page = handleAction(request, response, action);
+		RequestDispatcher view = request.getRequestDispatcher(page.getUrl());
+		view.forward(request, response);
+		
+	
+	}
+	
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	throws IOException, ServletException {
+		doPost(request, response);
+	}
+
+	abstract PageJSP handleAction(HttpServletRequest request,
+			HttpServletResponse response, Action action) throws IOException;
+	
+
+}

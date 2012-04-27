@@ -1,0 +1,20 @@
+package Servlets;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import enums.Action;
+import enums.PageJSP;
+
+public class Home extends MainServlet {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	PageJSP handleAction(HttpServletRequest request,
+			HttpServletResponse response, Action action) {
+		
+		return PageJSP.HOME;
+	}
+
+}

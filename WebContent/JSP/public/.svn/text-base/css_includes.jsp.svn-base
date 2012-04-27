@@ -1,0 +1,6 @@
+<link href="/styles/site.css" rel="stylesheet" type="text/css" />
+<link href="/styles/siteNoePodesta.css" rel="stylesheet" type="text/css" />
+
+<link href="/js/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<link href="/js/weather/weather.css" rel="stylesheet" type="text/css" />
+<link href="/styles/smoothness/jquery-ui-1.8.4.custom.css" rel="stylesheet" type="text/css" />

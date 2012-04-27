@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 29
+/svn/!svn/ver/4/trunk/src/DAO
+END
+MatchDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/5/trunk/src/DAO/MatchDao.java
+END
+PlayerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/5/trunk/src/DAO/PlayerDao.java
+END
+GenericDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5/trunk/src/DAO/GenericDao.java
+END
+TournamentDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/src/DAO/TournamentDao.java
+END
+UserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/5/trunk/src/DAO/UserDao.java
+END
+TeamDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/5/trunk/src/DAO/TeamDao.java
+END
+FixtureDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5/trunk/src/DAO/FixtureDao.java
+END
