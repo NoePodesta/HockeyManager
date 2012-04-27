@@ -1,3 +1,4 @@
+
 logs
 project/project
 project/target
@@ -14,5 +15,4 @@ compiler.ipr
 compiler.iws
 compiler.sh
 build
-
 
