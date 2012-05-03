@@ -3,7 +3,8 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,18 +12,15 @@ import model.User;
 
 import DAO.UserDao;
 
-import enums.Action;
-import enums.PageJSP;
 
 /**
  * Servlet implementation class UsernameCheck
  */
-public class UsernameCheck extends MainServlet {
+public class UsernameCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	PageJSP handleAction(HttpServletRequest request,
-			HttpServletResponse response, Action action) throws IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -30,12 +28,13 @@ public class UsernameCheck extends MainServlet {
 			String username = request.getParameter("userId");
 			System.out.println(username);
 			User user = UserDao.getUserByUserName(username);
-			
+
 			if (user == null) {
-				out.println("<img src=\"image/good.png\"  width=\"10\" height=\"10\" >" + " " + username
-						+ "</b> no ha sido utilizado");
+				out.println("<img src=\"image/good.png\"  width=\"10\" height=\"10\" >"
+						+ " " + username + "</b> no ha sido utilizado");
 			} else {
-				out.println("<img src=\"image/no.png\"  width=\"10\" height=\"10\"><font color=red> Ya existe un usuario con </b>" + username + "</b> como username</font>");
+				out.println("<img src=\"image/no.png\"  width=\"10\" height=\"10\"><font color=red> Ya existe un usuario con </b>"
+						+ username + "</b> como username</font>");
 
 			}
 			out.println();
@@ -49,6 +48,11 @@ public class UsernameCheck extends MainServlet {
 			out.close();
 
 		}
-		return PageJSP.HOME;
 	}
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		doPost(request, response);
+	}
+
 }

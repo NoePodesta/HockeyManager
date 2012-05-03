@@ -113,6 +113,7 @@
 		<servlet-name>ImageController</servlet-name>
 		<url-pattern>/ImageController</url-pattern>
 	</servlet-mapping>
+
 	
 	<servlet>
 		<servlet-name>Logout</servlet-name>

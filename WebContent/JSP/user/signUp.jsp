@@ -27,7 +27,7 @@
 			<input name="email" type="email"  placeholder="Email" title= "Su mail no será publicado a los demás usuarios" required="required" value="" />
 			
 			<p><label>Foto</label> 
-			<input type="file" lang="es" name="file" id="file" style="margin-top: 5px;" /></p>
+			<input type="file" lang="es" name="file" id="file" style="margin-top: 5px;"  accept="image/gif,image/jpeg, image/png, image/jpg"/></p>
 			
 			<div class="pull-right">
 				<button class="btn-primary btn-small" type="submit"> OK </button>

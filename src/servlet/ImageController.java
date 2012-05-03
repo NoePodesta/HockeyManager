@@ -1,85 +1,66 @@
 package servlet;
 
-
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.Closeable;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
-
 import DAO.UserDao;
 
-import enums.Action;
-import enums.PageJSP;
+public class ImageController extends HttpServlet {
 
-
-public class ImageController extends MainServlet {
-
-	private static final long serialVersionUID = 1;	@Override
-	PageJSP handleAction(HttpServletRequest request,
-			HttpServletResponse response, Action action) {
+	private static final long serialVersionUID = 1L;
+	
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		
-		switch (action) {
-			case USERIMAGE: return createImage(request, response);
-			
+		response.setContentType("image/jpeg");
+	//	User user = UserDao.getUserByUserName((String) request.getRemoteUser());
+		User user = UserDao.getUserByUserName("noelia");
 		
-		}
-		return PageJSP.HOMESERVLET;
+		byte[] imageBytes = user.getPhoto();
+	    OutputStream os = null;
+	    if(imageBytes.length!=0){
+	            try {
+	            	
+	                response.setContentLength(imageBytes.length);
+	            	os = response.getOutputStream();
+	                response.getOutputStream().write(imageBytes);
+	                response.getOutputStream().flush();  
+	                os.close();
+	                System.out.println("llega hasta aca");
+
+	            } catch (IOException e) {
+	                    e.printStackTrace();
+	            }
+
+	            
+
+
+
+	    }
+
+		
 	}
-	private PageJSP createImage(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-            response.setContentType("image/png");           
-
-        	User user = UserDao.getUserByUserName((String) request.getRemoteUser());
-
-            byte[] imageBytes = user.getPhoto();
-
-
-
-            OutputStream os = null;
-            
-  
-            if(imageBytes.length!=0){
-
-                    try {
-
-                            os = response.getOutputStream();
-
-                            response.getOutputStream().write(imageBytes);
-
-                            os.close();
-
-                    } catch (IOException e) {
-
-                            // TODO Auto-generated catch block
-
-                            e.printStackTrace();
-
-                    }
-
-                    response.setContentType("image/jpeg");
-
-                    response.setContentLength(imageBytes.length);
-
-
-
-            }
-
-
-
-
-
-    //      ImageIO.write(buffer, "png", os);
-
-
-
-		
-		
-		return PageJSP.USERPROFILEPAGE;
+	
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	throws IOException, ServletException {
+		doPost(request, response);
 	}
+	
+
+	
+
 
 }

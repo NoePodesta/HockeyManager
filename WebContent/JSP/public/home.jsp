@@ -31,9 +31,10 @@
 			arg.signin();
 			arg.signup();
 			arg.linkDisplay();
-			//arg.checkUserName();
-			//arg.autocomplete();
+			arg.checkUserName();
+			arg.autocomplete();
 			arg.comment();
+			
 
 		});
 	</script>

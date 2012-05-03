@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,59 +21,60 @@ import model.Tournament;
 import enums.Action;
 import enums.PageJSP;
 
-public class Autocomplete extends MainServlet {
+public class Autocomplete extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	PageJSP handleAction(HttpServletRequest request,
-			HttpServletResponse response, Action action) throws IOException  {
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
-	    try {
-	    	   out = response.getWriter();
-	           String query = request.getParameter("term").toLowerCase();
 
-	           List<Tournament> tournaments = new ArrayList<Tournament>(); 
-	           tournaments = TournamentDao.getTournamentsByName(query);    
-	           List<Player> players = new ArrayList<Player>();
-	           players = PlayerDao.getPlayers(query);
-	           JSONArray jsonArray = new JSONArray();
+		try {
+			out = response.getWriter();
+			String query = request.getParameter("term").toLowerCase();
 
-	                  if (tournaments.isEmpty() && players.isEmpty()) {
-	                         jsonArray.add("No hay coincidencias");
-	                         out.println(jsonArray);
-	                  }
-	                  else if (!tournaments.isEmpty()){
-	                	  for(Tournament tournament : tournaments ){
-	                		  	String name = tournament.getName();
-	                		  	jsonArray.add(name);
-                                out.println(jsonArray);
-	                	  }
-	                  }
-	                  else{	
-	                	  for (Player player : players) {
-	  					String name = player.getName();
-						String surname = player.getLastName();
-						String team = player.getTeam().getName();
-						String data = name + " " + surname + "," + team;
-						jsonArray.add(data);
-						out.println(jsonArray);
-				
-	                         }
-	           }
-	                 
+			List<Tournament> tournaments = new ArrayList<Tournament>();
+			tournaments = TournamentDao.getTournamentsByName(query);
+			List<Player> players = new ArrayList<Player>();
+			players = PlayerDao.getPlayers(query);
+			JSONArray jsonArray = new JSONArray();
 
-	    } catch (Exception ex) {
+			if (tournaments.isEmpty() && players.isEmpty()) {
+				jsonArray.add("No hay coincidencias");
+				out.println(jsonArray);
+			} else if (!tournaments.isEmpty()) {
+				for (Tournament tournament : tournaments) {
+					String name = tournament.getName();
+					jsonArray.add(name);
+					out.println(jsonArray);
+				}
+			} else {
+				for (Player player : players) {
+					String name = player.getName();
+					String surname = player.getLastName();
+					String team = player.getTeam().getName();
+					String data = name + " " + surname + "," + team;
+					jsonArray.add(data);
+					out.println(jsonArray);
 
-	           out.println("Error ->" + ex.getMessage());
+				}
+			}
 
-	    } finally {
-	           out.close();
-	    }
-		return PageJSP.HOME;
+		} catch (Exception ex) {
+
+			out.println("Error ->" + ex.getMessage());
+
+		} finally {
+			out.close();
+		}
+
 	}
-	
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		doPost(request, response);
+	}
 
 }

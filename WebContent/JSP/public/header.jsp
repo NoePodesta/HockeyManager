@@ -31,7 +31,7 @@
 						|| privilege.equalsIgnoreCase(Privilege.USERADMIN.getValue())){%>
 
 				<ul class ="nav pull-left">
-					<li><a href="UserManager?action=USERPROFILE" rel="#overlay"><span>Perfil</span></a></li>
+					<li><a href="UserManager?action=USERPROFILE"><span>Perfil</span></a></li>
 					<%if (tournament!=null) {%>
 						<li><a href="TournamentManager?action=TOURNAMENTPROFILE"><span><%=tournament%></span></a></li>
 						<li><a href="TournamentManager?action=TEAMSTOURNAMENT"><span>Equipos</span></a></li>
@@ -53,7 +53,7 @@
 
 				<%}else if (privilege.equalsIgnoreCase(Privilege.USER.getValue())){%>
 				<ul class="nav pull-left">
-					<li><a href="UserManager?action=USERPROFILE" rel="#overlay">Perfil</a></li>
+					<li><a href="UserManager?action=USERPROFILE" >Perfil</a></li>
 					
 				</ul>
 					
@@ -71,7 +71,6 @@
 	</div>
 </div>
 
-
-<div class="apple_overlay" id="overlay">
+<!-- <div class="apple_overlay" id="overlay">
 	<div class="contentWrap"></div>
-</div>
+</div> -->
