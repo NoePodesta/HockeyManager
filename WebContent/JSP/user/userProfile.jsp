@@ -19,8 +19,7 @@
 	
 	<div class="bio">
 	<div class= "img">
-		<img class="userImg" src="image/user.png" width="150" height="150" alt=""/>
-		<label>Photo: </label> <img class="userImg" src=ImageController alt=""/>
+		<img class="userImg" src=ImageController  alt="User Photo"/>
 
 	</div>
 	<div class= "summary">

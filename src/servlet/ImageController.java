@@ -26,8 +26,7 @@ public class ImageController extends HttpServlet {
 			throws IOException, ServletException {
 		
 		response.setContentType("image/jpeg");
-	//	User user = UserDao.getUserByUserName((String) request.getRemoteUser());
-		User user = UserDao.getUserByUserName("noelia");
+		User user = UserDao.getUserByUserName((String) request.getRemoteUser());
 		
 		byte[] imageBytes = user.getPhoto();
 	    OutputStream os = null;

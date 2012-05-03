@@ -78,13 +78,14 @@ public class AddUser extends MainServlet {
 						t.setLastName(item.getString());
 					} else if (item.getFieldName().equals("email")) {
 						t.setEmail(item.getString());
-					}	else {
+					}
+				}else {
 						byte[] byteArray = item.get();
 						t.setPhoto(byteArray);
 					}
 			
 				}
-			}
+			
 		} catch (FileUploadException e) {
 		e.printStackTrace();
 		}

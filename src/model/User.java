@@ -22,8 +22,8 @@ public class User {
 	private String name;
 	private String lastName;
 	private String email;
-	private byte[] photo;
 	private Privilege privilege;
+	private byte[] photo;
 	
 	@Id
 	@Column(name ="User_Name", nullable=false, length=20, unique=true)
@@ -67,7 +67,8 @@ public class User {
 	}
 	
 	@Lob
-	@Column(name= "USER_IMAGE")
+	@Column(name="User_Photo")
+	
 	public byte[] getPhoto() {
 		return photo;
 	}
@@ -83,13 +84,6 @@ public class User {
 	public Privilege getPrivilege() {
 		return privilege;
 	}
-	
-	
-
-
-	
-
-	
 	
 	
 }
