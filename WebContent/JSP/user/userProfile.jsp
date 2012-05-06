@@ -19,7 +19,7 @@
 	
 	<div class="bio">
 	<div class= "img">
-		<img class="userImg" src=ImageController  alt="User Photo"/>
+		<img class="userImg" src=ImageController  width="300" height="300" alt="User Photo"/>
 
 	</div>
 	<div class= "summary">
@@ -42,7 +42,6 @@
 		</form>
 	</div>
 	<div class="pull-right">
-		<a  href="UserManager?action=MODIFYUSERPAGE" rel="#myModal" class="btn btn-primary btn-large">Modificar</a>
 		<form method="post" action="UserManager">
 			<input type="hidden" name="action" value="MODIFYUSERPAGE" />
 			<button class="btn-primary btn-small" type="submit">Modificar</button>
@@ -59,19 +58,8 @@
 
 		</div>
 
-			<div id="myModal">
-					<p>holaaa</p>
-
-		</div>	
 		
-		<script type="text/javascript">
-		
-			$('#myModal').modal({
-		
-			  keyboard: false
-
-			});
-		</script>
+	
 	</body>
 </html>
 

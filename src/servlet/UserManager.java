@@ -2,10 +2,20 @@ package servlet;
 
 
 
+import java.util.Iterator;
+import java.util.List;
+
 import DAO.UserDao;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import model.UserAdmin;
 import model.Captain;
 import model.User;
@@ -20,15 +30,84 @@ public class UserManager extends MainServlet {
 	PageJSP handleAction(HttpServletRequest request,
 			HttpServletResponse response, Action action) {
 		
-		
+		System.out.println("La accion es: " + action);
 		switch (action) {
-
 		case USERPROFILE: return userProfile(request, response);
 		case DELETEUSER: return deleteUser(request, response);	
 		case MODIFYUSER: return modifyUser(request, response);
 		case MODIFYUSERPAGE: return modifyUserPage(request, response);
+		case ADDUSER: return addUser(request,response);
 		}
 		return null;
+	}
+
+
+	private PageJSP addUser(HttpServletRequest request,
+			HttpServletResponse response) {
+		User user;
+		String remoteAddr = request.getRemoteAddr();
+		DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
+		ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
+		try {
+			List items = uploadHandler.parseRequest(request);
+			Iterator itr = items.iterator();
+			while (itr.hasNext()) {
+				FileItem item = (FileItem) itr.next();
+				if (item.isFormField()) {
+					if (item.getFieldName().equals("tipo")) {
+						if (item.getString().equalsIgnoreCase(Privilege.USERADMIN.getValue())){
+						user = new UserAdmin();
+						user.setPrivilege(Privilege.USERADMIN);
+						addCaracteristicasUser(user,items,request,response);
+						UserDao.update(user);
+					
+						}else if (item.getString().equalsIgnoreCase(Privilege.USER.getValue())){
+						user = new User();
+						user.setPrivilege(Privilege.USER);
+						addCaracteristicasUser(user,items,request,response);
+						UserDao.update(user);
+						}
+					}
+				}
+			}
+							
+		} catch (FileUploadException e) {
+		e.printStackTrace();
+		}
+
+			return PageJSP.HOMESERVLET;
+	
+	
+	}
+
+	@SuppressWarnings("rawtypes")
+	private <U extends User> void addCaracteristicasUser(U u, List items,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		Iterator itr = items.iterator();
+		while (itr.hasNext()) {
+			FileItem item = (FileItem) itr.next();
+			if (item.isFormField()) {
+				if (item.getFieldName().equals("userId")) {
+					u.setUserName(item.getString());		
+					HttpSession session = request.getSession();
+					session.setAttribute("username",u.getUserName());			
+			
+				} else if (item.getFieldName().equals("password")) {
+					String encryptpass = UserDao.md5convert(item.getString());
+					u.setPassword(encryptpass);
+				} else if (item.getFieldName().equals("name")) {
+					u.setName(item.getString());
+				} else if (item.getFieldName().equals("lastname")) {
+					u.setLastName(item.getString());
+				} else if (item.getFieldName().equals("email")) {
+					u.setEmail(item.getString());
+				}
+			}else {
+					byte[] byteArray = item.get();
+					u.setPhoto(byteArray);
+				}
+		}
 	}
 
 
@@ -58,17 +137,17 @@ public class UserManager extends MainServlet {
 		if (tipo.equalsIgnoreCase(Privilege.USER.getValue())) {
 
 			User user = UserDao.getUserByUserName((String) request.getRemoteUser());
-			modificarCaracteristicasUser(user, request, response);
+			modifyUserCharacteristics(user, request, response);
 		} 
 		
 		else if(tipo.equalsIgnoreCase(Privilege.CAPTAIN.getValue())){
 			Captain captain = (Captain) UserDao.getUserByUserName((String) request.getRemoteUser());
-			modificarCaracteristicasUser(captain, request, response);
+			modifyUserCharacteristics(captain, request, response);
 		}
 		
 		else{
 			UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName((String) request.getRemoteUser());
-			modificarCaracteristicasUser(userAdmin, request, response);
+			modifyUserCharacteristics(userAdmin, request, response);
 			}
 		
 		return PageJSP.HOMESERVLET;
@@ -108,15 +187,39 @@ public class UserManager extends MainServlet {
 	}
 
 
-	private <T extends User> void modificarCaracteristicasUser(T t,
+	private <T extends User> void modifyUserCharacteristics(T t,
 			HttpServletRequest request, HttpServletResponse response) {
 	
 
-		String encryptpass = UserDao.md5convert(request.getParameter("newpassword"));
-		t.setPassword(encryptpass);
-		t.setName(request.getParameter("name"));
-		t.setLastName(request.getParameter("lastname"));
-		t.setEmail(request.getParameter("email"));
+		String remoteAddr = request.getRemoteAddr();
+		DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
+		ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
+		try {
+			List items = uploadHandler.parseRequest(request);
+			Iterator itr = items.iterator();
+			while (itr.hasNext()) {
+				FileItem item = (FileItem) itr.next();
+				if (item.isFormField()) {
+					if (item.getFieldName().equals("newpassword")) {
+						String encryptpass = UserDao.md5convert(item.getString());
+						t.setPassword(encryptpass);
+					} else if (item.getFieldName().equals("name")) {
+						t.setName(item.getString());
+					} else if (item.getFieldName().equals("lastname")) {
+						t.setLastName(item.getString());
+					} else if (item.getFieldName().equals("email")) {
+						t.setEmail(item.getString());
+					}
+				}else {
+						byte[] byteArray = item.get();
+						t.setPhoto(byteArray);
+					}
+			
+				}
+			
+		} catch (FileUploadException e) {
+		e.printStackTrace();
+		}
 		
 		UserDao.update(t);
 	}

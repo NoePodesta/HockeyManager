@@ -1,8 +1,7 @@
 <fieldset id="signup_menu">
 	<p>Todos los campos con <span>*</span> deben ser completados.</p>
 	 <br/>	 
-	 <form id="signup" name="myform" action="AddUser" enctype="multipart/form-data" method="POST">
-		
+	 <form id="signup" name="myform" action="UserManager?action=ADDUSER" enctype="multipart/form-data" method="POST">
 			
 			<label>Tipo de Usuario <span>*&nbsp;&nbsp;&nbsp;</span>
 			<input class="checkbox" type="radio" name="tipo" value="1" title= "Usted tendra la posibilidad de crear y manejar torneos"/> User Admin
@@ -27,7 +26,8 @@
 			<input name="email" type="email"  placeholder="Email" title= "Su mail no será publicado a los demás usuarios" required="required" value="" />
 			
 			<p><label>Foto</label> 
-			<input type="file" lang="es" name="file" id="file" style="margin-top: 5px;"  accept="image/gif,image/jpeg, image/png, image/jpg"/></p>
+			<input type="file" lang="es" name="file" id="file" style="margin-top: 5px;"  accept="image/gif,image/jpeg, image/png, image/jpg" size=30/></p>
+			 
 			
 			<div class="pull-right">
 				<button class="btn-primary btn-small" type="submit"> OK </button>

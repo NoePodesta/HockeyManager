@@ -15,9 +15,8 @@
 					</div>
 				
 					
-					<form id="myform" method="post" action="UserManager" onsubmit="return validate_form(this)">
-						<input type="hidden" name="action" value="MODIFYUSER"/>
-									
+					<form id="myform" name="myform" method="POST" action="UserManager?action=MODIFYUSER" enctype="multipart/form-data">
+					
 							<p><label>Nombre <span>*</span></label> 
 							<input name="name" type="text" title= "Debe ser de entre 3 y 20 caractéres" required="required" maxlength="20" minlength="3" value=${name } /></p>
 							
@@ -49,16 +48,7 @@
 			<div class="footer">
 				<%@include file="/JSP/public/footer.jsp" %>
 				<br clear="all" /></div>	
-					
-					<script type="text/javascript">
-						$(document).ready(function(){
-							arg.validation();
-				
-																									
-						});
-					</script>
 
-		</div>	
 	
 	</body>
 </html>

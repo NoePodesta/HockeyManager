@@ -22,42 +22,14 @@ import enums.Privilege;
 
 
 
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import enums.PageJSP;
-
 public class AddUser extends MainServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("rawtypes")
 	protected PageJSP handleAction(HttpServletRequest request, HttpServletResponse response, Action action){
-//						
-////			if (tipo.equalsIgnoreCase(Privilege.USER.getValue())) {
-////				User user = new User();
-////				addCaracteristicasUser(user, request, response);
-////				user.setPrivilege(Privilege.USER);
-////				UserDao.update(user);
-////				
-////			} else {
-				UserAdmin userAdmin = new UserAdmin();
-				userAdmin.setPrivilege(Privilege.USERADMIN);
-				addCaracteristicasUser(userAdmin, request, response);
-				UserDao.update(userAdmin);
-//			}
-//			
-			HttpSession session = request.getSession();
-			session.setAttribute("username",request.getParameter("username"));
-			
-			return PageJSP.HOMESERVLET;
-	
-	
-	}
-	
-	private <T extends User> void addCaracteristicasUser(T t,
-			HttpServletRequest request, HttpServletResponse response) {
 		
+		User user;
 		String remoteAddr = request.getRemoteAddr();
 		DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
 		ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
@@ -67,30 +39,60 @@ public class AddUser extends MainServlet {
 			while (itr.hasNext()) {
 				FileItem item = (FileItem) itr.next();
 				if (item.isFormField()) {
-					if (item.getFieldName().equals("userId")) {
-						t.setUserName(item.getString());					
-					} else if (item.getFieldName().equals("password")) {
-						String encryptpass = UserDao.md5convert(item.getString());
-						t.setPassword(encryptpass);
-					} else if (item.getFieldName().equals("name")) {
-						t.setName(item.getString());
-					} else if (item.getFieldName().equals("lastname")) {
-						t.setLastName(item.getString());
-					} else if (item.getFieldName().equals("email")) {
-						t.setEmail(item.getString());
+					if (item.getFieldName().equals("tipo")) {
+						if (item.getString().equalsIgnoreCase(Privilege.USERADMIN.getValue())){
+						user = new UserAdmin();
+						user.setPrivilege(Privilege.USERADMIN);
+						addCaracteristicasUser(user,items,request,response);
+						UserDao.update(user);
+					
+						}else if (item.getString().equalsIgnoreCase(Privilege.USER.getValue())){
+						user = new User();
+						user.setPrivilege(Privilege.USER);
+						addCaracteristicasUser(user,items,request,response);
+						UserDao.update(user);
+						}
 					}
-				}else {
-						byte[] byteArray = item.get();
-						t.setPhoto(byteArray);
-					}
-			
 				}
-			
+			}
+							
 		} catch (FileUploadException e) {
 		e.printStackTrace();
 		}
+
+			return PageJSP.HOMESERVLET;
+	
+	
 	}
-
-}
-
-
+	
+	@SuppressWarnings("rawtypes")
+	private <U extends User> void addCaracteristicasUser(U u, List items,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		Iterator itr = items.iterator();
+		while (itr.hasNext()) {
+			FileItem item = (FileItem) itr.next();
+			if (item.isFormField()) {
+				if (item.getFieldName().equals("userId")) {
+					u.setUserName(item.getString());		
+					HttpSession session = request.getSession();
+					session.setAttribute("username",u.getUserName());			
+			
+				} else if (item.getFieldName().equals("password")) {
+					String encryptpass = UserDao.md5convert(item.getString());
+					u.setPassword(encryptpass);
+				} else if (item.getFieldName().equals("name")) {
+					u.setName(item.getString());
+				} else if (item.getFieldName().equals("lastname")) {
+					u.setLastName(item.getString());
+				} else if (item.getFieldName().equals("email")) {
+					u.setEmail(item.getString());
+				}
+			}else {
+					byte[] byteArray = item.get();
+					u.setPhoto(byteArray);
+				}
+		}
+	}
+}			
+				

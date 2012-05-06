@@ -228,7 +228,7 @@ margin: auto;
 
 .summary{
 	margin-left: 35%;
-    margin-top: 4%;
+    padding-top: 10px;
     text-align: left;
 
 }
@@ -239,6 +239,7 @@ margin: auto;
 
 .img{
 	float: left;
+	margin-right: 2em;
 	
 }
 
