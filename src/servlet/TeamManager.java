@@ -1,25 +1,19 @@
 package servlet;
 
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import DAO.GoalDao;
 import DAO.TeamDao;
 import DAO.TournamentDao;
 import DAO.UserDao;
-
-import model.Fixture;
+import enums.Action;
+import enums.PageJSP;
 import model.Player;
 import model.Team;
 import model.Tournament;
 import model.UserAdmin;
-import enums.Action;
-import enums.PageJSP;
-import enums.Privilege;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class TeamManager extends MainServlet {
 
@@ -28,22 +22,22 @@ public class TeamManager extends MainServlet {
 
 	PageJSP handleAction(HttpServletRequest request,
 			HttpServletResponse response, Action action) {
-		switch (action) {
+        String value = request.getParameter("value");
+        switch (action) {
 		case ADDTEAM: return registerTeam(request, response);
-		case TEAMPROFILEOVERLAY: 
-			String idteam = (String)request.getParameter("idteam");
-			return teamProfileOverlay(request, response, idteam);
+		case TEAMPROFILEOVERLAY:
+			return teamProfileOverlay(request, response, value);
 		case MODIFYTEAMSERVLET: 
-			String idteam1 = (String)request.getParameter("idteam");
+			String idteam1 = request.getParameter("idteam");
 			return modifyTeamServlet(request, response, idteam1);
 		case MODIFYTEAM:
-			String idteam3 = (String)request.getParameter("idteam");
-			String description = (String) request.getParameter("description");
+			String idteam3 = request.getParameter("idteam");
+			String description = request.getParameter("description");
 			String history = request.getParameter("history");
 			return modifyTeam(request,response,idteam3,description,history);
 			
 		case DELETETEAM:
-			String idteam2 = (String)request.getParameter("idteam");
+			String idteam2 = request.getParameter("idteam");
 			return deleteTeam(request, response, idteam2);
 
 									
@@ -136,6 +130,6 @@ public class TeamManager extends MainServlet {
 			
 			TournamentDao.addTeam(tournament, teamName, history, description);
 	
-		return PageJSP.TOURNAMENTTEAMS;
+		return PageJSP.TOURNAMENTPAGESERVLET;
 	}
 }

@@ -1,11 +1,10 @@
 <%@page contentType="text/html"%> 
 <%@page pageEncoding="UTF-8"%>
 <div class="addResult">
-	<h1>Resultado</h1>
-	<%@page import="model.Team"%>
-	
-	
-		<% String localteam = (String)request.getAttribute("localteam");
+    <h1>Resultado</h1>
+
+
+    <% String localteam = (String)request.getAttribute("localteam");
 			String guestteam= (String)request.getAttribute("guestteam");
 			int idmatch = (Integer) request.getAttribute("idmatch");
 					

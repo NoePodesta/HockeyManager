@@ -2,12 +2,11 @@
 <%@page pageEncoding="UTF-8"%>
 <div class="profile">
 	
+	<%@page import="DAO.GoalDao"%>
 	<%@page import="model.Player"%>
-	<%@page import="DAO.GoalDao"%>  
-	<%@page import="DAO.GreenCardDao"%>  
 	<%@page import="java.util.List"%>
-	
-	<%String idteam = (String)request.getAttribute("idteam");%>
+
+    <%String idteam = (String)request.getAttribute("idteam");%>
 	<h1><%out.println(request.getAttribute("teamname"));%></h1>
 	<p><label>Descripción del equipo: </label><%out.println(request.getAttribute("description"));%></p>
 	

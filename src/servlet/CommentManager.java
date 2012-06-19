@@ -1,21 +1,16 @@
 package servlet;
 
 
-
-
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import DAO.CommentDao;
 import DAO.UserDao;
-
+import enums.Action;
+import enums.PageJSP;
 import model.Comment;
 import model.User;
 
-import enums.Action;
-import enums.PageJSP;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 
 public class CommentManager extends MainServlet {

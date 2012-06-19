@@ -1,6 +1,6 @@
-<%@page import="java.util.List"%>
 <%@page import="model.Team"%>
-				<table cellpadding="5" id="fixtureview" class="site_center4">
+<%@page import="java.util.List"%>
+				<table id="fixtureview" class="site_center4">
 					<tr>
 						<th>EQUIPO</th>
 						<th>PUNTOS</th>
@@ -14,17 +14,17 @@
 					</tr>
 					<%List<Team> teams = (List<Team>) request.getAttribute("teams");
 
- 				for (int i = 0; i < teams.size(); i++) {
+ 				for (Team team: teams) {
 
-			 		String teamname = teams.get(i).getName();
-			 		int teampts = teams.get(i).getPts();
-			 		int teampj = teams.get(i).getPj();
-			 		int teampg = teams.get(i).getPg();
-			 		int teampp = teams.get(i).getPp();
-			 		int teampe = teams.get(i).getPe();
-			 		int teamdif = teams.get(i).getDiferencia();
-			 		int teamgc = teams.get(i).getGc();
-			 		int teamgf = teams.get(i).getGf();
+			 		String teamname = team.getName();
+			 		int teampts = team.getPts();
+			 		int teampj = team.getPj();
+			 		int teampg = team.getPg();
+			 		int teampp = team.getPp();
+			 		int teampe = team.getPe();
+			 		int teamdif = team.getDiferencia();
+			 		int teamgc = team.getGc();
+			 		int teamgf = team.getGf();
 			 		
 			 			
 			 		 %>

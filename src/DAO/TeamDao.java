@@ -2,22 +2,14 @@ package DAO;
 
 
 import hibernate.HibernateUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-
-import model.Captain;
-import model.Match;
 import model.Player;
 import model.Team;
-import model.Tournament;
-
-
 import org.hibernate.FlushMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class TeamDao extends GenericDao {

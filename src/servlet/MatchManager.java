@@ -1,27 +1,16 @@
 package servlet;
 
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import DAO.*;
+import enums.Action;
+import enums.PageJSP;
+import model.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import model.Goal;
-import model.GreenCard;
-import model.Match;
-import model.Player;
-import model.RedCard;
-import model.Team;
-import model.YellowCard;
-import DAO.GoalDao;
-import DAO.GreenCardDao;
-import DAO.MatchDao;
-import DAO.PlayerDao;
-import DAO.TeamDao;
-import enums.Action;
-import enums.PageJSP;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class MatchManager extends MainServlet {
 

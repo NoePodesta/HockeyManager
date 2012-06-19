@@ -6,9 +6,9 @@
 
 	<h1>Comentarios</h1>
 			
-		<%@page import="java.util.List"%>
 		<%@page import="model.Comment"%>
 		<%@page import="model.User"%>
+		<%@page import="java.util.List"%>
 
 		<div id="commentContainer"> 
 		<% List<Comment> comments = (List<Comment>) request.getAttribute("comments");

@@ -1,11 +1,10 @@
 <%@page contentType="text/html"%> 
 <%@page pageEncoding="UTF-8"%>
 <div class="addResult">
-	<h1>Resultado</h1>
-	<%@page import="model.Team"%>
-	
-	
-		<% int idmatch = (Integer) request.getAttribute("idmatch");
+    <h1>Resultado</h1>
+
+
+    <% int idmatch = (Integer) request.getAttribute("idmatch");
 		
 				
 		%>

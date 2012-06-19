@@ -1,22 +1,22 @@
 <div class="scroll-pane"> 
 	<table class="fixture" style="width: ;">
 		
-		<%@page import="java.util.List"%>
-		<%@page import= "java.util.Date"%> 
-		<%@page import="model.Match"%> 
-			<%@page import="model.Player"%>
-			<%@page import="model.Team"%>
+		<%@page import="model.Match"%>
+		<%@page import= "model.Player"%>
+		<%@page import="java.util.Date"%>
+			<%@page import="java.util.List"%>
+
+        <tr class="subtitulo">
+            <th style="width: 5%">Fecha</th>
+            <th style="width: 10%">Dia</th>
+            <th style="width: 10%">Info</th>
+            <th style="width: 10">Local</th>
+            <th style="width: 10%;">&nbsp;</th>
+            <th style="width: 5%;">Visitante</th>
+        </tr>
+
+        <%
 			
-			<tr class="subtitulo">
-				<th style="width: 5%">Fecha</th>
-				<th style="width: 10%">Dia</th>
-				<th style="width: 10%">Info</th>
-			<th style="width: 10">Local</th>
-			<th style="width: 10%;">&nbsp;</th>
-			<th style="width: 5%;">Visitante</th>
-		</tr>
-			
-			<%
 			
 			List<Match> matches = (List<Match>) request.getAttribute("matches"); 
 			System.out.println(matches);
@@ -53,7 +53,7 @@
 	</table>
 	
 <div class="displayRight">
-<p><img src="image/cale.png" width="10" height="10" /> Seleccione una fecha, <img src="image/ver.gif" width="10" height="10"/> Información sobre el partido</p>
+<p><img src="image/cale.png" width="10" height="10" /> Seleccione una fecha, <img src="image/ver.gif" width="10" height="10"/> Informaciï¿½n sobre el partido</p>
 </div>
 </div> 
 

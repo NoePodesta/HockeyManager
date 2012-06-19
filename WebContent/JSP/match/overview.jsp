@@ -1,16 +1,15 @@
 <%@page contentType="text/html"%> 
 <%@page pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Team"%>
-<%@page import="model.Player"%>
 <%@page import="model.Goal"%>
+<%@page import="model.Player"%>
+<%@page import="java.util.List"%>
 
 <div class="overview">
-	<h1>Resumen</h1>
-	
-	<div class="opciones">
-	<table>
-	<tr class="subtitulo"><%out.println(request.getAttribute("localname"));%></tr>
+    <h1>Resumen</h1>
+
+    <div class="opciones">
+        <table>
+            <tr class="subtitulo"><%out.println(request.getAttribute("localname"));%></tr>
 	<%List<Player> localplayers = (List<Player>) request.getAttribute("localplayers");
 	List<Goal> goals = (List<Goal>) request.getAttribute("goals");
  	if (!localplayers.isEmpty()) {

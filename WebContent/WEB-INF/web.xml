@@ -95,16 +95,6 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>AddUser</servlet-name>
-		<servlet-class>servlet.AddUser</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>AddUser</servlet-name>
-		<url-pattern>/AddUser</url-pattern>
-	</servlet-mapping>
-	
-		<servlet>
 		<servlet-name>ImageController</servlet-name>
 		<servlet-class>servlet.ImageController</servlet-class>
 	</servlet>
@@ -125,7 +115,7 @@
 		<url-pattern>/Logout</url-pattern>
 	</servlet-mapping>
 	
-<servlet>
+	<servlet>
 		<servlet-name>Comment</servlet-name>
 		<servlet-class>servlet.CommentManager</servlet-class>
 	</servlet>
@@ -140,20 +130,32 @@
 		<servlet-name>Autocomplete</servlet-name>
 		<servlet-class>servlet.Autocomplete</servlet-class>
 	</servlet>
-		<servlet>
-			<display-name>UsernameCheck</display-name>
-			<servlet-name>UsernameCheck</servlet-name>
-			<servlet-class>servlet.UsernameCheck</servlet-class>
-		</servlet>
+	
+	<servlet>
+		<display-name>UsernameCheck</display-name>
+		<servlet-name>UsernameCheck</servlet-name>
+		<servlet-class>servlet.UsernameCheck</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Homee</display-name>
+		<servlet-name>Homee</servlet-name>
+		<servlet-class>servlet.Homee</servlet-class>
+	</servlet>
 		
-
 	<servlet-mapping>
 		<servlet-name>Autocomplete</servlet-name>
 		<url-pattern>/Autocomplete</url-pattern>
 	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>UsernameCheck</servlet-name>
 		<url-pattern>/UsernameCheck</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Homee</servlet-name>
+		<url-pattern>/Homee</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -1,20 +1,16 @@
 package DAO;
 
-import static org.junit.Assert.assertTrue;
 import hibernate.HibernateUtil;
-
-import java.util.List;
-import java.util.Random;
-
 import model.Fixture;
 import model.Match;
-
 import model.Team;
 import model.Tournament;
-
 import org.hibernate.FlushMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
+import java.util.List;
+import java.util.Random;
 
 
 public class FixtureDao extends GenericDao {

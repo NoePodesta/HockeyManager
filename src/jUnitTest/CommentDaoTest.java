@@ -1,16 +1,11 @@
 package jUnitTest;
 
 
-import org.junit.Test;
-
-
-import model.Comment;
-import model.Match;
-import model.UserAdmin;
 import DAO.CommentDao;
-import DAO.FixtureDao;
-import DAO.MatchDao;
 import DAO.UserDao;
+import model.Comment;
+import model.UserAdmin;
+import org.junit.Test;
 
 public class CommentDaoTest {
 	

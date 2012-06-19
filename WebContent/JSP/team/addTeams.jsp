@@ -2,15 +2,17 @@
 		<h1>Equipos</h1>
 	</div>
 
-	<%@page import="java.util.List"%>
-	<%@page import="model.Team"%>
-	<%@page import="model.Player"%>
 	<%@page import="model.Fixture"%>
+	<%@page import="model.Player"%>
+	<%@page import="model.Team"%>
+	<%@page import="java.util.List"%>
 
 
 		
-		<%List<Team> teams= (List<Team>)request.getAttribute("teams");
+		<%
+		List<Team> teams= (List<Team>)request.getAttribute("teams");
 		Fixture fixture = (Fixture)request.getAttribute("fixture");
+		String tournament = (String)session.getAttribute("tournament");
 	
 		if(!teams.isEmpty()){%>
 			<div class="displayRight">
@@ -40,15 +42,19 @@
 		<%}else{%> Usted no ha ingresado equipos todavia	
 
 	
-		<%}if(fixture==(null)){%>
+		<%}if(fixture==(null) && (tournamentName.equalsIgnoreCase(tournament))){
+				%>
+		
+		
 		
 		<div class = "displayRight">
-		<a href="TournamentManager?action=GENERATEFIXTURE" style="text-decoration: none"><button type="button">Generar Fixture</button></a>					
-		<a href="addTeamOverlay.jsp" rel="#overlay2" style="text-decoration:none"><button type="button">Agregar Equipo</button></a>
+		<a href="TournamentManager?action=GENERATEFIXTURE" style="text-decoration: none"><button class="btn-primary btn-small" type="button">Generar Fixture</button></a>					
+		<a href="addTeamOverlay.jsp" rel="#overlay2" style="text-decoration:none"><button class="btn-primary btn-small" type="button">Agregar Equipo</button></a>
 		</div>
 		
 		
 		<%} %>
+
 		
 		<div class="apple_overlay" id="overlay2">
 			<div class="contentWrap"></div>

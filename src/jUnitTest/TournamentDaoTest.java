@@ -1,19 +1,7 @@
 package jUnitTest;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
-import model.Team;
-import model.Tournament;
-import model.UserAdmin;
-
+import DAO.TournamentDao;
 import org.junit.Test;
-
-import DAO.TeamDao;
-import DAO.TournamentDao;
-import DAO.TournamentDao;
-import DAO.UserDao;
 
 public class TournamentDaoTest {
 	

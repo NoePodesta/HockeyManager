@@ -1,25 +1,22 @@
 
-<%@page import="model.Fixture"%>
+<%@page import="model.Match"%>
 
 <div class="scroll-pane">
 	<table class="fixture" style="width: ;">
 
-		<%@page import="java.util.List"%>
 		<%@page import="java.util.Date"%>
-		<%@page import="model.Match"%>
-		<%@page import="model.Player"%>
-		<%@page import="model.Team"%>
+		<%@page import="java.util.List"%>
 
-		<thead>
-		<tr class="subtitulo">
-			<th style="width: 5px">Fecha</th>
-			<th style="width: 10px">Dia</th>
-			<th style="width: 10px">Local</th>
-			<th style="width: 10px;">VS</th>
-			<th style="width: 5px;">Visitante</th>
-		</tr>
-		<thead>
-		<%
+        <thead>
+        <tr class="subtitulo">
+            <th style="width: 5px">Fecha</th>
+            <th style="width: 10px">Dia</th>
+            <th style="width: 10px">Local</th>
+            <th style="width: 10px;">VS</th>
+            <th style="width: 5px;">Visitante</th>
+        </tr>
+        <thead>
+            <%
 			
 			List<Match> matches = (List<Match>) request.getAttribute("matches"); 
 			System.out.println(matches);
@@ -78,7 +75,7 @@
 	<div class="displayRight">
 		<p>
 			<img src="image/cale.png" width="10" height="10" /> Seleccione una
-			fecha, <img src="image/ver.gif" width="10" height="10" /> Información
+			fecha, <img src="image/ver.gif" width="10" height="10" /> Informaciï¿½n
 			sobre el partido
 		</p>
 	</div>

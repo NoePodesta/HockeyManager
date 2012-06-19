@@ -1,16 +1,15 @@
 package servlet;
 
 
-import java.io.IOException;
+import enums.Action;
+import enums.PageJSP;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import enums.Action;
-import enums.PageJSP;
+import java.io.IOException;
 
 @SuppressWarnings("serial")
 public abstract class MainServlet extends HttpServlet {

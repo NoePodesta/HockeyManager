@@ -1,10 +1,10 @@
 package model;
 
+import enums.Privilege;
+
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
-
-import enums.Privilege;
 
 @Entity
 @Table(name = "Administrador")

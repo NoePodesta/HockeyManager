@@ -1,15 +1,10 @@
 package jUnitTest;
 
-import static org.junit.Assert.assertTrue;
-
+import DAO.PlayerDao;
 import model.Player;
-import model.Team;
-
 import org.junit.Test;
 
-import DAO.PlayerDao;
-import DAO.TeamDao;
-import DAO.TournamentDao;
+import static org.junit.Assert.assertTrue;
 
 public class TeamDaoTest {
 
@@ -17,7 +12,7 @@ public class TeamDaoTest {
 	public void addPlayers() {
 		
 	/*	Team team = TeamDao.getTeamById("2");
-		TeamDao.addPlayer(team, "Belu", "Podest·", "belu@hot.com", "Defensora");*/
+		TeamDao.addPlayer(team, "Belu", "Podest√°", "belu@hot.com", "Defensora");*/
 /*		TeamDao.addPlayer("team","Macarena", "Retamosa", "none@hotmail.com", "volante");
 		TeamDao.addPlayer("team","Julieta", "Retamosa", "none@hotmail.com", "volante");
 		TeamDao.addPlayer("team","Josefina", "Retamosa", "none@hotmail.com", "volante");*/
@@ -28,7 +23,7 @@ public class TeamDaoTest {
 	@Test
 	public void deletePlayers(){
 		
-		Player player = PlayerDao.getPlayer("Belu", "Podest·", 2);
+		Player player = PlayerDao.getPlayer("Belu", "Podest√°", 2);
 		PlayerDao.remove(player, "2");
 	
 	}

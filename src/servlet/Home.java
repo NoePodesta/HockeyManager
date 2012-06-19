@@ -1,16 +1,17 @@
 package servlet;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
+import DAO.TournamentDao;
+import DAO.UserDao;
+import enums.Action;
+import enums.PageJSP;
 import model.Tournament;
 import model.UserAdmin;
 
-import DAO.UserDao;
-
-import enums.Action;
-import enums.PageJSP;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Home extends MainServlet {
 
@@ -24,6 +25,7 @@ public class Home extends MainServlet {
 				
 		String username = request.getRemoteUser();
 		session.setAttribute("username", username);
+		
 		
 		if(username!= null){
 			String privilege = UserDao.getUserByUserName(username).getPrivilege().getValue();
@@ -39,8 +41,12 @@ public class Home extends MainServlet {
 					}
 			}	
 			session.setAttribute("privilege", privilege);
-			request.setAttribute("active", "active");
+			
 		}
+		
+		List<Tournament> tournaments = TournamentDao.getAllTournaments();
+		System.out.println(tournaments);
+		request.setAttribute("tournaments", tournaments);
 		
 		return PageJSP.HOME;
 			

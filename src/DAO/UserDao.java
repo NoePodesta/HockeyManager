@@ -1,23 +1,13 @@
 package DAO;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
-
 import hibernate.HibernateUtil;
-
-import model.Captain;
-import model.Team;
-import model.Tournament;
-import model.User;
-import model.UserAdmin;
-
+import model.*;
 import org.hibernate.FlushMode;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
-import enums.Privilege;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 
 public class UserDao extends GenericDao {

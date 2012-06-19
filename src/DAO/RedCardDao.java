@@ -1,14 +1,11 @@
 package DAO;
 
 import hibernate.HibernateUtil;
-
-import java.util.List;
-
 import model.RedCard;
-import model.YellowCard;
-
 import org.hibernate.FlushMode;
 import org.hibernate.Session;
+
+import java.util.List;
 
 public class RedCardDao extends GenericDao {
 

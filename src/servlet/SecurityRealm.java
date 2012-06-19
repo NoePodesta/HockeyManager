@@ -1,10 +1,8 @@
 package servlet;
 
-import model.User;
-
-import org.securityfilter.realm.SimpleSecurityRealmBase;
-
 import DAO.UserDao;
+import model.User;
+import org.securityfilter.realm.SimpleSecurityRealmBase;
 
 
 public class SecurityRealm extends SimpleSecurityRealmBase {

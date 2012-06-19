@@ -14,23 +14,55 @@
 			<span class="status"></span>	
 			
 			<input name="password" id="p1"
-				type="password" placeholder="Contraseña" title= "Trate que sea una contraseña dificil de adivinar" required="required" min="3" />
-			<input name="confirmpassword" type="password" title= "Debe concordar con la contraseña" required="required"
-				placeholder="Confirmacion de contraseña"/>
+				type="password" placeholder="Contraseï¿½a" title= "Trate que sea una contraseï¿½a dificil de adivinar" required="required" min="3" />
+			<input name="confirmpassword" type="password" title= "Debe concordar con la contraseï¿½a" required="required"
+				placeholder="Confirmacion de contraseï¿½a"/>
 	
-			<input name="name" type="text" placeholder="Nombre" title= "Debe ser de entre 3 y 20 caractéres" required="required" max="20" min="3" value="" />
+			<input name="name" type="text" placeholder="Nombre" title= "Debe ser de entre 3 y 20 caractï¿½res" required="required" max="20" min="3" value="" />
 	
 		
-			<input name="lastname" type="text" placeholder="Apellido" title= "Debe ser de entre 3 y 20 caractéres" required="required"  max="20" min="3" value="" />
+			<input name="lastname" type="text" placeholder="Apellido" title= "Debe ser de entre 3 y 20 caractï¿½res" required="required"  max="20" min="3" value="" />
 	
-			<input name="email" type="email"  placeholder="Email" title= "Su mail no será publicado a los demás usuarios" required="required" value="" />
+			<input name="email" type="email"  placeholder="Email" title= "Su mail no serï¿½ publicado a los demï¿½s usuarios" required="required" value="" />
 			
-			<p><label>Foto</label> 
-			<input type="file" lang="es" name="file" id="file" style="margin-top: 5px;"  accept="image/gif,image/jpeg, image/png, image/jpg" size=30/></p>
-			 
+			<label>Foto</label>
+			<input type="file" lang="es" name="file" id="file" style="margin-top: 5px;" accept="image/gif,image/jpeg, image/png, image/jpg" size=30/></p>
+   			<output id="list"></output>
+	
 			
 			<div class="pull-right">
 				<button class="btn-primary btn-small" type="submit"> OK </button>
 			</div>
 		</form>
 </fieldset>
+
+<script>
+
+$("input[type=file]").filestyle({ 
+    image: 'image/chooser.gif',
+    imageheight : 22,
+    imagewidth : 82,
+    width : 250
+});
+    $(document).ready(function(){
+        arg.countCharacters();
+        arg.thumbnailImage();
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+</script>

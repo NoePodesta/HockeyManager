@@ -1,25 +1,19 @@
 package servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import DAO.PlayerDao;
+import DAO.TournamentDao;
+import model.Player;
+import model.Tournament;
+import net.sf.json.JSONArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONArray;
-
-import DAO.PlayerDao;
-import DAO.TournamentDao;
-
-import model.Player;
-import model.Tournament;
-
-import enums.Action;
-import enums.PageJSP;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Autocomplete extends HttpServlet {
 

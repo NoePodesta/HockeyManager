@@ -22,19 +22,10 @@
 		<%} else if(request.getAttribute("page").equals("position")){%>
 						<%@include file="/JSP/tournament/positionTable.jsp"%>
 		<%} else if(request.getAttribute("page").equals("results")){%>
-						<%@include file="/JSP/tournament/tournamentResults.jsp" %>				
-		<%} else if(request.getAttribute("page").equals("crearTorneo")){%>
-						<%@include file="/JSP/tournament/newTournament.jsp" %>
+						<%@include file="/JSP/tournament/tournamentResults.jsp" %>
 		<%}%>
 			
-			<br></br>
-		<br></br>
-		<br></br>
-		<br></br>
-		<br></br>
-		<br></br>
-		<br></br>		
-		
+
 
 		</div>
 			<div class="footer">

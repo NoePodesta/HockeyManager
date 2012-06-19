@@ -1,20 +1,16 @@
 package DAO;
 
 import hibernate.HibernateUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import model.Fixture;
-import model.Match;
-import model.Player;
 import model.Team;
 import model.Tournament;
 import model.UserAdmin;
-
 import org.hibernate.FlushMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unchecked")
 public class TournamentDao extends GenericDao {
@@ -64,17 +60,31 @@ public class TournamentDao extends GenericDao {
 		return tournamentList.get(0);
 	}
 	
+	public static Tournament getTournamentById (int id) {
+		getSession();
+		List<Tournament> tournamentList = new ArrayList<Tournament>();
+			
+		try {
+			String query = "from Tournament where Id_Tournament='" + id + "' ";
+			tournamentList = currentSession.createQuery(query).list();
+			
+		} finally {
+			currentSession.close();
+		}
+		return tournamentList.get(0);
+	}
+	
 	
 	public static List<Tournament> getTournamentsByName (String name) {
 		List<Tournament> tournamentList = new ArrayList<Tournament>();
-		Session session = HibernateUtil.getSessionFactory().openSession();
+
 		
 		try {
 			String query = "from Tournament where lower(name) LIKE lower('%"+ name +"%')";
-			tournamentList = session.createQuery(query).list();
+			tournamentList = currentSession.createQuery(query).list();
 			
 		} finally {
-			session.close();
+			currentSession.close();
 		}
 		return tournamentList;
 	}

@@ -1,25 +1,15 @@
 package servlet;
 
 
-import java.util.List;
+import DAO.PlayerDao;
+import DAO.TeamDao;
+import enums.Action;
+import enums.PageJSP;
+import model.Player;
+import model.Team;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import DAO.PlayerDao;
-import DAO.TeamDao;
-import DAO.TournamentDao;
-import DAO.UserDao;
-
-import model.Fixture;
-import model.Player;
-import model.Team;
-import model.Tournament;
-import model.UserAdmin;
-import enums.Action;
-import enums.PageJSP;
-import enums.Privilege;
 
 public class PlayerManager extends MainServlet {
 

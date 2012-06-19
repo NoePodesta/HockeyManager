@@ -25,6 +25,7 @@ a: hover{
 
 a{
 	text-decoration: none;
+    cursor:pointer;
 }
 
 ul li{
@@ -61,6 +62,10 @@ margin: auto;
   font-size: 22px;
   line-height: 1;
   color: #ffffff;
+}
+
+.charcounter{
+    display: block;
 }
 
 
@@ -211,16 +216,7 @@ margin: auto;
 
 }
 
-.profile{
-    background-color: #F9F9F9;
-    line-height: 16px;
-    padding: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 5px 5px 5px 5px;
-    margin: auto;
-    width: 500px;
-    display: table;
-}
+/* =========================== Profile Page / Tournament List =========================== */
 .summary p{
 	clear: left;
 
@@ -230,6 +226,8 @@ margin: auto;
 	margin-left: 35%;
     padding-top: 10px;
     text-align: left;
+    font-size: 15px;
+    text-align: justify;
 
 }
 
@@ -243,14 +241,89 @@ margin: auto;
 	
 }
 
+.title{
+	margin-bottom: 18px;
+	text-transform: uppercase;
+}
+
+/* =========================== Profile Page / Tournament List =========================== */
+#tournamentProfile .img{
+	margin-top: 1em;
+}
+#tournamentProfile{
+	/* The main container div */
+	position:relative;
+	margin:10px auto;
+	width:750px;
+	background:url('../image/main_bg.jpg') repeat-x #aeadad;
+	border:1px solid #CCCCCC;
+	padding:0px 25px 60px;
+
+	/* CSS3 rounded cornenrs */
+
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
+	border-radius:12px;
+	color: #666;
+}
+
+#tournamentProfile h1{
+	color: steelBlue;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	
+}
+#tournamentProfile a{
+	color: #0196E3;	
+}
+#tournamentProfile .summary{
+	margin-left: 0;
+}
+
+.tournamentSummary{
+    margin-top: 35px;
+    text-align: justify;
+}
+
+
+
+/* =========================== User Profile =========================== */
 .bio{
 	margin-top: 30px;
 }
 
-.group{
-	margin-bottom: 18px;
+
+.profile{
+    line-height: 16px;
+    padding: 12px;
+
 }
 
+#profile .title{
+	border-bottom: solid 3px gray;
+	padding-bottom: 10px;
+	color: gray;
+	font-size: 20px;
+	font-weight: bold;
+	color: #0196E3;
+}
+
+#profile .summary{
+	padding-top: 10px;
+	text-align: left;
+	font-size: 15px;
+	float: right;
+	margin-right: 25px;
+	line-height: 40px;
+	margin-left: 0px;
+	color: gray;
+}
+.buttons {
+	padding-top: 200px;
+}
+
+ 
+/* =========================== Footer =========================== */
 
 .footer{
 	background: url(../image/footer.png) no-repeat top center;
@@ -274,9 +347,8 @@ margin: auto;
 	padding-bottom: 5px;
 }
 
-.scroll-pane
-{
-height: 313px;
+.scroll-pane{
+	height: 313px;
     margin-bottom: 10px;
     margin-right: 100px;
     margin-top: 10px;
@@ -285,7 +357,7 @@ height: 313px;
 }
 
 .scroll-pane .displayRight{
-margin-right: 20px;
+	margin-right: 20px;
 }
 
 .subtitulo {
@@ -293,8 +365,11 @@ margin-right: 20px;
     font-weight: bold;
     text-align: center;
     letter-spacing: 2px;
-text-transform: uppercase;
+	text-transform: uppercase;
 }
+
+
+/* =========================== Fixture Page =========================== */
 
 .fixture{
 margin-top: 35px;
@@ -329,6 +404,10 @@ color:SkyBlue
 .fixture a:active {text-decoration: none}
 .fixture a:hover {text-decoration: none;}
 
+
+
+/* =========================== Comment Page =========================== */
+
 .comment{
 	padding: 12px;
 	width: 400px;
@@ -346,37 +425,37 @@ color:SkyBlue
 }
 
 .comment .avatar {
-height: 50px;
-left: -70px;
-position: absolute;
-width: 50px;
-background: url('img/default_avatar.gif') no-repeat #FCFCFC;
-margin-top: -25px;
-top: 50%;
--moz-box-shadow: 1px 1px 0 #c2c2c2;
--webkit-box-shadow: 1px 1px 0 #c2c2c2;
-box-shadow: 1px 1px 0 #c2c2c2;
+	height: 50px;
+	left: -70px;
+	position: absolute;
+	width: 50px;
+	background: url('img/default_avatar.gif') no-repeat #FCFCFC;
+	margin-top: -25px;
+	top: 50%;
+	-moz-box-shadow: 1px 1px 0 #c2c2c2;
+	-webkit-box-shadow: 1px 1px 0 #c2c2c2;
+	box-shadow: 1px 1px 0 #c2c2c2;
 }
 
 .comment .name {
-font-size: 20px;
-padding-bottom: 10px;
-color: #CCC;
+	font-size: 20px;
+	padding-bottom: 10px;
+	color: #CCC;
 }
 
 .comment .date {
-font-size: 10px;
-padding: 6px 0;
-position: absolute;
-right: 15px;
-top: 10px;
-color: #BBB;
+	font-size: 10px;
+	padding: 6px 0;
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	color: #BBB;
 }
 
 .comment p {
-font-size: 18px;
-line-height: 1.5;
-overflow-x: hidden;
+	font-size: 18px;
+	line-height: 1.5;
+	overflow-x: hidden;
 }
 
 #commentContainer{
@@ -385,4 +464,103 @@ overflow-x: hidden;
 	display: inline-block;
 }
 
+/* =========================== AddTeamOverlay/ NewTournament  =========================== */
+#addTeamOverlay .title, #newTournament .title{
+    border-bottom: solid 3px gray;
+    padding-bottom: 10px;
+    color: gray;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0196E3;
+}
 
+#addTeamOverlay label, #newTournament label{
+    font-size: 13px;
+    font-weight: bolder;
+    float: left;
+    text-align: right;
+    width: 11em;
+    color: gray;
+}
+
+#addTeamOverlay input[type="text"], #addTeamOverlay input[type="file"], #newTournament input[type="text"], #newTournament input[type="file"]
+{
+    border: 1px solid #DDD;
+    border-radius: 0.4em;
+    padding: 0.4em;
+    width: 23em;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    color:gray;
+}
+
+#addTeamOverlay input[type="file"], #newTournament input[type="file"] {
+    border: 0;
+    font-size: 12px;
+    width: 250px;
+}
+
+#addTeamOverlay span, #newTournament span {
+    color: lightSlateGray;
+}
+
+#addTeamOverlay textarea, #newTournament textarea{
+    border-radius: 0.4em;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #DDD;
+    width: 256px;
+    height: 100px;
+    color:gray;
+}
+
+.file{
+    border: 1px solid #DDD;
+    border-radius: 0.4em;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    color: gray;
+}
+
+#addTeamOverlay .file{
+    margin-left: -48px;
+}
+
+#newTournament .file{
+    margin-left: -16px;
+}
+.counter {
+    margin-top: 20px;
+}
+
+#addTeamOverlay button, #newTournament button{
+    margin-top: 5em;
+}
+
+/* =========================== Overlay =========================== */
+#overlay {
+	background-image:url('../image/white.png');
+	color:#efefef;
+	height:450px;
+}
+
+  /* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+    height:441px;
+    overflow-y:auto;
+}
+
+.apple_overlay .close {
+	background-image: url('../image/close.png');
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	cursor: pointer;
+	height: 35px;
+	width: 35px;
+}
+
+.apple_overlay {
+	display: none;
+	width: 640px;
+	padding: 35px;
+	font-size: 11px;
+}

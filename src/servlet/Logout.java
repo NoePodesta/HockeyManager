@@ -1,12 +1,11 @@
 package servlet;
 
 
+import enums.Action;
+import enums.PageJSP;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import enums.Action;
-
-import enums.PageJSP;
 
 public class Logout extends MainServlet {
 

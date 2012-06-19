@@ -2,9 +2,9 @@
 		<h1>Goles</h1>
 	</div>
 
-	<%@page import="java.util.List"%>
-	<%@page import="model.Team"%>
 	<%@page import="model.Player"%>
+	<%@page import="model.Team"%>
+	<%@page import="java.util.List"%>
 	
 	
 		<% 

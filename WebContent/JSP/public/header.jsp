@@ -2,9 +2,9 @@
 <%@page import="enums.Privilege"%>
 <%@page import="model.Fixture"%>
 <%
-	String privilege = (String) session.getAttribute("privilege") ;
+	String privilege = (String) session.getAttribute("privilege");
+	String tournamentName = (String) session.getAttribute("tournament");
 	String myname = (String) session.getAttribute("username");
-	String tournament = (String) session.getAttribute("tournament");
 	Fixture fixture1 = (Fixture) session.getAttribute("fixture");
 %>
 <%@include file="/JSP/public/login.jsp"%>
@@ -14,63 +14,75 @@
 		<div class="container">
 			<a class="brand" href="Home">Hockey Manager</a>
 			<div class="nav-links">
-				<%if (myname == null) { %>
-				<ul class ="nav pull-left">
-					<li><a href="Home">Home</a></li>
-								
-				</ul>
+
+			
+				<%
+					if (myname == null) {
+				%>
 
 				<ul class="nav pull-right">
-					<%@include file="/JSP/public/search.jsp" %>		
+					<%@include file="/JSP/public/search.jsp"%>
 					<li><a href="login" class="signin"><span>Sign in</span></a></li>
 					<li class="divider-vertical"></li>
 					<li><a href="#signup" class="signup"><span>Registrarse</span></a></li>
 				</ul>
+					
 				
-				<%}else if (privilege.equalsIgnoreCase(Privilege.ADMINISTRADOR.getValue())
-						|| privilege.equalsIgnoreCase(Privilege.USERADMIN.getValue())){%>
+				
+					
+					<%}else{%>
+					<ul class="nav pull-left">
+						<%if (tournamentName != null) {
+					%>
+					<li><a href="TournamentManager?action=TOURNAMENTPROFILE&value=<%=tournamentName%>"><span><%=tournamentName%></span></a></li>
+						<%if (fixture1 != null) {%>
+					<li><a href="TournamentManager?action=FIXTUREPAGE&value=<%=tournamentName%>"><span>Fixture</span></a></li>
+					<li><a href="TournamentManager?action=POSITIONPAGE&value=<%=tournamentName%>"><span>Posiciones</span></a></li>
+					<li><a href="TournamentManager?action=RESULSTPAGE&value=<%=tournamentName%>"><span>Resultados</span></a></li>
+					<%		}
+						}
+						else if ((tournamentName == null)  && (privilege.equalsIgnoreCase(Privilege.USERADMIN.getValue()) || privilege.equalsIgnoreCase(Privilege.USERADMIN.getValue()))){
+						%>
+						<li><a href="JSP/tournament/newTournament.jsp" rel="#overlay"><span>REGISTRAR
+									TORNEO</span></a></li>
+						<%
+							}
+						%>
 
-				<ul class ="nav pull-left">
-					<li><a href="UserManager?action=USERPROFILE"><span>Perfil</span></a></li>
-					<%if (tournament!=null) {%>
-						<li><a href="TournamentManager?action=TOURNAMENTPROFILE"><span><%=tournament%></span></a></li>
-						<li><a href="TournamentManager?action=TEAMSTOURNAMENT"><span>Equipos</span></a></li>
-						<%if(fixture1!=null){ %>
-							<li><a href="TournamentManager?action=FIXTUREPAGE"><span>Fixture</span></a></li>
-							<li><a href="TournamentManager?action=POSITIONPAGE"><span>Posiciones</span></a></li>
-							<li><a href="TournamentManager?action=RESULSTPAGE"><span>Resultados</span></a></li>
-						<%}
-					}else{%>
-						<li><a href="TournamentManager?action=CREATETOURNAMENTPAGE"><span>CREAR TORNEO</span></a></li>
-									
-					<%}%>
 					
-				</ul>					
-				<ul class="nav pull-right">
-					<%@include file="/JSP/public/search.jsp" %>
-					<li><a href="Logout">Logout</a></li>
-				</ul>
 
-				<%}else if (privilege.equalsIgnoreCase(Privilege.USER.getValue())){%>
-				<ul class="nav pull-left">
-					<li><a href="UserManager?action=USERPROFILE" >Perfil</a></li>
-					
 				</ul>
-					
 				<ul class="nav pull-right">
-					<%@include file="/JSP/public/search.jsp" %>
+					<%@include file="/JSP/public/search.jsp"%>
+					<li>Hi,<a href="UserManager?action=USERPROFILE" rel="#overlay"><%=myname%></a></li>
+					<li class="divider-vertical"></li>
 					<li><a href="Logout">Logout</a></li>
+
 				</ul>
-				<%}%>
-				
-				
-			
+				<%
+					}
+				%>
+
+
+
+
 			</div>
 
 		</div>
 	</div>
 </div>
 
-<!-- <div class="apple_overlay" id="overlay">
+
+<div class="apple_overlay" id="overlay" style="width: 450px;">
+	<!-- the external content is loaded inside this tag -->
 	<div class="contentWrap"></div>
-</div> -->
+</div>
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			arg.signin();
+			arg.signup();
+		});
+	</script>
+

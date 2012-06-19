@@ -1,27 +1,23 @@
 package servlet;
 
 
-
-import java.util.Iterator;
-import java.util.List;
-
 import DAO.UserDao;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import enums.Action;
+import enums.PageJSP;
+import enums.Privilege;
+import model.Captain;
+import model.User;
+import model.UserAdmin;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import model.UserAdmin;
-import model.Captain;
-import model.User;
-import enums.Action;
-import enums.PageJSP;
-import enums.Privilege;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.Iterator;
+import java.util.List;
 
 public class UserManager extends MainServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,10 +38,11 @@ public class UserManager extends MainServlet {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	private PageJSP addUser(HttpServletRequest request,
 			HttpServletResponse response) {
 		User user;
-		String remoteAddr = request.getRemoteAddr();
+	
 		DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
 		ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
 		try {
@@ -58,13 +55,13 @@ public class UserManager extends MainServlet {
 						if (item.getString().equalsIgnoreCase(Privilege.USERADMIN.getValue())){
 						user = new UserAdmin();
 						user.setPrivilege(Privilege.USERADMIN);
-						addCaracteristicasUser(user,items,request,response);
+						addUserCaracteristics(user,items,request,response);
 						UserDao.update(user);
 					
 						}else if (item.getString().equalsIgnoreCase(Privilege.USER.getValue())){
 						user = new User();
 						user.setPrivilege(Privilege.USER);
-						addCaracteristicasUser(user,items,request,response);
+						addUserCaracteristics(user,items,request,response);
 						UserDao.update(user);
 						}
 					}
@@ -81,7 +78,7 @@ public class UserManager extends MainServlet {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private <U extends User> void addCaracteristicasUser(U u, List items,
+	private <U extends User> void addUserCaracteristics(U u, List items,
 			HttpServletRequest request, HttpServletResponse response) {
 		
 		Iterator itr = items.iterator();
@@ -114,19 +111,7 @@ public class UserManager extends MainServlet {
 	private PageJSP modifyUserPage(HttpServletRequest request,
 			HttpServletResponse response) {
 		
-		User user = UserDao.getUserByUserName((String) request.getRemoteUser());
-		String name = user.getName();
-		String lastName = user.getLastName();
-		String email = user.getEmail();
-		String userName = user.getUserName();
-				
-		
-		request.setAttribute("name", name);
-		request.setAttribute("lastname", lastName);
-		request.setAttribute("email", email);
-		request.setAttribute("userName", userName);
-		
-		
+		setAttributesOnPage(request,response);
 		return PageJSP.MODIFYUSERPAGE;
 	}
 
@@ -150,7 +135,7 @@ public class UserManager extends MainServlet {
 			modifyUserCharacteristics(userAdmin, request, response);
 			}
 		
-		return PageJSP.HOMESERVLET;
+		return PageJSP.USERPROFILEPAGE;
 	}
 	
 	private PageJSP deleteUser(HttpServletRequest request,
@@ -170,28 +155,17 @@ public class UserManager extends MainServlet {
 	private PageJSP userProfile(HttpServletRequest request,
 			HttpServletResponse response) {
 		
-		User user = UserDao.getUserByUserName((String) request.getRemoteUser());
-		String name = user.getName();
-		String lastName = user.getLastName();
-		String email = user.getEmail();
-		String userName = user.getUserName();
-		
-		
-		request.setAttribute("name", name);
-		request.setAttribute("lastname", lastName);
-		request.setAttribute("email", email);
-		request.setAttribute("userName", userName);
-			
-		
+		setAttributesOnPage(request,response);
 		return PageJSP.USERPROFILEPAGE;
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	private <T extends User> void modifyUserCharacteristics(T t,
 			HttpServletRequest request, HttpServletResponse response) {
 	
 
-		String remoteAddr = request.getRemoteAddr();
+
 		DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
 		ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
 		try {
@@ -222,6 +196,22 @@ public class UserManager extends MainServlet {
 		}
 		
 		UserDao.update(t);
+	}
+	
+	private void setAttributesOnPage(HttpServletRequest request,
+			HttpServletResponse response){
+		User user = UserDao.getUserByUserName((String) request.getRemoteUser());
+		String name = user.getName();
+		String lastName = user.getLastName();
+		String email = user.getEmail();
+		String userName = user.getUserName();
+		
+		
+		request.setAttribute("name", name);
+		request.setAttribute("lastname", lastName);
+		request.setAttribute("email", email);
+		request.setAttribute("userName", userName);
+	
 	}
 
 	

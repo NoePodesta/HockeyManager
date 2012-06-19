@@ -1,20 +1,11 @@
 package jUnitTest;
 
-import static org.junit.Assert.assertTrue;
-import model.Administrador;
-import model.Captain;
-import model.Team;
-import model.Tournament;
-import model.User;
+import DAO.UserDao;
+import enums.Privilege;
 import model.UserAdmin;
-
 import org.junit.Test;
 
-
-import DAO.TeamDao;
-import DAO.UserDao;
-
-import enums.Privilege;
+import static org.junit.Assert.assertTrue;
 
 public class UserDaoTest {
 	

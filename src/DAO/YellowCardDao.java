@@ -1,21 +1,11 @@
 package DAO;
 
 import hibernate.HibernateUtil;
-import java.util.List;
-
-
-import model.Goal;
-import model.Player;
-import model.Team;
-import model.Tournament;
-import model.User;
 import model.YellowCard;
-
-
 import org.hibernate.FlushMode;
-import org.hibernate.Query;
-
 import org.hibernate.Session;
+
+import java.util.List;
 
 public class YellowCardDao extends GenericDao {
 

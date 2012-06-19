@@ -1,13 +1,11 @@
 package jUnitTest;
 
-import static org.junit.Assert.*;
+import DAO.UserDao;
+import enums.Privilege;
 import model.UserAdmin;
-
 import org.junit.Test;
 
-import DAO.UserDao;
-
-import enums.Privilege;
+import static org.junit.Assert.assertTrue;
 
 public class UsertTest {
 	

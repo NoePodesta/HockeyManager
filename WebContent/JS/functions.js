@@ -1,10 +1,5 @@
 var arg = new Object();
 
-arg.dialogs = function() {
-
-	$(".modalInput").overlay();
-};
-
 arg.signin = function() {
 	$(".signin").click(function(e) {
 		e.preventDefault();
@@ -62,7 +57,7 @@ arg.checkUserName = function(){
             }); 
         }
         else{       
-            $(".status").html("<font color=red>Debe ingresar por lo menos <b>3</b> d’gitos</font>");
+            $(".status").html("<font color=red>Debe ingresar por lo menos <b>3</b> dï¿½gitos</font>");
         }
     });
 };
@@ -89,6 +84,43 @@ arg.autocomplete = function(){
        }
 }; 
 
+arg.thumbnailImage = function(){
+
+    document.getElementById('file').addEventListener('change', handleFileSelect, false);
+
+    if (window.FileReader) {
+
+        function handleFileSelect(evt) {
+            var files = evt.target.files;
+            var f = files[0];
+            var reader = new FileReader();
+
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    document.getElementById('list').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="150" />'].join('');
+                };
+            })(f);
+
+            reader.readAsDataURL(f);
+        }
+    } else {
+        alert('This browser does not support FileReader');
+    }
+
+
+}
+
+arg.fileStyle = function(){
+
+    $("input[type=file]").filestyle({
+        image: 'image/chooser.gif',
+        imageheight : 22,
+        imagewidth : 82,
+        width : 250
+    });
+}
+
+
 arg.countCharacters = function() {
 	$("#description").charCounter(300);
 };
@@ -97,26 +129,41 @@ arg.scrollPane = function() {
 	$('.scroll-pane').jScrollPane();
 };
 
-arg.linkDisplay = function() {
+$(function() {
+	 
+    // if the function argument is given to overlay,
+    // it is assumed to be the onBeforeLoad event listener
+    $("a[rel]").overlay({
+    	
+        mask: 'grey',
+        effect: 'apple',
+ 
+        onBeforeLoad: function() {
+ 
+            // grab wrapper element inside content
+            var wrap = this.getOverlay().find(".contentWrap");
+ 
+            // load the page specified in the trigger
+            wrap.load(this.getTrigger().attr("href"));
+        }
+ 
+    });
+});
 
-	// if the function argument is given to overlay,
-	// it is assumed to be the onBeforeLoad event listener
-	$("a[rel]").overlay({
-
-		mask : '#ebecff',
-		effect : 'apple',
-
-		onBeforeLoad : function() {
-
-			// grab wrapper element inside content
-			var wrap = this.getOverlay().find(".contentWrap");
-
-			// load the page specified in the trigger
-			wrap.load(this.getTrigger().attr("href"));
-		}
-
-	});
+arg.modifyProfile = function(){ 
+	$("a.modifyProfile[rel]").overlay({
+    top: 'center',
+    api: true,
+    mask: {
+        color: "#000",
+        loadSpeed: 0,
+        closeSpeed: 0, //this is REQUIRED for the next overlay to work
+        opacity: 0.9
+    }
+});
 };
+
+
 
 
 
@@ -157,12 +204,12 @@ arg.comment = function() {
 				data: dataString,
 				cache: false,
 				success: function(html){
-					$("#flash").hide()
+					$("#flash").hide();
 					$('#addCommentContainer').fadeIn(300).html('<div class="comment"><div class="date">' + date + '</div><p>' + comment + '</p></div>');
 					}
 			});
 		}return false;
 	}); 
 };
-	
+
 

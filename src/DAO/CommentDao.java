@@ -1,21 +1,16 @@
 package DAO;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
-
 import hibernate.HibernateUtil;
-
 import model.Comment;
-import model.Match;
 import model.User;
-
 import org.hibernate.FlushMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 
 

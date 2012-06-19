@@ -1,14 +1,13 @@
 <%@page contentType="text/html"%> 
 <%@page pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Team"%>
 <%@page import="model.Player"%>
 <%@page import="model.YellowCard"%>
+<%@page import="java.util.List"%>
 
 <div class="overview">
-	<h1>Tarjetas Amarillas</h1>
-	
-	<%int idmatch = (Integer) request.getAttribute("idmatch"); %>
+    <h1>Tarjetas Amarillas</h1>
+
+    <%int idmatch = (Integer) request.getAttribute("idmatch"); %>
 	
 	<form id="myform" method="post" action="MatchManager?idmatch=<%=idmatch%>">
 	<input type="hidden" name="action" value="ADDYELLOWCARDS"/>
