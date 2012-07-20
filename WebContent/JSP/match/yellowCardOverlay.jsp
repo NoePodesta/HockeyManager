@@ -1,82 +1,152 @@
-<%@page contentType="text/html"%> 
-<%@page pageEncoding="UTF-8"%>
-<%@page import="model.Player"%>
-<%@page import="model.YellowCard"%>
-<%@page import="java.util.List"%>
+<%@page contentType="text/html" %>
+<%@page pageEncoding="UTF-8" %>
 
-<div class="overview">
-    <h1>Tarjetas Amarillas</h1>
+<%@ page import="java.util.List" %>
+<%@ page import="model.*" %>
 
-    <%int idmatch = (Integer) request.getAttribute("idmatch"); %>
-	
-	<form id="myform" method="post" action="MatchManager?idmatch=<%=idmatch%>">
-	<input type="hidden" name="action" value="ADDYELLOWCARDS"/>
-	
-	<div class="opciones">
-		<table>
-			<tr class="subtitulo"><%out.println(request.getAttribute("localname"));%></tr>
-				<%List<Player> localplayers = (List<Player>) request.getAttribute("localplayers");
-				List<YellowCard> yellowCards = (List<YellowCard>) request.getAttribute("greenCards");
-			 	if (!localplayers.isEmpty()) {
-			 		int quantity=0;
-			 		for (int i = 0; i < localplayers.size(); i++){
-			 			String localname = localplayers.get(i).getName();
-						String locallastname = localplayers.get(i).getLastName();
-						int idplayer = localplayers.get(i).getIdplayer();
-						
-						if (!yellowCards.isEmpty()){
-			 			for(int j=0; j<yellowCards.size(); j++){
-			 				
-			 				if(yellowCards.get(j).getPlayer().getIdplayer()==localplayers.get(i).getIdplayer()){
-							
-								quantity++;
-			 		}}%>
-						
-				<tr>
-				<td><%=localname%> <%=locallastname%></td> 
-				<td><input name="<%=localname+locallastname+idplayer%>" type="number" required="required" value=<%=quantity%>/></td>
-				</tr>	
-			<%}}}else {%>
-				<tr>
-				<td> Usted no ha ingresado jugadores todavia</td>
-				</tr>
-					<%}%>
-		</table>
-		</div>
-	<div class="texto">
-			<table>
-			<tr class="subtitulo"><%out.println(request.getAttribute("localname"));%></tr>
-				<%List<Player> guestplayers = (List<Player>) request.getAttribute("guestplayers");
-				 	if (!guestplayers.isEmpty()) {
-			 		int quantity=0;
-			 		for (int i = 0; i < localplayers.size(); i++){
-			 			String guestname = guestplayers.get(i).getName();
-						String guestlastname = guestplayers.get(i).getLastName();
-						int idteam = guestplayers.get(i).getIdplayer();
-						
-						if (!yellowCards.isEmpty()){
-			 			for(int j=0; j<yellowCards.size(); j++){
-			 				
-			 				if(yellowCards.get(j).getPlayer().getIdplayer()==guestplayers.get(i).getIdplayer()){
-							
-								quantity++;
-			 		}}%>
-						
-				<tr>
-				<td><%=guestname%> <%=guestlastname%></td> 
-				<td><input name="<%=guestname+guestlastname+idteam%>" type="number" required="required" value=<%=quantity%>/></td>
-				</tr>	
-			<%}}}else {%>
-				<tr>
-				<td> No se han ingresado jugadores todavia</td>
-				</tr>
-					<%}%>
-		</table>
-		</div>
-		
-			<div class="displayRight">
-				<button type="submit"> OK </button>
-			</div>	
-					
-		</form>
+<div id="addGoales">
+
+    <div class="title">Tarjetas Amarillas</div>
+
+    <%
+        Team localTeam = (Team) request.getAttribute("localTeam");
+        Team guestTeam = (Team) request.getAttribute("guestTeam");
+        Match match = (Match) request.getAttribute("match");
+        List<Card> guestCards = (List<Card>) request.getAttribute("guestYellowCard");
+        List<Card> localCards = (List<Card>) request.getAttribute("localYellowCard");
+        List<Player> localTeamPlayers = localTeam.getPlayers();
+        List<Player> guestTeamPlayers = guestTeam.getPlayers();
+
+    %>
+
+    <form id="myform" method="post" action="MatchManager">
+        <input type="hidden" name="idMatch" value="<%=match.getId_Match()%>"/>
+        <input type="hidden" name="action" value="ADDYELLOWCARDS"/>
+
+        <div>
+            <div class="colA">
+                <div><label class="name" style="color: #4682b4;width: 100%;text-align: center;"><%=localTeam.getName()%>
+                </label></div>
+                <%
+                    if (!localTeamPlayers.isEmpty()) {
+                        if (localCards.isEmpty()) {
+                            for (int i = 1; i <= 16; i++) {
+                %>
+
+                <div class="displayInline">
+                    <label>Jugador&nbsp;<%=i%>
+                    </label>
+                    <select name=local<%=i%>>
+                        <option selected value="default">Elige un jugador</option>
+                        <%for (Player player : localTeamPlayers) {%>
+                        <option value=<%=player.getIdplayer()%>> <%=player.getName()%>&nbsp;<%=player.getLastName()%>
+                                <%}%>
+                    </select>
+
+                </div>
+                <%
+                    }
+                } else {
+                    int j=0;%>
+                <%for (int i = 1; i <= 16; i++) {%>
+
+                <div class="displayInline">
+                    <label>Player&nbsp;<%=i%>
+                    </label>
+                    <select name=local<%=i%>>
+
+                        <%
+                            int nLocalYellowCards= localCards.size();
+                            if(j<nLocalYellowCards){
+                                Player playerYellowCard = localCards.get(j).getPlayer();
+                                j++;
+                        %>
+                        <option value=<%=playerYellowCard.getIdplayer()%> selected><%=playerYellowCard.getName()%>&nbsp;<%=playerYellowCard.getLastName()%>
+
+                                <%for (Player player : localTeamPlayers) {%>
+                        <option value=<%=player.getIdplayer()%>><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+                                <%}}else{%>
+                        <option selected value="default">Elige un jugador</option>
+                        <%for (Player player : localTeamPlayers) {%>
+                        <option value=<%=player.getIdplayer()%>><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+
+
+
+                                <%}}%>
+                    </select>
+                </div>
+                <%
+                        }}
+                } else {
+                %>
+                <label><p>No se han ingresado jugadores todavia.</p></label>
+                <%
+                    }
+                %>
+            </div>
+
+            <div class="colB">
+                <div><label class="name" style="color: #4682b4;width: 100%;text-align: center;"><%=guestTeam.getName()%>
+                </label></div>
+                <%
+                    if (!guestTeamPlayers.isEmpty()) {
+                        if (guestCards.isEmpty()) {
+                            for (int i = 1; i <= 16; i++) {
+                %>
+
+                <div class="displayInline">
+                    <label>Jugador&nbsp;<%=i%>
+                    </label>
+                    <select name=local<%=i%>>
+                        <option selected value="default">Elige un jugador</option>
+                        <%for (Player player : guestTeamPlayers) {%>
+                        <option value=<%=player.getIdplayer()%>> <%=player.getName()%>&nbsp;<%=player.getLastName()%>
+                                <%}%>
+                    </select>
+
+                </div>
+                <%
+                    }
+                } else {
+                    int j=0;%>
+                <%for (int i = 1; i <= 16; i++) {%>
+
+                <div class="displayInline">
+                    <label>Player&nbsp;<%=i%>
+                    </label>
+                    <select name=guest<%=i%>>
+
+                        <%
+                            int nLocalYellowCards= guestCards.size();
+                            if(j<nLocalYellowCards){
+                                Player playerYellowCard = guestCards.get(j).getPlayer();
+                                j++;
+                        %>
+                        <option value=<%=playerYellowCard.getIdplayer()%> selected><%=playerYellowCard.getName()%>&nbsp;<%=playerYellowCard.getLastName()%>
+
+                                <%for (Player player : guestTeamPlayers) {%>
+                        <option value=<%=player.getIdplayer()%>><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+                                <%}}else{%>
+                        <option selected value="default">Elige un jugador</option>
+                        <%for (Player player : guestTeamPlayers) {%>
+                        <option value=<%=player.getIdplayer()%>><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+
+
+                                <%}}%>
+                    </select>
+                </div>
+                <%
+                        }}
+                } else {
+                %>
+                <label><p>No se han ingresado jugadores todavia.</p></label>
+                <%
+                    }
+                %>
+            </div>
+        </div>
+        <div class="pull-right">
+            <button class="btn-primary btn-small" type="submit"> OK</button>
+        </div>
+    </form>
 </div>

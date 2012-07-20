@@ -20,18 +20,14 @@ public class Match implements Comparable {
 	private Team guest;
 	private Date date;
 	private List<Goal> highScoring; //el que hizo gol
-	private List<RedCard> playerRCard; //tarjetas rojas
-	private List<YellowCard> playerYCard; //tarjetas amarillas
-	private List<GreenCard> playerGCard; //tarjetas verdes
+	private List<Card> playerGCard; // Todas las Tarjetas
 	private int resultLocal;
 	private int resultGuest;
 	private Integer fecha;
 	
 	public Match(){
 		this.highScoring = new ArrayList<Goal>();
-		this.playerGCard = new ArrayList<GreenCard>();
-		this.playerRCard = new ArrayList<RedCard>();
-		this.playerYCard = new ArrayList<YellowCard>();
+		this.playerGCard = new ArrayList<Card>();
 		this.resultGuest=-1;
 		this.resultLocal=-1;
 	}
@@ -78,16 +74,7 @@ public class Match implements Comparable {
 		this.date = date;
 	}
 	
-	
-	@OneToMany(cascade = CascadeType.REMOVE)//, fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@Column(name = "PlayerRCard")
-	public List<RedCard> getPlayerRCard() {
-		return playerRCard;
-	}
-	public void setPlayerRCard(List<RedCard> playerRCard) {
-		this.playerRCard = playerRCard;
-	}
+
 	
 	@OneToMany(cascade = CascadeType.REMOVE)//, fetch = FetchType.EAGER)
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -102,24 +89,15 @@ public class Match implements Comparable {
 
 	@OneToMany(cascade = CascadeType.REMOVE)//, fetch = FetchType.EAGER)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@Column(name = "PlayerGCard")	
-	public List<GreenCard> getPlayerGCard() {
+	@Column(name = "PlayerCard")
+	public List<Card> getPlayerGCard() {
 		return playerGCard;
 	}
 
-	public void setPlayerGCard(List<GreenCard> playerGCard) {
+	public void setPlayerGCard(List<Card> playerGCard) {
 		this.playerGCard = playerGCard;
 	}
 
-	@OneToMany(cascade = CascadeType.REMOVE)//, fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@Column(name = "PlayerYCard")
-	public List<YellowCard> getPlayerYCard() {
-		return playerYCard;
-	}
-	public void setPlayerYCard(List<YellowCard> playerYCard) {
-		this.playerYCard = playerYCard;
-	}
 	
 	@Column(name ="Fecha_Nro")
 	public int getFecha() {

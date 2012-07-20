@@ -1,10 +1,8 @@
 package DAO;
 
 import hibernate.HibernateUtil;
-import model.Fixture;
-import model.Team;
-import model.Tournament;
-import model.UserAdmin;
+import model.*;
+
 import org.hibernate.FlushMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -45,40 +43,48 @@ public class TournamentDao extends GenericDao {
 		delete(actualTournament, currentSession);
 	}
 
+    public static Tournament getTournamentByName(String name) {
+        getSession();
+        Tournament tournament = null;
+        final String consult = "FROM Tournament WHERE name = '" + name + "'";
+        List<Tournament> tournaments = currentSession.createQuery(consult).list();
+        if (!tournaments.isEmpty()) {
+            tournament = tournaments.get(0);
+        }
 
-	public static Tournament getTournamentByName (String name) {
-		getSession();
-		List<Tournament> tournamentList = new ArrayList<Tournament>();
-			
-		try {
-			String query = "from Tournament where name ='" + name + "' ";
-			tournamentList = currentSession.createQuery(query).list();
-			
-		} finally {
-			currentSession.close();
-		}
-		return tournamentList.get(0);
-	}
-	
+        return tournament;
+
+    }
+
 	public static Tournament getTournamentById (int id) {
 		getSession();
-		List<Tournament> tournamentList = new ArrayList<Tournament>();
-			
-		try {
-			String query = "from Tournament where Id_Tournament='" + id + "' ";
-			tournamentList = currentSession.createQuery(query).list();
-			
-		} finally {
-			currentSession.close();
+		Tournament tournament = null;
+		final String consult = "FROM Tournament WHERE Id_Tournament='" + id + "' ";
+		List<Tournament> tournaments = currentSession.createQuery(consult).list();
+		if(!tournaments.isEmpty()){
+			tournament = tournaments.get(0);
 		}
-		return tournamentList.get(0);
+		return tournament;
 	}
-	
+
+	public static User getUserByUserName(String userName) {
+		getSession();
+		User user = null;
+		final String consult = "FROM User WHERE userName = '" + userName + "'";
+		List<User> users = currentSession.createQuery(consult).list();
+		if (!users.isEmpty()) {
+			user = users.get(0);
+		}
+
+		return user;
+
+	}
+
 	
 	public static List<Tournament> getTournamentsByName (String name) {
 		List<Tournament> tournamentList = new ArrayList<Tournament>();
 
-		
+
 		try {
 			String query = "from Tournament where lower(name) LIKE lower('%"+ name +"%')";
 			tournamentList = currentSession.createQuery(query).list();
@@ -96,21 +102,9 @@ public class TournamentDao extends GenericDao {
 		List<Tournament> tournaments = query.list();
 		return tournaments;
      }
-	
-	
-	public static boolean existTournament(String name) {
-		getSession();
 
-        Tournament tournament = (Tournament) currentSession.createQuery("from Tournament as " +
-                "Tournament where Tournament.name = ?").setString(0, name).uniqueResult();
-      if(tournament == null){
-          return false;
-      }else{
-          return true;
-      }
-	}
 		
-	public static String addTeam(String tournamentName, String teamName, String history, String description) {
+	public static String addTeam(String tournamentName, String teamName, String description, byte[] image) {
 		
 		getSession();
 		Tournament tournament = getTournamentByName(tournamentName);
@@ -124,8 +118,8 @@ public class TournamentDao extends GenericDao {
 		}	
 		Team team = new Team();
 		team.setName(teamName);
-		team.setHistory(history);
 		team.setDescription(description);
+		team.setPhoto(image);
 		team.setTournament(tournament);
 		teams.add(team);
 		tournament.setTeams(teams);

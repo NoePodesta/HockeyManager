@@ -46,7 +46,7 @@ public class Goal {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-
+	
 	@OneToOne(cascade = CascadeType.REMOVE)
 	public Team getTeam() {
 		return team;
@@ -55,6 +55,7 @@ public class Goal {
 	public void setTeam(Team team) {
 		this.team = team;
 	}
+
 
 	
 }

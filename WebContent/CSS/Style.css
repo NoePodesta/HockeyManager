@@ -1,471 +1,372 @@
 @CHARSET "UTF-8";
 
-
-body{
-	background:#3a3a3a;
-	text-align:center;
-	font-family: Calibri, Helvetica, sans-serif;
-	font-size:11px;
-	color:#999999;
-	line-height:18px;
-	background:url(../image/hockey.jpg) top center #000;
-	background-attachment:fixed;
-	margin-top: 0;	
+body {
+    background: #3a3a3a;
+    text-align: center;
+    font-family: Calibri, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #999999;
+    line-height: 18px;
+    background: url(../image/hockey.jpg) top center #000;
+    background-attachment: fixed;
+    margin-top: 0;
 }
 
 .wrapper {
-	text-align:center;
-	margin:0 auto;
-	width:929px;
+    text-align: center;
+    margin: 0 auto;
+    width: 1000px;
+    height: 100%;
 }
 
-a: hover{
-	text-decoration: none;
+.image {
+    border-radius: 10px;
+    -webkit-box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1px;
 }
 
-a{
-	text-decoration: none;
-    cursor:pointer;
+a: hover {
+    text-decoration: none;
 }
 
-ul li{
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
+ul li {
     font-size: 12px;
     list-style: none outside none;
     margin-bottom: 10px;
 }
 
 .navbar .nav-left {
-  position: relative;
-  left: 0;
-  display: block;
-  float: left;
-  margin: 0 10px 0 0;
+    position: relative;
+    left: 0;
+    display: block;
+    float: left;
+    margin: 0 10px 0 0;
 }
 
 .navbar {
-  overflow: visible;
-  margin-bottom: 18px;
+    overflow: visible;
+    margin-bottom: 18px;
 }
 
 .navbar-fixed-top {
-position: fixed;
-top: 0;
-z-index: 1030;
-width: 929px;
-margin: auto;
+    position: fixed;
+    top: 0;
+    z-index: 1030;
+    width: 1000px;
+    margin: auto;
 }
 
 .navbar .brand {
-  float: left;
-  display: block;
-  padding: 8px 20px 12px;
-  font-size: 22px;
-  line-height: 1;
-  color: #ffffff;
+    float: left;
+    display: block;
+    padding: 8px 20px 12px;
+    font-size: 22px;
+    line-height: 1;
+    color: #ffffff;
 }
 
-.charcounter{
+.charcounter {
     display: block;
 }
 
-
-
 .navbar-fixed-top .navbar-inner {
-	padding-left: 15px;
-	padding-right: 0;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
+    padding-left: 15px;
+    padding-right: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
 }
 
 .navbar-inner {
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #2c2c2c;
-  background-image: -moz-linear-gradient(top, #333333, #222222);
-  background-image: -ms-linear-gradient(top, #333333, #222222);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
-  background-image: -webkit-linear-gradient(top, #333333, #222222);
-  background-image: -o-linear-gradient(top, #333333, #222222);
-  background-image: linear-gradient(top, #333333, #222222);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #2c2c2c;
+    background-image: -moz-linear-gradient(top, #333333, #222222);
+    background-image: -ms-linear-gradient(top, #333333, #222222);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
+    background-image: -webkit-linear-gradient(top, #333333, #222222);
+    background-image: -o-linear-gradient(top, #333333, #222222);
+    background-image: linear-gradient(top, #333333, #222222);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#333333', endColorstr = '#222222', GradientType = 0);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .navbar .nav .pull-right {
-  float: right;
+    float: right;
 }
+
 .navbar .nav > li {
-  display: block;
-  float: left;
+    display: block;
+    float: left;
 }
+
 .navbar .nav > li > a {
-  float: none;
-  padding: 10px 10px 11px;
-  line-height: 19px;
-  color: LightSlateGrey;
-  text-decoration: none;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    float: none;
+    padding: 10px 10px 11px;
+    line-height: 19px;
+    color: LightSlateGrey;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.navbar .nav form {
+    display: block;
+    float: left;
+}
+
+.navbar .nav form a {
+    float: none;
+    padding: 10px 10px 11px;
+    line-height: 19px;
+    color: LightSlateGrey;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .navbar .nav > li > a:hover {
-	color:white;
+    color: white;
 }
 
 .navbar .divider-vertical {
- height: 20px;
-  width: 1px;
-  overflow: hidden;
-  background-color: #222222;
-  border-right: 1px solid #333333;
+    height: 20px;
+    width: 1px;
+    overflow: hidden;
+    background-color: #222222;
+    border-right: 1px solid #333333;
 }
 
-
-.nav .active > a{
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-  background-color: black;
+.nav .active > a {
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+    background-color: black;
 }
 
-.nav-links{
-	text-transform: uppercase;
-	color: SteelBlue;
+.nav-links {
+    text-transform: uppercase;
+    color: SteelBlue;
 }
 
 .pull-right {
-  float: right;
-  padding-right: 5px;
+    float: right;
+    padding-right: 5px;
 
 }
 
 .pull-left {
-  float: left;
-  padding-left: 0px;
+    float: left;
+    padding-left: 0px;
 }
 
-.container{
-	width: 920px;
-	margin-left: -15px;
-	margin-right:auto;
-	height:45px;
-	padding-right: 10px;
-	*zoom: 1;
+.container {
+    width: 1000px;
+    margin-left: -15px;
+    margin-right: auto;
+    height: 45px;
+    padding-right: 10px;
+    *zoom: 1;
 }
 
 .navbar-search {
-  position: relative;
-  margin-top: -5px;
+    position: relative;
+    margin-top: -5px;
 
 }
 
 .navbar-search .search-query {
-  padding: 4px 9px;
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: normal;
-  line-height: 1;
-  color: #ffffff;
-  color: rgba(255, 255, 255, 0.75);
-  background: #666;
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid #111;
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
-  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-.navbar-search .search-query :-moz-placeholder {
-  color: #eeeeee;
-}
-.navbar-search .search-query::-webkit-input-placeholder {
-  color: #eeeeee;
-}
-.navbar-search .search-query:hover {
-  color: #ffffff;
-  background-color: #999999;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-.navbar-search .search-query:focus, .navbar-search .search-query.focused {
-  padding: 5px 10px;
-  color: #333333;
-  text-shadow: 0 1px 0 #ffffff;
-  background-color: #ffffff;
-  border: 0;
-  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
-  outline: 0;
+    padding: 4px 9px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1;
+    color: #ffffff;
+    color: rgba(255, 255, 255, 0.75);
+    background: #666;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid #111;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
 }
 
-.content{
-	background: url(../image/content.png);
- 	text-align:center;
- 	height: 680px;
- 	padding-top: 60px;
+.navbar-search .search-query :-moz-placeholder {
+    color: #eeeeee;
+}
+
+.navbar-search .search-query::-webkit-input-placeholder {
+    color: #eeeeee;
+}
+
+.navbar-search .search-query:hover {
+    color: #ffffff;
+    background-color: #999999;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-search .search-query:focus, .navbar-search .search-query.focused {
+    padding: 5px 10px;
+    color: #333333;
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #ffffff;
+    border: 0;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+    outline: 0;
+}
+
+.content {
+    background: url(../image/content.png);
+    text-align: center;
+    height: 100%;
+    padding-top: 60px;
 
 }
 
 /* =========================== Profile Page / Tournament List =========================== */
-.summary p{
-	clear: left;
 
-}
-
-.summary{
-	margin-left: 35%;
-    padding-top: 10px;
+.summary {
+    padding-top: 1px;
     text-align: left;
     font-size: 15px;
     text-align: justify;
+}
+
+.summary label {
+    display: inline;
+}
+
+.img {
+    float: left;
+    margin-right: 2em;
 
 }
 
-.summary label{
-	display: inline;
-}
-
-.img{
-	float: left;
-	margin-right: 2em;
-	
-}
-
-.title{
-	margin-bottom: 18px;
-	text-transform: uppercase;
+.title {
+    margin-bottom: 18px;
+    text-transform: uppercase;
 }
 
 /* =========================== Profile Page / Tournament List =========================== */
-#tournamentProfile .img{
-	margin-top: 1em;
-}
-#tournamentProfile{
-	/* The main container div */
-	position:relative;
-	margin:10px auto;
-	width:750px;
-	background:url('../image/main_bg.jpg') repeat-x #aeadad;
-	border:1px solid #CCCCCC;
-	padding:0px 25px 60px;
-
-	/* CSS3 rounded cornenrs */
-
-	-moz-border-radius:12px;
-	-webkit-border-radius:12px;
-	border-radius:12px;
-	color: #666;
+#tournamentProfile .img, #teamProfile .img {
+    margin-top: 2em;
 }
 
-#tournamentProfile h1{
-	color: steelBlue;
-	text-transform: uppercase;
-	letter-spacing: 5px;
-	
+#tournamentProfile, #teamProfile {
+    /* The main container div */
+    position: relative;
+    margin: 10px auto;
+    width: 750px;
+    background: url('../image/main_bg.jpg') repeat-x #aeadad;
+    border: 1px solid #CCCCCC;
+    padding: 0px 25px 60px;
+
+    height: 85%;
+
+    /* CSS3 rounded cornenrs */
+
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    color: #666;
 }
-#tournamentProfile a{
-	color: #0196E3;	
+
+#tournamentProfile h1, #teamProfile h1 {
+    color: steelBlue;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+
 }
+
+#teamList h2, #playerList h2 {
+    color: steelBlue;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.3em;
+
+}
+
+#tournamentProfile a, #teamProfile a {
+    color: #0196E3;
+}
+
 #tournamentProfile .summary{
-	margin-left: 0;
+    margin-left: 0;
+    padding-top: 15px;
 }
 
-.tournamentSummary{
+#teamProfile .summary {
+    margin-left: 0;
+    padding-top: 15px;
+}
+
+.tournamentSummary, .teamSummary, .playerSummary {
     margin-top: 35px;
     text-align: justify;
 }
 
-
-
-/* =========================== User Profile =========================== */
-.bio{
-	margin-top: 30px;
+.playerSummary label {
+    font-size: 14px;
+    font-weight: bolder;
+    text-align: right;
+    width: 11em;
+    color: gray;
+    padding: 5px;
 }
 
+#teamOverlay{
+    color: gray;
+}
 
-.profile{
+.playerSummary .summary {
+    font-size: 14px;
+    display: inline-block;
+}
+
+#teamList, #playerList {
+    margin-top: 30px;
+    text-align: left;
+    font-size: 14px;
+    display: inline-block;
+}
+
+#teamList #holder, #playerList #holder {
+    margin-top: 0;
+}
+
+/* =========================== User Profile =========================== */
+.bio {
+    margin-top: 30px;
+}
+
+.profile {
     line-height: 16px;
     padding: 12px;
 
 }
 
-#profile .title{
-	border-bottom: solid 3px gray;
-	padding-bottom: 10px;
-	color: gray;
-	font-size: 20px;
-	font-weight: bold;
-	color: #0196E3;
-}
-
-#profile .summary{
-	padding-top: 10px;
-	text-align: left;
-	font-size: 15px;
-	float: right;
-	margin-right: 25px;
-	line-height: 40px;
-	margin-left: 0px;
-	color: gray;
-}
-.buttons {
-	padding-top: 200px;
-}
-
- 
-/* =========================== Footer =========================== */
-
-.footer{
-	background: url(../image/footer.png) no-repeat top center;
-	height:46px;
-}
-
-.btn-primary {
-  color: white;
-  border: none;
-  border-radius: 5px;
-  background-color: #006dcc;
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(top, #0088cc, #0044cc);
-}
-
-.status{
-	padding-bottom: 5px;
-}
-
-.scroll-pane{
-	height: 313px;
-    margin-bottom: 10px;
-    margin-right: 100px;
-    margin-top: 10px;
-    overflow: auto;
-    width: 100%;
-}
-
-.scroll-pane .displayRight{
-	margin-right: 20px;
-}
-
-.subtitulo {
-    color: SkyBlue;
-    font-weight: bold;
-    text-align: center;
-    letter-spacing: 2px;
-	text-transform: uppercase;
-}
-
-
-/* =========================== Fixture Page =========================== */
-
-.fixture{
-margin-top: 35px;
-    text-align:left;
-    clear: both;
-    padding-left: 5px;
-    padding-right: 5px;
-  text-align: center;
-    width: 500px;
-}
-.fixture h1{
-background: url("../image/fixture.png") no-repeat scroll 0 50% transparent;
-}
-.fixture .titulo h1{
-    margin-bottom: 10px;
-    padding-bottom: 30px;
-  padding-left: 52px;
-    padding-top: 34px;
-    text-align: left;
-   
-}
-.fixture th {
-    border-bottom: 1px dotted #666666;
-}
-
-.fixture span{
-color:SkyBlue
-}
-.fixture .link a:link {text-decoration: none;  color: white;}
-.fixture a:link {text-decoration: none;  color: transparent;}
-.fixture a:visited {text-decoration: none}
-.fixture a:active {text-decoration: none}
-.fixture a:hover {text-decoration: none;}
-
-
-
-/* =========================== Comment Page =========================== */
-
-.comment{
-	padding: 12px;
-	width: 400px;
-	position: relative;
-	background-color: #FCFCFC;
-	border: 1px solid white;
-	color: #888;
-	margin-bottom: 25px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	-moz-box-shadow: 2px 2px 0 #c2c2c2;
-	-webkit-box-shadow: 2px 2px 0 #c2c2c2;
-	box-shadow: 2px 2px 0 #c2c2c2;
-}
-
-.comment .avatar {
-	height: 50px;
-	left: -70px;
-	position: absolute;
-	width: 50px;
-	background: url('img/default_avatar.gif') no-repeat #FCFCFC;
-	margin-top: -25px;
-	top: 50%;
-	-moz-box-shadow: 1px 1px 0 #c2c2c2;
-	-webkit-box-shadow: 1px 1px 0 #c2c2c2;
-	box-shadow: 1px 1px 0 #c2c2c2;
-}
-
-.comment .name {
-	font-size: 20px;
-	padding-bottom: 10px;
-	color: #CCC;
-}
-
-.comment .date {
-	font-size: 10px;
-	padding: 6px 0;
-	position: absolute;
-	right: 15px;
-	top: 10px;
-	color: #BBB;
-}
-
-.comment p {
-	font-size: 18px;
-	line-height: 1.5;
-	overflow-x: hidden;
-}
-
-#commentContainer{
-	margin: auto;
-	text-align: center;
-	display: inline-block;
-}
-
-/* =========================== AddTeamOverlay/ NewTournament  =========================== */
-#addTeamOverlay .title, #newTournament .title{
+#profile .title {
     border-bottom: solid 3px gray;
     padding-bottom: 10px;
     color: gray;
@@ -474,93 +375,536 @@ color:SkyBlue
     color: #0196E3;
 }
 
-#addTeamOverlay label, #newTournament label{
+#profile .summary {
+    padding-top: 10px;
+    text-align: left;
+    font-size: 15px;
+    float: left;
+    line-height: 40px;
+    color: gray;
+}
+
+#profile label{
+
+}
+
+.buttons {
+    padding-top: 200px;
+}
+
+/* =========================== Footer =========================== */
+
+.footer {
+    background: url(../image/footer.png) no-repeat top center;
+    height: 46px;
+}
+
+.btn-primary {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: #006dcc;
+    background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+}
+
+.status {
+    padding-bottom: 5px;
+}
+
+#addTeamOverlay .status, #newTournament .status {
+    padding-left: 2em;
+}
+
+.subtitulo {
+    color: SkyBlue;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* =========================== Fixture Page / PositionTable =========================== */
+
+#fixture, #positionView, #tournamentResults {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    width: 50em;
+    margin: 0 auto;
+    margin-bottom: 150px;
+
+}
+
+#fixture .title, #positionView .title, #tournamentResults .title {
+    text-align: center;
+    letter-spacing: 10px;
+    color: lightSlateGray;
+}
+
+#fixture span, #tournamentResults span {
+    color: skyBlue;
+    font-weight: bolder;
+}
+
+#tournamentResults p, #fixture p, #positionView p {
+    font-size: 13px;
+    text-align: justify;
+}
+
+#tournamentResults .link a:link, #positionView .link a:link, #fixture .link a:link {
+    text-decoration: none;
+    color: #4682b4;
+}
+
+#tournamentResults a:link, #positionView a:link, #fixture a:link {
+    text-decoration: none;
+    color: steelBlue;
+}
+
+#tournamentResults a:visited, #positionView a:visited, #fixture a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+#tournamentResults  a:active, #positionView a:active, #fixture a:active {
+    text-decoration: none
+}
+
+#tournamentResults  a:hover, #positionView a:hover, #fixture a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+#tournamentResults td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+tr:nth-child(odd) td {
+    background-color: #dcdcdc;
+}
+
+tr:nth-child(even) td {
+    background-color: #f5f5f5;
+}
+
+#fixtureTable, #positionTable, #resultsTable {
+    border-collapse: collapse;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+
+#fixtureTable td {
+    padding: 5px;
+}
+
+#positionTable td {
+    padding: 15px;
+}
+
+tbody {
+    font-size: 13px;
+}
+
+tfoot th {
+    width: 50%;
+}
+
+thead {
+    background: slateGray;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+#positionTable thead {
+    letter-spacing: 3px;
+}
+
+#addGoales .colA, #overview .colA {
+    float: left;
+    width: 250px;
+}
+
+#addGoales .colB, #overview .colB {
+    width: 240px;
+    float: left;
+
+}
+
+#addGoales option {
+    color: gray;
+
+}
+
+#overview p {
+    color: gray;
+    font-size: 12px;
+    padding-left: 16px;
+    text-align: left;
+}
+
+.displayInline {
+    display: inline-block;
+}
+
+.name {
+    color: #4682b4;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* =========================== Comment Page =========================== */
+
+.comment {
+    padding: 12px;
+    width: 400px;
+    position: relative;
+    background-color: #FCFCFC;
+    border: 1px solid white;
+    color: #888;
+    margin-bottom: 25px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 2px 2px 0 #c2c2c2;
+    -webkit-box-shadow: 2px 2px 0 #c2c2c2;
+    box-shadow: 2px 2px 0 #c2c2c2;
+}
+
+.comment .avatar {
+    height: 50px;
+    left: -70px;
+    position: absolute;
+    width: 50px;
+    margin-top: -25px;
+    top: 50%;
+    -moz-box-shadow: 1px 1px 0 #c2c2c2;
+    -webkit-box-shadow: 1px 1px 0 #c2c2c2;
+    box-shadow: 1px 1px 0 #c2c2c2;
+}
+
+.comment .name {
+    font-size: 15px;
+    padding-bottom: 10px;
+    color: #CCC;
+    text-align: left;
+    color: #4682b4;
+}
+
+.comment .date {
+    font-size: 10px;
+    position: absolute;
+    top: 10px;
+    color: #BBB;
+    right: 3px;
+}
+
+#comment{
+    border-radius: 0.4em;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #DDD;
+    width: 500px;
+    height: 100px;
+    color: gray;
+}
+
+.comment p {
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+#commentContainer {
+    margin: auto;
+    text-align: center;
+    display: inline-block;
+}
+
+/* =========================== AddTeamOverlay/ NewTournament / Match Date / Match Result  =========================== */
+#modifyProfile .title, #addTeamOverlay .title, #newTournament .title, #modifyTournament .title, #matchDate .title, #matchResult .title, #addPlayerOverlay .title, #addGoales .title, #overview .title, #teamOverlay .title {
+    border-bottom: solid 3px gray;
+    padding-bottom: 10px;
+    color: gray;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0196E3;
+}
+
+#matchResult {
+    font-size: 40px;
+}
+
+#addTeamOverlay label, #newTournament label, #modifyTournament label, #matchDate label, #addPlayerOverlay label, #modifyProfile label {
     font-size: 13px;
     font-weight: bolder;
     float: left;
     text-align: right;
-    width: 11em;
+    width: 12em;
+    color: gray;
+    padding: 5px;
+}
+
+#addGoales label {
+    font-size: 13px;
+    font-weight: bolder;
+    float: left;
+    text-align: right;
+    color: gray;
+    padding-right: 5px;
+    height: 3em;
+}
+
+#overview label, #teamOverlay label {
+    font-size: 13px;
+    font-weight: bolder;
+    float: left;
+    text-align: right;
+    color: gray;
+    padding-right: 5px;
+}
+
+#addGoales label .name, #overview label .name {
+    color: #4682b4;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#matchResult label {
+    font-size: 13px;
+    font-weight: bolder;
+    text-align: right;
     color: gray;
 }
 
-#addTeamOverlay input[type="text"], #addTeamOverlay input[type="file"], #newTournament input[type="text"], #newTournament input[type="file"]
-{
+#matchResult label span {
+    color: #4682b4;
+}
+
+#matchResult input {
+    width: 30px;
+}
+
+#matchResult input[type="number"] {
+    border: 1px solid #DDD;
+    border-radius: 0.4em;
+    padding: 0.4em;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    color: gray;
+
+}
+
+#addGoales select {
+    border: 1px solid #DDD;
+    border-radius: 0.4em;
+    padding: 0.4em;
+    width: 14em;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    color: gray;
+}
+
+#modifyProfile input[type="text"], #addTeamOverlay input[type="text"], #addTeamOverlay input[type="file"], #newTournament input[type="text"], #newTournament input[type="file"], #modifyTournament input[type="text"], #modifyTournament input[type="file"] {
     border: 1px solid #DDD;
     border-radius: 0.4em;
     padding: 0.4em;
     width: 23em;
     -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    color:gray;
+    color: gray;
 }
 
-#addTeamOverlay input[type="file"], #newTournament input[type="file"] {
+#addPlayerOverlay input[type="text"], #addPlayerOverlay input[type="file"], #addPlayerOverlay input[type="email"], #modifyProfile input[type="email"], #modifyProfile input[type="file"], #modifyProfile input{
+    border: 1px solid #DDD;
+    border-radius: 0.4em;
+    padding: 0.4em;
+    width: 23em;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    color: gray;
+}
+
+#addTeamOverlay input[type="file"], #newTournament input[type="file"], #modifyTournament input[type="file"], #addPlayerOverlay input[type="file"] {
     border: 0;
     font-size: 12px;
     width: 250px;
 }
 
-#addTeamOverlay span, #newTournament span {
+#addTeamOverlay span, #newTournament span, #modifyTournament span, #addPlayerOverlay span, #modifyProfile span {
     color: lightSlateGray;
 }
 
-#addTeamOverlay textarea, #newTournament textarea{
+#addTeamOverlay textarea, #newTournament textarea, #modifyTournament textarea {
+
     border-radius: 0.4em;
     -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     border: 1px solid #DDD;
     width: 256px;
     height: 100px;
-    color:gray;
+    color: gray;
 }
 
-.file{
+.file {
     border: 1px solid #DDD;
     border-radius: 0.4em;
     -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     color: gray;
 }
 
-#addTeamOverlay .file{
-    margin-left: -48px;
+#addTeamOverlay .file, #addPlayerOverlay file {
+    margin-left: -15px;
 }
 
-#newTournament .file{
+#newTournament .file {
     margin-left: -16px;
 }
+
+#modifyTournament .file {
+    margin-left: -50px;
+}
+
+#modifyTournament p, #addTeamOverlay p, #addPlayerOverlay p, #modifyProfile p {
+    font-size: 13px;
+    color: gray;
+    text-align: left;
+}
+
+#modifyProfile p {
+    font-size: 12px;
+    color: gray;
+    text-align: left;
+}
+
+#modifyTournament div .image{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border: none;
+    margin-left: -16em;
+}
+
+
 .counter {
     margin-top: 20px;
 }
 
-#addTeamOverlay button, #newTournament button{
+#newTournament button, #addPlayerOverlay button {
     margin-top: 5em;
+}
+
+#addTeamOverlay .status, #newTournament .status {
+    display: block;
+}
+
+#teamOverlay .info{
+    float: left;
+    width: 100%;
+    margin-top: 3em;
+}
+
+#teamOverlay p{
+    color: gray;
+    font-size: 12px;
+}
+
+#teamOverlay table{
+    width: 50%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-left: 2em;
+}
+
+#teamOverlay thead tr td{
+    background-color: white;
+}
+
+
+.icon {
+    margin-right: 5px;
 }
 
 /* =========================== Overlay =========================== */
 #overlay {
-	background-image:url('../image/white.png');
-	color:#efefef;
-	height:450px;
+    background-image: url('../image/white.png');
+    color: #efefef;
+    height: 450px;
 }
 
-  /* container for external content. uses vertical scrollbar, if needed */
+#overlaySmall {
+    background-image: url('../image/white.png');
+    color: #efefef;
+    height: 240px;
+}
+
+#overlayMedium {
+    background-image: url('../image/white.png');
+    color: #efefef;
+    height: 350px;
+}
+
+#overlayBig {
+    background-image: url('../image/white.png');
+    color: #efefef;
+    height: 450px;
+}
+
+/* container for external content. uses vertical scrollbar, if needed */
 div.contentWrap {
-    height:441px;
-    overflow-y:auto;
+    height: 400px;
+    overflow-y: auto;
 }
 
-.apple_overlay .close {
-	background-image: url('../image/close.png');
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	cursor: pointer;
-	height: 35px;
-	width: 35px;
+.apple_overlay_medium .close, .apple_overlay_small .close, .apple_overlay .close, .apple_overlay_big .close {
+    background-image: url('../image/close.png');
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
 }
 
 .apple_overlay {
-	display: none;
-	width: 640px;
-	padding: 35px;
-	font-size: 11px;
+    display: none;
+    width: 640px;
+    padding: 35px;
+    font-size: 11px;
 }
+
+.apple_overlay_small {
+    display: none;
+    width: 250px;
+    padding: 35px;
+    font-size: 11px;
+}
+
+.apple_overlay_medium {
+    display: none;
+    width: 500px;
+    padding: 35px;
+    font-size: 11px;
+}
+
+.apple_overlay_big {
+    display: none;
+    width: 500px;
+    padding: 35px;
+    font-size: 11px;
+}
+
+
+
+
+

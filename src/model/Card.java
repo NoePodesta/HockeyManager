@@ -1,35 +1,36 @@
 package model;
 
+import enums.CardColour;
+
 import javax.persistence.*;
 
 
 
 
 @Entity
-@Table(name = "RedCard")
-public class RedCard {
+@Table(name = "Card")
+public class Card {
 	
 
-	private int idRedCard;
+	private int idCard;
 	private Match match;
 	private Player player;
-	
-
 	private Team team;
-	
+    private CardColour cardColour;
 	
 	@Id
 	@GeneratedValue
-	@Column(name="idRedCard")
-	public int getIdRedCard() {
-		return idRedCard;
+	@Column(name="idCard")
+	public int getIdCard() {
+		return idCard;
 	}
-	
-	public void setIdRedCard(int idRedCard) {
-		this.idRedCard = idRedCard;
+
+	public void setIdCard(int idCard) {
+		this.idCard = idCard;
 	}
 
 	
+
 	@OneToOne(cascade = CascadeType.REMOVE)
 	public Match getMatch() {
 		return match;
@@ -48,6 +49,15 @@ public class RedCard {
 		this.player = player;
 	}
 
+    @Column(name="CardColour")
+    public CardColour getCardColour() {
+        return cardColour;
+    }
+
+    public void setCardColour(CardColour cardColour) {
+        this.cardColour = cardColour;
+    }
+    
 	@OneToOne(cascade = CascadeType.REMOVE)
 	public Team getTeam() {
 		return team;
@@ -56,6 +66,9 @@ public class RedCard {
 	public void setTeam(Team team) {
 		this.team = team;
 	}
+
+
+
 
 	
 }

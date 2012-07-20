@@ -6,6 +6,8 @@ import DAO.TournamentDao;
 import DAO.UserDao;
 import enums.Action;
 import enums.PageJSP;
+import enums.Privilege;
+import model.Fixture;
 import model.Tournament;
 import model.UserAdmin;
 
@@ -28,15 +30,18 @@ public class Home extends MainServlet {
 		
 		
 		if(username!= null){
-			String privilege = UserDao.getUserByUserName(username).getPrivilege().getValue();
-			if(privilege=="1"){
+			Privilege privilege = UserDao.getUserByUserName(username).getPrivilege();
+			if(privilege.isUserAdmin()){
 				UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName(username);
 					Tournament tournament = userAdmin.getTournament();
 					if(tournament!=null){
 						String tournamentName = tournament.getName(); 
 						session.setAttribute("tournament", tournamentName);
-						if(tournament.getFixture()!=null){
-							session.setAttribute("fixture", tournament.getFixture());
+                        request.setAttribute("tournamentName", tournamentName);
+						Fixture fixture = tournament.getFixture();
+						if(fixture!=null){
+							session.setAttribute("fixture", fixture);
+							request.setAttribute("fixture", fixture);
 						}
 					}
 			}	

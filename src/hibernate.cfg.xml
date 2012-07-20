@@ -25,11 +25,9 @@
         <mapping class="model.Player"/>
         <mapping class="model.Tournament"/>
         <mapping class="model.UserAdmin"/>
-        <mapping class="model.Captain"/>
         <mapping class="model.Administrador"/>
-        <mapping class="model.YellowCard"/>
-        <mapping class="model.RedCard"/>
-        <mapping class="model.GreenCard"/>
+        <mapping class="model.BasicUser"/>
+        <mapping class="model.Card"/>
         <mapping class="model.Goal"/>
         <mapping class="model.Comment"/>
  

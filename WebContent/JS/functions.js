@@ -57,7 +57,53 @@ arg.checkUserName = function(){
             }); 
         }
         else{       
-            $(".status").html("<font color=red>Debe ingresar por lo menos <b>3</b> d�gitos</font>");
+            $(".status").html("<font color=red>Debe ingresar por lo menos <b>3</b> dígitos</font>");
+        }
+    });
+};
+
+arg.checkTournamentName = function(){
+
+    $("#tournamentName").change(function(){
+        var tournamentName = $(this).val();
+        if(tournamentName.length >= 3){
+            $(".status").html("<img src=\"image/loading.gif\"  width=\"10\" height=\"10\"> Chequeando base de datos...");
+            $.ajax({
+                type: "POST",
+                url: "TournamentNameCheck",
+                data: "tournamentName="+ tournamentName,
+                success: function(msg){
+                    $(".status").ajaxComplete(function(event, request, settings){
+                        $(".status").html(msg);
+                    });
+                }
+            });
+        }
+        else{
+            $(".status").html("<font color=red>Debe ingresar por lo menos <b>3</b> dígitos</font>");
+        }
+    });
+};
+
+arg.checkTeamName = function(){
+
+    $("#teamName").change(function(){
+        var teamName = $(this).val();
+        if(teamName.length >= 3){
+            $(".status").html("<img src=\"image/loading.gif\"  width=\"10\" height=\"10\"> Chequeando base de datos...");
+            $.ajax({
+                type: "POST",
+                url: "TeamNameCheck",
+                data: "teamName="+ teamName,
+                success: function(msg){
+                    $(".status").ajaxComplete(function(event, request, settings){
+                        $(".status").html(msg);
+                    });
+                }
+            });
+        }
+        else{
+            $(".status").html("<font color=red>Debe ingresar por lo menos <b>3</b> dígitos</font>");
         }
     });
 };
@@ -122,7 +168,7 @@ arg.fileStyle = function(){
 
 
 arg.countCharacters = function() {
-	$("#description").charCounter(300);
+	$("#description").charCounter(2000);
 };
 
 arg.scrollPane = function() {
@@ -130,42 +176,25 @@ arg.scrollPane = function() {
 };
 
 $(function() {
-	 
+
     // if the function argument is given to overlay,
     // it is assumed to be the onBeforeLoad event listener
     $("a[rel]").overlay({
-    	
+
         mask: 'grey',
         effect: 'apple',
- 
+
         onBeforeLoad: function() {
- 
+
             // grab wrapper element inside content
             var wrap = this.getOverlay().find(".contentWrap");
- 
+
             // load the page specified in the trigger
             wrap.load(this.getTrigger().attr("href"));
         }
- 
+
     });
 });
-
-arg.modifyProfile = function(){ 
-	$("a.modifyProfile[rel]").overlay({
-    top: 'center',
-    api: true,
-    mask: {
-        color: "#000",
-        loadSpeed: 0,
-        closeSpeed: 0, //this is REQUIRED for the next overlay to work
-        opacity: 0.9
-    }
-});
-};
-
-
-
-
 
 arg.date = function() {
 	$.tools.dateinput
@@ -192,7 +221,8 @@ arg.comment = function() {
 	{
 		var comment = $("#comment").val();
 		var user = $("#user").val(); 
-		var dataString = 'comment='+ comment + '&user=' + user; 
+		var value = $("#value").val();
+		var dataString = 'value='+value +  '&comment='+ comment + '&user=' + user; 
 		if(comment==' '){
 			alert('Por favor, comente algo');
 		}else{
@@ -200,7 +230,7 @@ arg.comment = function() {
 			$("#flash").fadeIn(300).html('<img src="image/loading.gif" />Loading Comment...');
 			$.ajax({
 				type: "POST",
-				url: "Comment?action=ADDCOMMENT",
+				url: "AddComment",
 				data: dataString,
 				cache: false,
 				success: function(html){
@@ -212,4 +242,27 @@ arg.comment = function() {
 	}); 
 };
 
+arg.pagination = function(name){
+	
+/* The following code is executed once the DOM is loaded */
+	
+	// Calling the jQuery plugin and splitting the
+	// #holder UL into pages of 3 LIs each:
+	
+	$('#holder').sweetPages({perPage:5});
+	
+	// The default behaviour of the plugin is to insert the 
+	// page links in the ul, but we need them in the main container:
 
+	var controls = $('.swControls').detach();
+	controls.appendTo('#'+name);
+	
+};
+
+function validatePass(p1, p2) {
+    if (p1.value != p2.value || p1.value == '' || p2.value == '') {
+        p2.setCustomValidity('Contrase�a incorrecta');
+    } else {
+        p2.setCustomValidity('');
+    }
+}

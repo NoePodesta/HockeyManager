@@ -6,7 +6,6 @@ import model.Match;
 import model.Team;
 import model.Tournament;
 import org.hibernate.FlushMode;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -33,25 +32,25 @@ public class FixtureDao extends GenericDao {
 	}
 
 	
-	public static void addMatch(Fixture fixture, Match match){
-		
-	
-		
-		
-		
-	}
-	
-	public static Fixture getFixtureById(int id) {
-		getSession();
-		final String consult ="Select idFixture FROM Fixture WHERE idFixture = '" + id + "'";
-		Query query = currentSession.createQuery(consult);
-		List<Fixture> fixtures = query.list();
-		Fixture fixture = null;
-		if (!fixtures.isEmpty()) {
-			fixture = fixtures.get(0);
-		}
-		return fixture;
-	}
+//	public static void addMatch(Fixture fixture, Match match){
+//
+//
+//
+//
+//
+//	}
+//
+//	public static Fixture getFixtureById(int id) {
+//		getSession();
+//		final String consult ="Select idFixture FROM Fixture WHERE idFixture = '" + id + "'";
+//		Query query = currentSession.createQuery(consult);
+//		List<Fixture> fixtures = query.list();
+//		Fixture fixture = null;
+//		if (!fixtures.isEmpty()) {
+//			fixture = fixtures.get(0);
+//		}
+//		return fixture;
+//	}
 	
 	
 	public static void generarFixture(Tournament tournament) {
@@ -60,12 +59,12 @@ public class FixtureDao extends GenericDao {
 		int cantTeams = teams.size();
 		if (!esPar(cantTeams)) {
 
-			String name = "Libree";
-			String history = "Libree";
-			String description = "Libree";
+			String name = "Libre";
+			String description = "Libre";
 			
 			
-			TournamentDao.addTeam(tournament.getName(), name, history, description);
+	        byte[] image = null;
+			TournamentDao.addTeam(tournament.getName(), name,description, image);
 			Tournament tournament2 = TournamentDao.getTournamentByName(tournament.getName());
 			
 			fixture(tournament2);
@@ -98,14 +97,14 @@ public class FixtureDao extends GenericDao {
 
 		Integer i,j;
 		
-		res = GenerateFixture(inicio,tournament);	
+		res = generateFixture(inicio);
 		if (res[0][0][0].equals("01")) {
 			System.out.println("Hay una cantidad impar de equipos");
 		}
 		else
 		{
 			while (res[0][0][0].equals("99")) {
-				res = FixtureDao.GenerateFixture(inicio,tournament);
+				res = FixtureDao.generateFixture(inicio);
 			}
 
 			System.out.print("            ");
@@ -151,41 +150,42 @@ public class FixtureDao extends GenericDao {
 		}
 
 
-	public static String[][][] GenerateFixture(String[] equipos, Tournament tournament){
+	public static String[][][] generateFixture(String[] teams){
 		
-		int nroEquipos = equipos.length-1;
-		int fechas = nroEquipos - 1;
-		int partidosXfecha = nroEquipos / 2 ;
-		int nroPartidos = (int) (Factorial(nroEquipos)/(Factorial(nroEquipos-2)*2));
+		int nTeams = teams.length-1;
+		int fechas = nTeams - 1;
+		int partidosXfecha = nTeams / 2 ;
+		int nMatches = (int) (Factorial(nTeams)/(Factorial(nTeams-2)*2));
 		
-		String[] desord = new String[nroEquipos+1];
-		String[] testigo = new String[nroEquipos+1];
-		String[][] partidos = new String[nroPartidos+1][3];
-		int[] usados = new int[nroPartidos+1];             
+		String[] desord = new String[nTeams+1];
+		String[] testigo = new String[nTeams+1];
+		String[][] partidos = new String[nMatches+1][3];
+		int[] usados = new int[nMatches+1];
 		String[][][] cuadro = new String[partidosXfecha+1][fechas+1][3];
 		
 		cuadro[0][0][0]="00";
 		
-		if ((nroEquipos % 2)== 1) {
+		if ((nTeams % 2)== 1) {
 			cuadro[0][0][0]="01";
 			return cuadro;
 		}
 		
 		int i,j,k;
 		String aux;
-		int usado,arranque;
-		int Nequi1 =0;
-		int Nequi2=0;
-		String equi2;
+		int used;
+        int beginner;
+		int nTeam1 =0;
+		int nTeam2;
+		String team2;
 		
-		// Copia la lista de equipos y la desordena
-		for (i=1;i<=nroEquipos;i++) {
-			desord[i]=equipos[i];
+		// Copia la lista de teams y la desordena
+		for (i=1;i<=nTeams;i++) {
+			desord[i]=teams[i];
 			
 		}
 		Random azar = new Random();
-		for (i=1;i<=nroEquipos;i++) { 
-			j = azar.nextInt(nroEquipos)+1;
+		for (i=1;i<=nTeams;i++) {
+			j = azar.nextInt(nTeams)+1;
 			aux = desord[j];
 			desord[j]=desord[i];
 			desord[i]=aux;
@@ -193,8 +193,8 @@ public class FixtureDao extends GenericDao {
 		
 		// arma una lista con todos los partidos posibles
 		k=0;
-		for (i=1;i<=nroEquipos;i++) {
-			for (j=i+1;j<=nroEquipos;j++) {
+		for (i=1;i<=nTeams;i++) {
+			for (j=i+1;j<=nTeams;j++) {
 				k++;
 				partidos[k][1]=desord[i];
 				partidos[k][2]=desord[j];
@@ -203,20 +203,20 @@ public class FixtureDao extends GenericDao {
 		}
 		
 		// los empieza a asignar fecha x fecha, partido por partido
-		usado=0;
-		for (fechas=1;fechas <= nroEquipos-1;fechas++) {
+		used=0;
+		for (fechas=1;fechas <= nTeams-1;fechas++) {
 		
-			//arma testigo a cubrir todos los equipos en la fecha
-			for (i=1;i<=nroEquipos;i++) {
-				testigo[i]=equipos[i];
+			//arma testigo a cubrir todos los teams en la fecha
+			for (i=1;i<=nTeams;i++) {
+				testigo[i]=teams[i];
 			}
 			
-			arranque=1;
-			for (partidosXfecha=1;partidosXfecha <= nroEquipos/2;partidosXfecha++) {
+			beginner=1;
+			for (partidosXfecha=1;partidosXfecha <= nTeams/2;partidosXfecha++) {
 				
-				for (i=1 ; i <= nroEquipos ; i++) {
+				for (i=1 ; i <= nTeams ; i++) {
 					if (!testigo[i].equals("XX")) {
-						Nequi1=i;
+						nTeam1=i;
 						
 						break;
 					}
@@ -225,65 +225,65 @@ public class FixtureDao extends GenericDao {
 				}
 				// busco entre los partidos
 	            // el primero no usados que involucre al equipo seleccionado
-	            for (i=arranque; i <= nroPartidos; i++) {
-	               	if (((partidos[i][1].equals(testigo[Nequi1])) ||
-	            		 (partidos[i][2].equals(testigo[Nequi1]))) &&
+	            for (i=beginner; i <= nMatches; i++) {
+	               	if (((partidos[i][1].equals(testigo[nTeam1])) ||
+	            		 (partidos[i][2].equals(testigo[nTeam1]))) &&
 	            		 (usados[i] == 0)) {
 	              		
 	               		// encontre un partido y busco el indice del otro equipo
-	            		if (partidos[i][1].equals(testigo[Nequi1])){
-	            			equi2=partidos[i][2];
+	            		if (partidos[i][1].equals(testigo[nTeam1])){
+	            			team2=partidos[i][2];
 	            			
 	            		}
 	            		else{
-	            			equi2=partidos[i][1];
+	            			team2=partidos[i][1];
 	            			
 	            		}
-	            		for (Nequi2=1;Nequi2 <= nroEquipos ; Nequi2++){
-	            			if (equi2.equals(testigo[Nequi2]))
+	            		for (nTeam2=1;nTeam2 <= nTeams ; nTeam2++){
+	            			if (team2.equals(testigo[nTeam2]))
 	            				break;
 	            		}
-	            		if (Nequi2 <= nroEquipos) {
+	            		if (nTeam2 <= nTeams) {
 
 	            			cuadro[partidosXfecha][fechas][1]=partidos[i][1];
 							cuadro[partidosXfecha][fechas][2]=partidos[i][2];
 	            			
-							testigo[Nequi1]="XX";
-	            			testigo[Nequi2]="XX";
-	            			usado++;
-	            			usados[i]=usado;
+							testigo[nTeam1]="XX";
+	            			testigo[nTeam2]="XX";
+	            			used++;
+	            			usados[i]=used;
 	            			break;
 	            		}
 	            	}
 	            }
 	           	           	            
-	            if (i > nroPartidos) {
+	            if (i > nMatches) {
 	            	
 	            		            
 	                 // si no encontre partido tengo que volver al partido anterior y elegir otro
-	                // desmarco el partido y establezco como nuevo punto de arranque el partido siguiente
-	            	for (i=1;i<=nroPartidos;i++) {
+	                // desmarco el partido y establezco como nuevo punto de beginner el partido siguiente
+	            	for (i=1;i<=nMatches;i++) {
 	            		
-	               		if (usados[i]==usado) {
+	               		if (usados[i]==used) {
 	            			usados[i]=0;
-	            			arranque=i+1;
+	            			beginner=i+1;
 	               			break;
 	            		}
 	            	}
-	            	//  restablesco los equipos en el testigo
-	            	for (j=1;j<=nroEquipos;j++) {
-	            		if (equipos[j].equals(partidos[i][1])) {
+	            	//  restablesco los teams en el testigo
+	            	for (j=1;j<=nTeams;j++) {
+	            		if (teams[j].equals(partidos[i][1])) {
 	            			testigo[j]=partidos[i][1];
 	            			break;
 	            		}
 	            	}
-	            	for (j=1;j<=nroEquipos;j++) {
-	            		if (equipos[j].equals(partidos[i][2])) {
+	            	for (j=1;j<=nTeams;j++) {
+	            		if (teams[j].equals(partidos[i][2])) {
 	            			testigo[j]=partidos[i][2];
 	            			break;
 	            		}
 	            	}
-	            	usado--;
+	            	used--;
 	            	// blanqueo el partido en la grilla y vuelvo un partido para atras
 	            	
 	            	cuadro[partidosXfecha-1][fechas][1]="";
@@ -297,7 +297,7 @@ public class FixtureDao extends GenericDao {
 	}
 	            }	
 	            else
-	            	arranque=1;
+	            	beginner=1;
 	            
 			}
 			
@@ -330,12 +330,9 @@ public class FixtureDao extends GenericDao {
 	}
 	
 	private static boolean esPar(int x) {
-		if ((x % 2) == 0) {
-			return true;
-		}
+        return (x % 2) == 0;
 
-		return false;
-	}
+    }
 
 	
 		 

@@ -23,6 +23,8 @@
 						<%@include file="/JSP/tournament/positionTable.jsp"%>
 		<%} else if(request.getAttribute("page").equals("results")){%>
 						<%@include file="/JSP/tournament/tournamentResults.jsp" %>
+		<%}else if(request.getAttribute("page").equals("comments")){%>
+						<%@include file="/JSP/comment/Comment.jsp" %>
 		<%}%>
 			
 

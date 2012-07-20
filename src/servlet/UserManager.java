@@ -5,7 +5,7 @@ import DAO.UserDao;
 import enums.Action;
 import enums.PageJSP;
 import enums.Privilege;
-import model.Captain;
+import model.BasicUser;
 import model.User;
 import model.UserAdmin;
 import org.apache.commons.fileupload.FileItem;
@@ -16,7 +16,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Iterator;
 import java.util.List;
 
 public class UserManager extends MainServlet {
@@ -25,48 +24,43 @@ public class UserManager extends MainServlet {
 	
 	PageJSP handleAction(HttpServletRequest request,
 			HttpServletResponse response, Action action) {
-		
-		System.out.println("La accion es: " + action);
-		switch (action) {
-		case USERPROFILE: return userProfile(request, response);
-		case DELETEUSER: return deleteUser(request, response);	
-		case MODIFYUSER: return modifyUser(request, response);
-		case MODIFYUSERPAGE: return modifyUserPage(request, response);
-		case ADDUSER: return addUser(request,response);
+
+			switch (action) {
+		case USERPROFILE: return userProfile(request);
+		case DELETEUSER: return deleteUser(request);
+		case MODIFYUSER: return modifyUser(request);
+		case ADDUSER: return addUser(request);
 		}
 		return null;
 	}
 
 
 	@SuppressWarnings("rawtypes")
-	private PageJSP addUser(HttpServletRequest request,
-			HttpServletResponse response) {
-		User user;
+	private PageJSP addUser(HttpServletRequest request) {
+		
+        User user;
 	
 		DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
 		ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
 		try {
 			List items = uploadHandler.parseRequest(request);
-			Iterator itr = items.iterator();
-			while (itr.hasNext()) {
-				FileItem item = (FileItem) itr.next();
-				if (item.isFormField()) {
-					if (item.getFieldName().equals("tipo")) {
-						if (item.getString().equalsIgnoreCase(Privilege.USERADMIN.getValue())){
-						user = new UserAdmin();
-						user.setPrivilege(Privilege.USERADMIN);
-						addUserCaracteristics(user,items,request,response);
-						UserDao.update(user);
-					
-						}else if (item.getString().equalsIgnoreCase(Privilege.USER.getValue())){
-						user = new User();
-						user.setPrivilege(Privilege.USER);
-						addUserCaracteristics(user,items,request,response);
-						UserDao.update(user);
-						}
-					}
-				}
-			}
+            for (Object item1 : items) {
+                FileItem item = (FileItem) item1;
+                if (item.isFormField()) {
+                    if (item.getFieldName().equals("tipo")) {
+                        if (item.getString().equalsIgnoreCase(Privilege.USERADMIN.getValue())) {
+                            user = new UserAdmin();
+                            addUserCaracteristics(user, items, request);
+                            UserDao.update(user);
+
+                        } else if (item.getString().equalsIgnoreCase(Privilege.BASICUSER.getValue())) {
+                            user = new BasicUser();
+                            addUserCaracteristics(user, items, request);
+                            UserDao.update(user);
+                        }
+                    }
+                }
+            }
 							
 		} catch (FileUploadException e) {
 		e.printStackTrace();
@@ -79,117 +73,99 @@ public class UserManager extends MainServlet {
 
 	@SuppressWarnings("rawtypes")
 	private <U extends User> void addUserCaracteristics(U u, List items,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		Iterator itr = items.iterator();
-		while (itr.hasNext()) {
-			FileItem item = (FileItem) itr.next();
-			if (item.isFormField()) {
-				if (item.getFieldName().equals("userId")) {
-					u.setUserName(item.getString());		
-					HttpSession session = request.getSession();
-					session.setAttribute("username",u.getUserName());			
-			
-				} else if (item.getFieldName().equals("password")) {
-					String encryptpass = UserDao.md5convert(item.getString());
-					u.setPassword(encryptpass);
-				} else if (item.getFieldName().equals("name")) {
-					u.setName(item.getString());
-				} else if (item.getFieldName().equals("lastname")) {
-					u.setLastName(item.getString());
-				} else if (item.getFieldName().equals("email")) {
-					u.setEmail(item.getString());
-				}
-			}else {
-					byte[] byteArray = item.get();
-					u.setPhoto(byteArray);
-				}
-		}
+			HttpServletRequest request) {
+
+        for (Object item1 : items) {
+            FileItem item = (FileItem) item1;
+            if (item.isFormField()) {
+                if (item.getFieldName().equals("userId")) {
+                    u.setUserName(item.getString());
+                    HttpSession session = request.getSession();
+                    session.setAttribute("username", u.getUserName());
+                } else if (item.getFieldName().equals("password")) {
+                    String encryptPass = UserDao.md5convert(item.getString());
+                    u.setPassword(encryptPass);
+                } else if (item.getFieldName().equals("name")) {
+                    u.setName(item.getString());
+                } else if (item.getFieldName().equals("lastname")) {
+                    u.setLastName(item.getString());
+                } else if (item.getFieldName().equals("email")) {
+                    u.setEmail(item.getString());
+                }
+            } else {
+                byte[] byteArray = item.get();
+                u.setPhoto(byteArray);
+            }
+        }
 	}
 
-
-	private PageJSP modifyUserPage(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		setAttributesOnPage(request,response);
-		return PageJSP.MODIFYUSERPAGE;
-	}
-
-
-	private PageJSP modifyUser(HttpServletRequest request,
-			HttpServletResponse response) {
+	private PageJSP modifyUser(HttpServletRequest request) {
 		String tipo = UserDao.getUserByUserName(request.getRemoteUser()).getPrivilege().getValue();
-		if (tipo.equalsIgnoreCase(Privilege.USER.getValue())) {
+		if (tipo.equalsIgnoreCase(Privilege.BASICUSER.getValue())) {
 
-			User user = UserDao.getUserByUserName((String) request.getRemoteUser());
-			modifyUserCharacteristics(user, request, response);
-		} 
-		
-		else if(tipo.equalsIgnoreCase(Privilege.CAPTAIN.getValue())){
-			Captain captain = (Captain) UserDao.getUserByUserName((String) request.getRemoteUser());
-			modifyUserCharacteristics(captain, request, response);
+			User user = UserDao.getUserByUserName(request.getRemoteUser());
+			modifyUserCharacteristics(user, request);
 		}
 		
 		else{
-			UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName((String) request.getRemoteUser());
-			modifyUserCharacteristics(userAdmin, request, response);
+			UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName(request.getRemoteUser());
+			modifyUserCharacteristics(userAdmin, request);
 			}
 		
-		return PageJSP.USERPROFILEPAGE;
+		return PageJSP.TOURNAMENTPAGESERVLET;
 	}
 	
-	private PageJSP deleteUser(HttpServletRequest request,
-			HttpServletResponse response) {
+	private PageJSP deleteUser(HttpServletRequest request) {
 		
-		String tipo = UserDao.getUserByUserName(request.getRemoteUser()).getPrivilege().getValue();
-		if (tipo.equalsIgnoreCase(Privilege.USER.getValue())) {
-			UserDao.removeUser(UserDao.getUserByUserName((String)request.getRemoteUser()));
+		Privilege privilege = UserDao.getUserByUserName(request.getRemoteUser()).getPrivilege();
+
+        if (privilege.isBasicUser()) {
+			UserDao.removeUser(UserDao.getUserByUserName(request.getRemoteUser()));
 			
-		} else if (tipo.equalsIgnoreCase(Privilege.USERADMIN.getValue())){
-			UserDao.removeUserAdmin(UserDao.getUserByUserName((String)request.getRemoteUser()).getUserName());
+		} else if (privilege.isAdministrador() || privilege.isUserAdmin()){
+			UserDao.removeUserAdmin(UserDao.getUserByUserName(request.getRemoteUser()).getUserName());
 		}
 		return PageJSP.LOGOUT;
 	}
 
 
-	private PageJSP userProfile(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		setAttributesOnPage(request,response);
+	private PageJSP userProfile(HttpServletRequest request) {
+
+        User user = UserDao.getUserByUserName(request.getRemoteUser());
+        request.setAttribute("user",user);
 		return PageJSP.USERPROFILEPAGE;
 	}
 
 
 	@SuppressWarnings("rawtypes")
 	private <T extends User> void modifyUserCharacteristics(T t,
-			HttpServletRequest request, HttpServletResponse response) {
-	
-
+			HttpServletRequest request) {
 
 		DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
 		ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
 		try {
 			List items = uploadHandler.parseRequest(request);
-			Iterator itr = items.iterator();
-			while (itr.hasNext()) {
-				FileItem item = (FileItem) itr.next();
-				if (item.isFormField()) {
-					if (item.getFieldName().equals("newpassword")) {
-						String encryptpass = UserDao.md5convert(item.getString());
-						t.setPassword(encryptpass);
-					} else if (item.getFieldName().equals("name")) {
-						t.setName(item.getString());
-					} else if (item.getFieldName().equals("lastname")) {
-						t.setLastName(item.getString());
-					} else if (item.getFieldName().equals("email")) {
-						t.setEmail(item.getString());
-					}
-				}else {
-						byte[] byteArray = item.get();
-						t.setPhoto(byteArray);
-					}
-			
-				}
+            for (Object item1 : items) {
+                FileItem item = (FileItem) item1;
+                if (item.isFormField()) {
+                    if (item.getFieldName().equals("newPassword")) {
+                        String encryptpass = UserDao.md5convert(item.getString());
+                        t.setPassword(encryptpass);
+                    } else if (item.getFieldName().equals("name")) {
+                        t.setName(item.getString());
+                    } else if (item.getFieldName().equals("lastName")) {
+                        t.setLastName(item.getString());
+                    } else if (item.getFieldName().equals("email")) {
+                        t.setEmail(item.getString());
+                    }
+                } else {
+                    if(item.getSize()>0){
+                        t.setPhoto(item.get());
+                    }
+                    
+                }
+
+            }
 			
 		} catch (FileUploadException e) {
 		e.printStackTrace();
@@ -197,22 +173,4 @@ public class UserManager extends MainServlet {
 		
 		UserDao.update(t);
 	}
-	
-	private void setAttributesOnPage(HttpServletRequest request,
-			HttpServletResponse response){
-		User user = UserDao.getUserByUserName((String) request.getRemoteUser());
-		String name = user.getName();
-		String lastName = user.getLastName();
-		String email = user.getEmail();
-		String userName = user.getUserName();
-		
-		
-		request.setAttribute("name", name);
-		request.setAttribute("lastname", lastName);
-		request.setAttribute("email", email);
-		request.setAttribute("userName", userName);
-	
-	}
-
-	
 }

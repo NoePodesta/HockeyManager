@@ -21,7 +21,6 @@ public class FixtureDaoTest extends TestCase {
 
         Tournament tournament = TournamentDao.getTournamentByName("juju");
         FixtureDao.generarFixture(tournament);
-
         assertTrue(true);
     }
 }

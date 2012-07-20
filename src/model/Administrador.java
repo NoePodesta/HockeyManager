@@ -2,15 +2,16 @@ package model;
 
 import enums.Privilege;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Administrador")
+@DiscriminatorValue("Administrador")
 public class Administrador extends User {
-	
-	@Enumerated
-	private static final Privilege PRIVILEGE = Privilege.ADMINISTRADOR;
 
+    public Privilege getPrivilege() {
+        return Privilege.ADMINISTRADOR;
+    }
 }

@@ -21,7 +21,24 @@ public class GoalDao extends GenericDao {
 		persist(goal, currentSession);
 	}
 
-	public static List<Goal> getGoal(String playerid, String teamid,  String matchid) {
+    public static <T> void remove(Goal goal) {
+        getSession();
+        delete(goal, currentSession);
+
+    }
+
+    public static Goal getGoalById(int id) {
+        getSession();
+        Goal goal = null;
+        final String consult = "FROM Goal WHERE IdGoal='" + id + "' ";
+        List<Goal> goals = currentSession.createQuery(consult).list();
+        if(!goals.isEmpty()){
+            goal = goals.get(0);
+        }
+        return goal;
+    }
+
+    public static List<Goal> getGoal(String playerid, String teamid,  String matchid) {
 		getSession();
 		Goal goal = null; 
 		final String consult = "FROM Goal WHERE player = '" + playerid + "' AND match = '" + matchid + "' AND team = '" + teamid + "'";

@@ -7,6 +7,10 @@ import DAO.UserDao;
 import enums.Action;
 import enums.PageJSP;
 import model.*;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,177 +20,321 @@ import java.util.List;
 
 public class TournamentManager extends MainServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
-	PageJSP handleAction(HttpServletRequest request,
-			HttpServletResponse response, Action action) {
-		
-		switch (action) {
-		case REGISTERTOURNAMENT: return registerTournament(request, response);		
-		case MODIFYTOURNAMENT: return modifyTournament(request, response);
-		case POSITIONPAGE: return postionPage(request,response);
-		case TOURNAMENTPROFILE: return tournamentProfile(request, response);
-		case GENERATEFIXTURE: return generateFixture(request, response);
-		case FIXTUREPAGE: return fixturePage(request,response);
-		case RESULSTPAGE: return resultsPage(request,response);
-		case MODIFYTOURNAMENTPAGE: return modifyTournamentPage(request,response);
-		case DELETETOURNAMENT:
-			
-					
-		
-		}
-	
-		return PageJSP.HOMESERVLET;
-	}
+    PageJSP handleAction(HttpServletRequest request,
+                         HttpServletResponse response, Action action) {
+
+    	String value = request.getParameter("value");
+    	switch (action) {
+       
+            case REGISTERTOURNAMENT:
+                return registerTournament(request);
+            case MODIFYTOURNAMENT:
+                return modifyTournament(request);
+            case POSITIONPAGE:
+                return postionPage(request,value);
+            case TOURNAMENTPROFILE:
+                return tournamentProfile(request, value);
+            case GENERATEFIXTURE:
+                return generateFixture(request,value);
+            case FIXTUREPAGE:
+                return fixturePage(request,value);
+            case RESULSTPAGE:
+                return resultsPage(request,value);               
+            case MODIFYTOURNAMENTPAGE:
+                return modifyTournamentPage(request);
+            case CREATETOURNAMENTPAGE:
+                return createTournamentPage(request);
+            case DELETETOURNAMENT:
+                return deleteTournament(request);
 
 
-	private PageJSP modifyTournamentPage(HttpServletRequest request,
-			HttpServletResponse response) {
-		UserAdmin admin = (UserAdmin) UserDao.getUserByUserName((String)(request.getRemoteUser()));
-		Tournament tournament = admin.getTournament();
-		request.setAttribute("tournament", tournament);
-		
-		return PageJSP.MODIFYTOURNAMENTPAGE;
-		
-		
-	}
+        }
+
+        return PageJSP.HOMESERVLET;
+    }
+
+    private PageJSP deleteTournament(HttpServletRequest request) {
+        UserAdmin admin = (UserAdmin) UserDao.getUserByUserName((request.getRemoteUser()));
+        Tournament tournament = admin.getTournament();
+        TournamentDao.remove(admin,tournament);
+        return PageJSP.HOMESERVLET;
+    }
 
 
-	private PageJSP resultsPage(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName((String) request.getSession()
-				.getAttribute("username"));
-		Tournament tournament = userAdmin.getTournament();
-		List<Team> teams = tournament.getTeams();
-		Collections.sort(teams); 
-		Collections.reverse(teams);
-		Fixture fixture = tournament.getFixture();
-		List<Match> matches = fixture.getMatches(); 
-		Collections.sort(matches); 
-		request.setAttribute("matches", matches);
-		request.setAttribute("fixture", fixture);
-		request.setAttribute("page", "results");
-		
-		return PageJSP.TOURNAMENTPAGE;
-	}
+    private PageJSP modifyTournamentPage(HttpServletRequest request) {
+        UserAdmin admin = (UserAdmin) UserDao.getUserByUserName((request.getRemoteUser()));
+        Tournament tournament = admin.getTournament();
+        request.setAttribute("tournament", tournament);
+        return PageJSP.MODIFYTOURNAMENTPAGE;
 
 
-	private PageJSP postionPage(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName((String) request.getSession()
-				.getAttribute("username"));
-		Tournament tournament = userAdmin.getTournament();
-		List<Team> teams = tournament.getTeams();
-		Collections.sort(teams); 
-		Collections.reverse(teams);
-		request.setAttribute("teams", teams);
-		request.setAttribute("page", "position");
-		
-		return PageJSP.TOURNAMENTPAGE;
-	}
+    }
 
 
-	private PageJSP fixturePage(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName((String) request.getSession()
-				.getAttribute("username"));
-		Tournament tournament = userAdmin.getTournament();
-		List<Team> teams = tournament.getTeams();
-		Collections.sort(teams); 
-		Collections.reverse(teams);
-		Fixture fixture = tournament.getFixture();
-		List<Match> matches = fixture.getMatches(); 
-		Collections.sort(matches); 
-		request.setAttribute("matches", matches);
-		request.setAttribute("fixture", fixture);
-		request.setAttribute("page", "fixture");
-		
-		return PageJSP.TOURNAMENTPAGE;
-	}
+    private PageJSP createTournamentPage(HttpServletRequest request) {
+
+        request.setAttribute("page", "crearTorneo");
+        return PageJSP.TOURNAMENTPAGE;
+    }
 
 
-	private PageJSP generateFixture(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		UserAdmin admin = (UserAdmin) UserDao.getUserByUserName((String)(request.getRemoteUser()));
-		Tournament tournament = admin.getTournament();
-		FixtureDao.generarFixture(tournament);
-		
-		return PageJSP.TOURNAMENTPAGESERVLET;
-	}
+    private PageJSP resultsPage(HttpServletRequest request, String value) {
 
-	private PageJSP tournamentProfile(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		
-		String value = request.getParameter("value");
-		Tournament tournament = null;
-		Tournament tournamentUser = null;
-		String yourTournament = "false";
-		
-		String user = request.getRemoteUser();
-		
-		if(user==null){
-			tournament = TournamentDao.getTournamentByName(value);
-				
-		}else{
-			UserAdmin admin = (UserAdmin) UserDao.getUserByUserName(user);
-			tournamentUser = admin.getTournament();
-            if(value==null){
+        Tournament tournamentUser = null;
+        Tournament tournament;
+        String yourTournament = "false";
+
+        String userName = request.getRemoteUser();
+
+        if (userName == null) {
+            tournament = TournamentDao.getTournamentByName(value);
+
+        } else {
+            User user = UserDao.getUserByUserName(userName);
+            if(user.getPrivilege().isUserAdmin()){
+                tournamentUser = ((UserAdmin) user).getTournament();
+            }
+            if (value == null) {
                 tournament = tournamentUser;
+            } else {
+                tournament = TournamentDao.getTournamentByName(value);
             }
-            else{
-            	tournament = TournamentDao.getTournamentByName(value);
+        }
+        if (tournamentUser != null && tournamentUser.getName().equals(tournament.getName())) {
+            yourTournament = "true";
+        }
+
+        List<Team> teams = tournament.getTeams();
+        Collections.sort(teams);
+        Collections.reverse(teams);
+        Fixture fixture = tournament.getFixture();
+        List<Match> matches = fixture.getMatches();
+        Collections.sort(matches);
+        request.setAttribute("tournamentName", tournament.getName());
+        request.setAttribute("matches", matches);
+        request.setAttribute("fixture", fixture);
+        request.setAttribute("yourTournament", yourTournament);
+        request.setAttribute("page", "results");
+
+        return PageJSP.TOURNAMENTPAGE;
+    }
+
+
+    private PageJSP postionPage(HttpServletRequest request, String value) {
+
+        Tournament tournamentUser = null;
+        Tournament tournament;
+        String yourTournament = "false";
+
+        String userName = request.getRemoteUser();
+
+        if (userName == null) {
+            tournament = TournamentDao.getTournamentByName(value);
+
+        } else {
+            User user = UserDao.getUserByUserName(userName);
+            if(user.getPrivilege().isUserAdmin()){
+                tournamentUser = ((UserAdmin) user).getTournament();
             }
-		}
-		if(tournamentUser!=null && tournamentUser.getName().equals(tournament.getName())){
-			yourTournament = "true";
-		}
-			
-		List<Team> teams = tournament.getTeams();
-		Collections.sort(teams); 
-		Collections.reverse(teams);
-		
-		request.setAttribute("tournamentName", tournament.getName());
-		request.setAttribute("tournament", tournament);
-		request.setAttribute("page", "profileTournament");
-		request.setAttribute("teams", teams);
-		request.setAttribute("yourTournament", yourTournament);
-	
-		return PageJSP.TOURNAMENTPAGE;
-	}
+            if (value == null) {
+                tournament = tournamentUser;
+            } else {
+                tournament = TournamentDao.getTournamentByName(value);
+            }
+        }
+        if (tournamentUser != null && tournamentUser.getName().equals(tournament.getName())) {
+            yourTournament = "true";
+        }
 
-	private PageJSP modifyTournament(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName((String) request.getRemoteUser());
-		Tournament tournament = userAdmin.getTournament();
-		tournament.setDescription(request.getParameter("description"));
-		TournamentDao.update(tournament);
+        List<Team> teams = tournament.getTeams();
+        Collections.sort(teams);
+        Collections.reverse(teams);
+        Fixture fixture = tournament.getFixture();
+        request.setAttribute("tournamentName", tournament.getName());
+        request.setAttribute("fixture", fixture);
+        request.setAttribute("page", "position");
+        request.setAttribute("teams", teams);
+        request.setAttribute("yourTournament", yourTournament);
 
-			
-		return PageJSP.TOURNAMENTPAGESERVLET;
-	}
 
-	private PageJSP registerTournament(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		if((TournamentDao.existTournament(request.getParameter("name"))== false)){
-	
-		String userAdminName = request.getRemoteUser();
-		String tournamentName = request.getParameter("tournamentname");
-		String description = request.getParameter("description");
-		
-		request.getSession().setAttribute("tournament", tournamentName);
-		UserDao.addTournament(userAdminName, tournamentName, description);
-		
-		return PageJSP.TOURNAMENTPAGESERVLET;
-		}
-		
-		return PageJSP.TOURNAMENTEXIST;
-	}
+        return PageJSP.TOURNAMENTPAGE;
+    }
+
+
+    private PageJSP fixturePage(HttpServletRequest request, String value) {
+
+        Tournament tournamentUser = null;
+        Tournament tournament;
+        String yourTournament = "false";
+
+        String userName = request.getRemoteUser();
+
+        if (userName == null) {
+            tournament = TournamentDao.getTournamentByName(value);
+
+        } else {
+            User user = UserDao.getUserByUserName(userName);
+            if(user.getPrivilege().isUserAdmin()){
+                tournamentUser = ((UserAdmin) user).getTournament();
+            }
+            if (value == null) {
+                tournament = tournamentUser;
+            } else {
+                tournament = TournamentDao.getTournamentByName(value);
+            }
+        }
+        if (tournamentUser != null && tournamentUser.getName().equals(tournament.getName())) {
+            yourTournament = "true";
+        }
+
+        List<Team> teams = tournament.getTeams();
+        Collections.sort(teams);
+        Collections.reverse(teams);
+        Fixture fixture = tournament.getFixture();
+        List<Match> matches = fixture.getMatches();
+        Collections.sort(matches);
+        request.setAttribute("tournamentName", tournament.getName());
+        request.setAttribute("matches", matches);
+        request.setAttribute("fixture", fixture);
+        request.setAttribute("page", "fixture");
+        request.setAttribute("yourTournament", yourTournament);
+
+        return PageJSP.TOURNAMENTPAGE;
+    }
+
+
+    private PageJSP generateFixture(HttpServletRequest request, String value) {
+
+        UserAdmin admin = (UserAdmin) UserDao.getUserByUserName(request.getRemoteUser());
+        Tournament tournament = admin.getTournament();
+        FixtureDao.generarFixture(tournament);
+
+
+        return fixturePage(request, value);
+    }
+
+    private PageJSP tournamentProfile(HttpServletRequest request, String value) {
+
+        Tournament tournament;
+        Tournament tournamentUser = null;
+        String yourTournament = "false";
+
+        String userName = request.getRemoteUser();
+
+        if (userName == null) {
+            tournament = TournamentDao.getTournamentByName(value);
+
+        } else {
+            User user = UserDao.getUserByUserName(userName);
+            if(user.getPrivilege().isUserAdmin()){
+                tournamentUser = ((UserAdmin) user).getTournament();
+            }
+            if (value == null) {
+                tournament = tournamentUser;
+            } else {
+                tournament = TournamentDao.getTournamentByName(value);
+            }
+        }
+        if (tournamentUser != null && tournamentUser.getName().equals(tournament.getName())) {
+            yourTournament = "true";
+        }
+
+        if (tournament != null) {
+            if(tournament.getTeams()!=null){
+                List<Team> teams = tournament.getTeams();
+                Collections.sort(teams);
+                Collections.reverse(teams);
+                request.setAttribute("teams", teams);
+            }
+            if(tournament.getFixture()!=null){
+                Fixture fixture = tournament.getFixture();
+                request.setAttribute("fixture",fixture);
+            }
+        }
+
+        if (tournament != null) {
+            request.setAttribute("tournamentName", tournament.getName());
+        }
+        request.setAttribute("tournament", tournament);
+        request.setAttribute("page", "profileTournament"); 
+        request.setAttribute("yourTournament", yourTournament);
+
+        return PageJSP.TOURNAMENTPAGE;
+    }
+
+    private PageJSP modifyTournament(HttpServletRequest request) {
+
+        UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName(request.getRemoteUser());
+        Tournament tournament = userAdmin.getTournament();
+
+        DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
+        ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
+        try {
+            List items = uploadHandler.parseRequest(request);
+            for (Object item1 : items) {
+                FileItem item = (FileItem) item1;
+                if (item.isFormField()) {
+                    if (item.getFieldName().equals("description")) {
+                        tournament.setDescription(item.getString()); 
+                    }
+                } else {
+                    if(item.getSize()>0){
+                        tournament.setPhoto(item.get());
+                    }
+                }
+            }
+
+        } catch (FileUploadException e) {
+            e.printStackTrace();
+        }
+
+        TournamentDao.update(tournament);
+
+        return PageJSP.TOURNAMENTPAGESERVLET;
+    }
+
+
+    private PageJSP registerTournament(HttpServletRequest request) {
+
+            String userAdminName = request.getRemoteUser();
+            String description = null;
+            String tournamentName = null;
+            byte[] image = null;
+
+            DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
+            ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
+            try {
+                List items = uploadHandler.parseRequest(request);
+                for (Object item1 : items) {
+                    FileItem item = (FileItem) item1;
+                    if (item.isFormField()) {
+                        if (item.getFieldName().equals("tournamentName")) {
+                            tournamentName = item.getString();
+                            Tournament tournament = TournamentDao.getTournamentByName(tournamentName);
+                            if (tournament != null) {
+                                return PageJSP.HOMESERVLET;
+                            }
+                        } else if (item.getFieldName().equals("description")) {
+                            description = item.getString();
+
+                        }
+                    } else {
+                        image = item.get();
+
+                    }
+                }
+
+                UserDao.addTournament(userAdminName, tournamentName, description, image);
+
+            } catch (FileUploadException e) {
+                e.printStackTrace();
+            }
+
+            return PageJSP.TOURNAMENTPAGESERVLET;
+    }
+       
+
 }

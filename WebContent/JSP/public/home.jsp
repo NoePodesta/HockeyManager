@@ -13,12 +13,10 @@
 	<div class="wrapper">
 		<%@ include file="/JSP/public/header.jsp"%>
 		<div class="content">
-			
+
 		<%@ include file="/JSP/tournament/listofTournaments.jsp"%>
 
-
-	<%-- 		<%@ include file="/JSP/comment/Comment.jsp"%>
- --%>	</div>
+	</div>
 
 
 	
@@ -29,10 +27,9 @@
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			arg.checkUserName();
 			arg.comment();
-			arg.modifyProfile();
 			arg.autocomplete();
+			arg.pagination("tournamentListPage");
 
 		});
 	</script>

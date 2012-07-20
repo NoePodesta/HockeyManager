@@ -46,22 +46,6 @@ public class UserDao extends GenericDao {
 		delete(users.get(0), currentSession);	
 	}
 
-	public static void removeCaptain(String userName) {
-		getSession();
-		final String consult = "FROM User WHERE userName = '" + userName + "'";
-		List<Captain> users = currentSession.createQuery(consult).list();
-
-		if (!users.isEmpty()) {
-			Captain captain = users.get(0);
-			if(!(captain.getTeam()==null)){
-				Team team = null;
-				captain.setTeam(team);
-			}
-		}
-		getSession();
-		delete(users.get(0), currentSession);	
-	}
-
 	public static User getUserByUserName(String userName) {
 		getSession();
 		User user = null;
@@ -75,7 +59,7 @@ public class UserDao extends GenericDao {
 
 	}
 
-	public static String addTournament(String userAdminName, String tournamentName, String description) {
+	public static String addTournament(String userAdminName, String tournamentName, String description, byte[] image) {
 		getSession();
 
 		UserAdmin userAdmin = (UserAdmin)UserDao.getUserByUserName(userAdminName);
@@ -86,6 +70,7 @@ public class UserDao extends GenericDao {
 		Tournament newTournament = new Tournament();
 		newTournament.setDescription(description);
 		newTournament.setName(tournamentName);
+        newTournament.setPhoto(image);
 		TournamentDao.update(newTournament);
 		userAdmin.setTournament(newTournament);
 		update(userAdmin);
@@ -112,22 +97,6 @@ public class UserDao extends GenericDao {
 		}
 		return hexString.toString();
 	}
-
-	public static boolean existUser(String username) {
-		getSession();
-
-		User user = (User) currentSession.createQuery("from User as " +
-				"User where User.userName = ?").setString(0, username).uniqueResult();
-
-		if(user == null){
-			return false;
-		}else{
-			return true;
-		}
-	}
-
-
-
 
 	private static void getSession() {
 		currentSession = HibernateUtil.getSessionFactory().getCurrentSession();

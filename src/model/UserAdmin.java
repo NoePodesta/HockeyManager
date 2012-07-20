@@ -5,13 +5,9 @@ import enums.Privilege;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "UserAdmin")
-public class UserAdmin extends User{
-	
+@DiscriminatorValue("UserAdmin")
+public class UserAdmin extends User {
 
-	@Enumerated
-	private static final Privilege PRIVILEGE = Privilege.USERADMIN;
-	
 	private Tournament tournament;
 	
 	@OneToOne(cascade = CascadeType.REMOVE)
@@ -23,6 +19,8 @@ public class UserAdmin extends User{
 		this.tournament = tournament;
 	}
 
-	
-	
+
+    public Privilege getPrivilege() {
+        return Privilege.USERADMIN;
+    }
 }

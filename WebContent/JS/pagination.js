@@ -15,7 +15,7 @@ $.fn.sweetPages = function(opts){
 	li.each(function(){
 		// Calculating the height of each li element, and storing it with the data method:
 		var el = $(this);
-		el.data('height',el.outerHeight(true));
+		el.data('height',"100");
 	});
 	
 	// Calculating the total number of pages:
@@ -92,20 +92,3 @@ $.fn.sweetPages = function(opts){
 	return this;
 	
 }})(jQuery);
-
-
-$(document).ready(function(){
-	/* The following code is executed once the DOM is loaded */
-	
-	// Calling the jQuery plugin and splitting the
-	// #holder UL into pages of 3 LIs each:
-	
-	$('#holder').sweetPages({perPage:10});
-	
-	// The default behaviour of the plugin is to insert the 
-	// page links in the ul, but we need them in the main container:
-
-	var controls = $('.swControls').detach();
-	controls.appendTo('#tournamentListPage');
-	
-});

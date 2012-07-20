@@ -4,8 +4,7 @@ public enum Privilege {
 	
 	ADMINISTRADOR("0"),
 	USERADMIN("1"),
-	CAPTAIN("2"),
-	USER("3"); 
+	BASICUSER("2");
 	
 	private String value;
 
@@ -16,6 +15,17 @@ public enum Privilege {
 	public String getValue() {
 		return value;
 	}
-	
-	
+
+    public boolean isAdministrador(){
+        return equals(ADMINISTRADOR);
+    }
+
+    public boolean isBasicUser(){
+        return equals(BASICUSER);
+    }
+
+    public boolean isUserAdmin(){
+        return equals(USERADMIN);
+    }
+
 }

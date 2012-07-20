@@ -20,17 +20,17 @@ public class Player implements Comparable{
 	private String position;
 	private Team team;
 	private List<Goal> goals;
-	private List<RedCard> redCards; //tarjetas rojas
-	private List<YellowCard> yellowCards; //tarjetas amarillas
-	private List<GreenCard> greenCards; //tarjetas verdes
+    private List<Card> greenCards;
+    private List<Card> yellowCards;
+    private List<Card> redCards;
 
-	
 	public Player(){
 		this.goals = new ArrayList<Goal>();
-		this.redCards = new ArrayList<RedCard>();
-		this.yellowCards = new ArrayList<YellowCard>();
-		this.greenCards = new ArrayList<GreenCard>();
-	}
+        this.greenCards = new ArrayList<Card>();
+        this.yellowCards = new ArrayList<Card>();
+        this.redCards = new ArrayList<Card>();
+
+    }
 	
 	
 	@Id
@@ -104,41 +104,38 @@ public class Player implements Comparable{
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
-	
+    
 	@OneToMany(cascade = CascadeType.REMOVE)//, fetch = FetchType.EAGER)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@Column(name = "RedCard")			
-	public List<RedCard> getRedCards() {
-		return redCards;
-	}
+	@Column(name = "GreenCard")
+    public List<Card> getGreenCards(){
+        return greenCards;
+    }
+    public void setGreenCards(List<Card> greenCards) {
+        this.greenCards = greenCards;
+    }
 
-	public void setRedCards(List<RedCard> redCards) {
-		this.redCards = redCards;
-	}
+    @OneToMany(cascade = CascadeType.REMOVE)//, fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Column(name = "GreenCard")
+    public List<Card> getYellowCards() {
+        return yellowCards;
+    }
 
-	@OneToMany(cascade = CascadeType.REMOVE)//, fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@Column(name = "YellowCard")			
-	public List<YellowCard> getYellowCards() {
-		return yellowCards;
-	}
+    public void setYellowCards(List<Card> yellowCards) {
+        this.yellowCards = yellowCards;
+    }
 
-	public void setYellowCards(List<YellowCard> yellowCards) {
-		this.yellowCards = yellowCards;
-	}
+    @OneToMany(cascade = CascadeType.REMOVE)//, fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Column(name = "GreenCard")
+    public List<Card> getRedCards() {
+        return redCards;
+    }
 
-	@OneToMany(cascade = CascadeType.REMOVE)//, fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@Column(name = "GreenCard")			
-	public List<GreenCard> getGreenCards() {
-		return greenCards;
-	}
-
-	public void setGreenCards(List<GreenCard> greenCards) {
-		this.greenCards = greenCards;
-	}
-
-
+    public void setRedCards(List<Card> redCards) {
+        this.redCards = redCards;
+    }
 	
 	@Override
 	public int compareTo(Object o) {

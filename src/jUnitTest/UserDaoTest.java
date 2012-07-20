@@ -1,7 +1,10 @@
 package jUnitTest;
 
+import DAO.FixtureDao;
+import DAO.TournamentDao;
 import DAO.UserDao;
 import enums.Privilege;
+import model.Tournament;
 import model.UserAdmin;
 import org.junit.Test;
 
@@ -10,45 +13,25 @@ import static org.junit.Assert.assertTrue;
 public class UserDaoTest {
 	
 
-	@Test
-	public void UserAdminTest(){
-		
-	UserAdmin userAdmin = new UserAdmin();	
-	userAdmin.setLastName("Jacobi");
-	userAdmin.setEmail("jacobi@hockeysite.com.ar");
-	userAdmin.setName("Pedro");
-	userAdmin.setPassword("vero");
-	userAdmin.setUserName("vero");
-	userAdmin.setPrivilege(Privilege.USERADMIN);
-	UserDao.update(userAdmin);
+//	@Test
+//	public void UserAdminTest(){
+//		
+//	UserAdmin userAdmin = new UserAdmin();	
+//	userAdmin.setLastName("Jacobi");
+//	userAdmin.setEmail("jacobi@hockeysite.com.ar");
+//	userAdmin.setName("Pedro");
+//	userAdmin.setPassword("vero");
+//	userAdmin.setUserName("vero");
+//	UserDao.update(userAdmin);
 //	UserAdmin admin1 = (UserAdmin) UserDao.getUserByUserName("Pepi");
 //	UserDao.removeUserAdmin("Pepi");
-	assertTrue(true);
+//	assertTrue(true);
 	
 	
 
-	}
-	
-//	@Test
-//	public void CaptainTest(){
-//		
-//	Captain captain = new Captain();	
-//	captain.setLastName("Podesta");
-//	captain.setEmail("jacobi@hockeysite.com.ar");
-//	captain.setName("Belu");
-//	captain.setPassword("pass2");
-//	captain.setUserName("Belu");
-//	Captain captain1 = (Captain) UserDao.getUserByUserName("Belu");
-//	Team team = TeamDao.getTeamByName("Belgrano");
-//	captain1.setTeam(team);
-//	UserDao.update(captain1);
-//	UserDao.update(captain);
-//		
-//	UserDao.removeCaptain("Belu");
-//	assertTrue(true);
-//
 //	}
-//	
+	
+
 //	@Test
 //	public void AdministradorTest(){
 //		
@@ -66,10 +49,27 @@ public class UserDaoTest {
 //	
 //	@Test
 //	public void AddTournamentTest(){
-//	UserDao.addTournament("juli", "juju", "esta re bueno esto");
+//	
+//	byte[] image = null;
+//	UserDao.addTournament("Pepi", "juju", "esta re bueno esto",image);
 //	assertTrue(true);
 //	}
 	
+//	@Test
+//	public void removeUserTest(){
+//		UserAdmin userAdmin = (UserAdmin) UserDao.getUserByUserName("nico");
+//		UserDao.removeUser(userAdmin);
+//		assertTrue(UserDao.getUserByUserName("nico")==null);
+//		
+//	}
+	
+    @Test
+    public void generateFixture() {
+
+        Tournament tournament = TournamentDao.getTournamentByName("juju");
+        FixtureDao.generarFixture(tournament);
+        assertTrue(true);
+    }
 }
 
 

@@ -71,9 +71,6 @@
  		
 			
 		<script type="text/javascript">
-			$(document).ready(function(){
-				arg.linkDisplay();
-																											
-			});
+
 		</script>
 

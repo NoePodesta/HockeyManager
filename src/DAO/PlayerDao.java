@@ -24,10 +24,10 @@ public class PlayerDao extends GenericDao {
 		persist(player, currentSession);
 	}
 
-	public static void remove(Player player, String teamid) {
+	public static void remove(Player player) {
 		getSession();
 		
-		Team team = TeamDao.getTeamById(teamid);
+		Team team = TeamDao.getTeamById(String.valueOf(player.getTeam().getIdTeam()));
 		List<Player> players = team.getPlayers();
 		for (Player playerAux : players) {
 			if (playerAux.getName().equals(player.getName())){
@@ -57,7 +57,18 @@ public class PlayerDao extends GenericDao {
 		return player;
 
 	}
-	
+
+    public static Player getPlayer(int id) {
+        getSession();
+        Player player = null;
+        final String consult = "FROM Player WHERE Id_Player='" + id + "' ";
+        List<Player> players = currentSession.createQuery(consult).list();
+        if(!players.isEmpty()){
+            player = players.get(0);
+        }
+        return player;
+    }
+
 	public static Player getPlayer(String name, String lastName, int localid) {
 		getSession();
 		Player player = null; 

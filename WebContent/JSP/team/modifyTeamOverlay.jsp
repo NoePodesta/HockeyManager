@@ -1,37 +1,36 @@
-<%@page contentType="text/html"%> 
+<%@ page import="model.Team" %>
+<%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
-<div class="modifyTeamOverlay">
+<div id="addTeamOverlay">
 	
-	<%String idteam = (String)request.getAttribute("idteam");%>
-	
-	<div class="titulo">
-	<h1>${teamname }</h1>
-	</div>
+	<%Team team = (Team)request.getAttribute("team");%>
+
+    <div class="title">Modificar&#32;<%=team.getName()%></div>
 	
 	<p>Todos los campos con <span>*</span> deben ser completados.</p>
-	
-	 	<form id="myform" name="myform" method='post' action="TeamManager?idteam=<%=idteam%>">
-			<input type="hidden" name="action" value="MODIFYTEAM"/>	
-			
-			
-			<p><label>Descripción del Equipo <span>*</span></label> 
-			<div class="counter">
-			<textarea name="description" id="description" cols= "50" rows= "4" required="required">${description }</textarea>
-			</div></p>
-			
-			
-			<p><label>Historia del Equipo <span>*</span></label> 
-			<div class="counter">
-			<textarea name="history" id="description" cols= "50" rows= "4" required="required">${history }</textarea>
-			</div></p>		
-			
-			<p><label>Agregar Imagen<br/> <input type="file" name="photo" style="margin-top: 5px;" />
-			</label><br/></p>
-					
-	
-			<div class="displayRight">
-				<button type="submit"> OK </button>
-			</div>
+
+        <form id="myform" name="myform" method='post' action="TeamManager?action=MODIFYTEAM&idTeam=<%=team.getIdTeam()%>" enctype="multipart/form-data">
+
+            <div class="counter">
+                <label>Descripción del Equipo<span>&#32;*&#32;:</span></label>
+                <textarea name="description" id="description" cols="50" rows="4" required="required"><%=team.getDescription()%></textarea></p>
+            </div>
+            <div style="margin-bottom: 1em; text-align: left"><label>Imagen Actual:&#32;</label>
+                <img style="margin-left: 4em" class="image" src=ImageController?action=TEAM&value=<%=team.getIdTeam()%>&size=80
+                     alt="Tournament Image"/>
+            </div>
+            <div><label>Nueva Imagen:&#32;</label>
+                <input type="file" name="file" id="file" 
+                       accept="image/gif,image/jpeg, image/png, image/jpg" size=30/>
+                <output id="list"></output>
+            </div>
+            <p>Si la imagen no se cambia, permanecerá la actual. </p>
+
+
+
+            <div class="pull-right">
+                <button class="btn-primary btn-small" type="submit"> OK</button>
+            </div>
 		
 		</form>
 		

@@ -1,63 +1,160 @@
-<%@page contentType="text/html"%> 
-<%@page pageEncoding="UTF-8"%>
-<%@page import="model.Goal"%>
-<%@page import="model.Player"%>
-<%@page import="java.util.List"%>
+<%@page contentType="text/html" %>
+<%@page pageEncoding="UTF-8" %>
 
-<div class="overview">
-    <h1>Resumen</h1>
+<%@ page import="java.util.List" %>
+<%@ page import="model.*" %>
 
-    <div class="opciones">
-        <table>
-            <tr class="subtitulo"><%out.println(request.getAttribute("localname"));%></tr>
-	<%List<Player> localplayers = (List<Player>) request.getAttribute("localplayers");
-	List<Goal> goals = (List<Goal>) request.getAttribute("goals");
- 	if (!localplayers.isEmpty()) {
- 		for (int i = 0; i < localplayers.size(); i++){
- 			String name = localplayers.get(i).getName();
-			String lastname = localplayers.get(i).getLastName();
-			int quantity=0;
- 			for(int j=0; j<goals.size(); j++){
- 				
- 				if(goals.get(j).getPlayer().getIdplayer()==localplayers.get(i).getIdplayer()){
-				
-					quantity++;
- 				}}%>
-				<tr>	
-				<td><%=name + " " + lastname%></th>
-				<td><img src="image/goles.png" width="20" height="20"/><%=quantity %></td>
-				</tr>			<%
-					}}else {%>
-						<p>Usted no ha ingresado jugadores todavia</p>
-					<%}%>
-	</table>
-	</div>
+<div id="overview">
 
-	<div class="texto">
-	<table>
-	<tr class="subtitulo"><%out.println(request.getAttribute("guestname"));%></tr>
-	<%List<Player> guestplayers = (List<Player>) request.getAttribute("guestplayers");
- 	if (!localplayers.isEmpty()) {
- 		for (int i = 0; i < guestplayers.size(); i++){
- 			String name = guestplayers.get(i).getName();
-			String lastname = guestplayers.get(i).getLastName();
-			int quantity=0;
-			for(int j=0; j<goals.size(); j++){
- 				
- 				if(goals.get(j).getPlayer().getIdplayer()==guestplayers.get(i).getIdplayer()){
-				
-					quantity++;
- 				}}%>
-				<tr>	
-				<td><%=name + " " + lastname%></th>
-				<td><img src="image/goles.png" width="20" height="20"/><%=quantity %></th>
-				</tr>
-				<%}}else {%>
-						<p>Usted no ha ingresado jugadores todavia</p>
-					<%}%>
+    <div class="title">Preview</div>
 
-	
-	
-	</table>
-	</div>
-</div>
+        <%
+        Match match = (Match) request.getAttribute("match");
+        List<Card> guestGreenCards = (List<Card>) request.getAttribute("guestGreenCards");
+        List<Card> guestYellowCards = (List<Card>) request.getAttribute("guestYellowCards");
+        List<Card> guestRedCards = (List<Card>) request.getAttribute("guestRedCards");
+        List<Card> localGreenCards = (List<Card>) request.getAttribute("guestGreenCards");
+        List<Card> localYellowCards = (List<Card>) request.getAttribute("guestYellowCards");
+        List<Card> localRedCards = (List<Card>) request.getAttribute("guestRedCards");
+        List<Goal> localGoals = (List<Goal>) request.getAttribute("localGoals");
+        List<Goal> guestGoals = (List<Goal>) request.getAttribute("guestGoals");
+    %>
+
+
+    <div class="colA">
+        <div>
+            <label  class="name" style="color: #4682b4;width:100%;text-align: center;"><%=match.getLocal().getName()%>
+            </label>
+            <label style="text-align: right;width:100%;height: 3em"><%=match.getResultLocal()%>&nbsp;<span>-</span>&nbsp;
+            </label>
+
+        </div>
+        <div>
+            <label style="text-align:left; width:100%;"><img src="image/goles.png" width="15" height="15"/>&nbsp;Goles&nbsp;</label>
+        </div>
+        <%
+            for (Goal goal : localGoals) {
+                Player player = goal.getPlayer();
+        %>
+        <div><p><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+        </p></div>
+        <%}if(localGoals.isEmpty()){%>
+        <div>
+            <p>No se han ingresado goles</p>
+        </div>
+        <%}%>
+        <div>
+            <label style="text-align: left;width: 100%"><img src="image/tarjeta_verde.png" width="10"
+                                                             height="10"/>&nbsp;Tarjetas Verdes&nbsp;</label>
+        </div>
+
+        <%
+            for (Card card : localGreenCards) {
+                Player player = card.getPlayer();
+        %>
+        <div><p><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+        </p></div>
+        <%}if(localGreenCards.isEmpty()){%>
+            <div>
+            <p>No se han ingresado tarjetas</p>
+            </div>
+        <%}%>
+        <div>
+            <label style="text-align: left;width: 100%"><img src="image/tarjeta_amarilla.png" width="10"
+                                                             height="10"/>&nbsp;Tarjetas Amarillas&nbsp;</label>
+        </div>
+        <%
+            for (Card card : localYellowCards) {
+                Player player = card.getPlayer();
+        %>
+        <div><p><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+        </p></div>
+        <%}if(localYellowCards.isEmpty()){%>
+        <div>
+            <p>No se han ingresado tarjetas</p>
+        </div>
+        <%}%>
+        <div>
+            <label style="text-align: left;width: 100%"><img src="image/tarjeta_roja.png" width="10"
+                                                             height="10"/>&nbsp;Tarjetas Rojas&nbsp;</label>
+        </div>
+        <%
+            for (Card card : localRedCards) {
+                Player player = card.getPlayer();
+        %>
+        <div><p><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+        </p></div>
+        <%}if(localRedCards.isEmpty()){%>
+        <div>
+            <p>No se han ingresado tarjetas</p>
+        </div>
+        <%}%>
+    </div>
+    <div class="colB">
+        <div>
+            <label  class="name" style="color: #4682b4;width:100%;text-align: center;"><%=match.getGuest().getName()%>
+            </label>
+            <label style="text-align: left; width:100%;height: 3em"><%=match.getResultLocal()%>
+            </label>
+        </div>
+        <div>
+            <label style="text-align: left;width: 100%"><img src="image/goles.png" width="15" height="15"/>&nbsp;Goles&nbsp;</label>
+        </div>
+        <%
+            for (Goal goal : guestGoals) {
+                Player player = goal.getPlayer();
+        %>
+        <div><p><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+        </p></div>
+        <%}if(guestGoals.isEmpty()){%>
+        <div>
+            <p>No se han ingresado goles</p>
+        </div>
+        <%}%>
+        <div>
+            <label style="text-align: left;width: 100%"><img src="image/tarjeta_verde.png" width="10"
+                                                             height="10"/>&nbsp;Tarjetas Verdes&nbsp;</label>
+        </div>
+        <%
+            for (Card card : guestGreenCards) {
+                Player player = card.getPlayer();
+        %>
+        <div><p><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+        </p></div>
+        <%}if(guestGreenCards.isEmpty()){%>
+        <div>
+            <p>No se han ingresado tarjetas</p>
+        </div>
+        <%}%>
+        <div>
+            <label style="text-align: left;width: 100%"><img src="image/tarjeta_amarilla.png" width="10"
+                                                             height="10"/>&nbsp;Tarjetas Amarillas&nbsp;</label>
+        </div>
+        <%
+            for (Card card : guestYellowCards) {
+                Player player = card.getPlayer();
+        %>
+        <div><p><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+        </p></div>
+        <%}if(guestYellowCards.isEmpty()){%>
+        <div>
+            <p>No se han ingresado tarjetas</p>
+        </div>
+        <%}%>
+        <div>
+            <label style="text-align: left;width: 100%"><img src="image/tarjeta_roja.png" width="10"
+                                                             height="10"/>&nbsp;Tarjetas Rojas&nbsp;</label>
+        </div>
+        <%
+            for (Card card : guestRedCards) {
+                Player player = card.getPlayer();
+        %>
+        <div><p><%=player.getName()%>&nbsp;<%=player.getLastName()%>
+        </p></div>
+        <%}if(guestRedCards.isEmpty()){%>
+        <div>
+            <p>No se han ingresado tarjetas</p>
+        </div>
+        <%}%>
+    </div>
+

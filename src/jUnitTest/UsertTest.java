@@ -18,10 +18,7 @@ public class UsertTest {
 	userAdmin.setName("Pedro");
 	userAdmin.setPassword("pass2");
 	userAdmin.setUserName("Pepi");
-	userAdmin.setPrivilege(Privilege.USERADMIN);
 	UserDao.update(userAdmin);
-	//UserAdmin admin1 = (UserAdmin) UserDao.getUserByUserName("Pepi");
-	//UserDao.removeUserAdmin("Pepi");
 	assertTrue(true);
 
 	}

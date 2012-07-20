@@ -124,6 +124,16 @@
 		<servlet-name>Comment</servlet-name>
 		<url-pattern>/Comment</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AddComment</servlet-name>
+		<servlet-class>servlet.AddComment</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AddComment</servlet-name>
+		<url-pattern>/AddComment</url-pattern>
+	</servlet-mapping>
 
 
 		<servlet>
@@ -136,14 +146,20 @@
 		<servlet-name>UsernameCheck</servlet-name>
 		<servlet-class>servlet.UsernameCheck</servlet-class>
 	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>Homee</display-name>
-		<servlet-name>Homee</servlet-name>
-		<servlet-class>servlet.Homee</servlet-class>
-	</servlet>
-		
+
+    <servlet>
+        <display-name>TournamentNameCheck</display-name>
+        <servlet-name>TournamentNameCheck</servlet-name>
+        <servlet-class>servlet.TournamentNameCheck</servlet-class>
+    </servlet>
+	
+	  <servlet>
+        <display-name>TeamNameCheck</display-name>
+        <servlet-name>TeamNameCheck</servlet-name>
+        <servlet-class>servlet.TeamNameCheck</servlet-class>
+    </servlet>
+	
+	
 	<servlet-mapping>
 		<servlet-name>Autocomplete</servlet-name>
 		<url-pattern>/Autocomplete</url-pattern>
@@ -153,9 +169,15 @@
 		<servlet-name>UsernameCheck</servlet-name>
 		<url-pattern>/UsernameCheck</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Homee</servlet-name>
-		<url-pattern>/Homee</url-pattern>
-	</servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>TournamentNameCheck</servlet-name>
+        <url-pattern>/TournamentNameCheck</url-pattern>
+    </servlet-mapping>
+	
+	 <servlet-mapping>
+        <servlet-name>TeamNameCheck</servlet-name>
+        <url-pattern>/TeamNameCheck</url-pattern>
+    </servlet-mapping>
+	
 </web-app>

@@ -5,18 +5,19 @@ import enums.Privilege;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
-public class User {
-	
-
-	@Enumerated
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+        name="userType",
+        discriminatorType=DiscriminatorType.STRING
+)
+@DiscriminatorValue("User")
+public abstract class User {
 	
 	private String userName;
 	private String password;
 	private String name;
 	private String lastName;
 	private String email;
-	private Privilege privilege;
 	private byte[] photo;
 	
 	@Id
@@ -71,14 +72,12 @@ public class User {
 		this.photo = photo;
 	}
 	
-	@Enumerated
-	public void setPrivilege(Privilege privilege) {
-		this.privilege = privilege;
-	}
-	public Privilege getPrivilege() {
-		return privilege;
-	}
-	
-	
+	@Column(name="Privilege", insertable=false)
+	public abstract Privilege getPrivilege();
+	public void setPrivilege(Privilege privilege){
+		
+	};
+
+
 }
 

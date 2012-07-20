@@ -8,16 +8,17 @@ import org.securityfilter.realm.SimpleSecurityRealmBase;
 public class SecurityRealm extends SimpleSecurityRealmBase {
 	
 	 public boolean booleanAuthenticate(String userName, String password) {
-		 User user = null;
+		 User user;
 		 String encryptPass = UserDao.md5convert(password);
 		 try{
 	    	 user = UserDao.getUserByUserName(userName);
 	     }catch(IndexOutOfBoundsException e){
 	    	 return false;
 	     }		 
-	     if(user!=null){
+	     if(user !=null){
 	    	  if(user.getPassword().equals(encryptPass)){
 		    	  return true;
+
 		      }
 	     }
 	     return false;	   

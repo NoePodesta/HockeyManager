@@ -2,22 +2,21 @@
 
     <div class="title">Registrar Torneo</div>
 
-	<form id="myform" method="post" action="TournamentManager">
-		<input type="hidden" name="action" value="REGISTERTOURNAMENT" />
-
+	<form id="myform" method="post" action="TournamentManager?action=REGISTERTOURNAMENT" enctype="multipart/form-data">
 
 		<div>
 			<label>Nombre del Torneo<span>&#32;*&#32;</span>:</label>
-            <input name="tournamentname" type="text" title="Debe ser de al menos 3 caracters, no se tomaran en cuenta
+            <input id= "tournamentName" name="tournamentName" type="text" title="Debe ser de al menos 3 caracters, no se tomaran en cuenta
             las mayúsculas" pattern="[a-zA-Z ]{3,}" required="required" minlength="3" value="" placeholder="Nombre del Torneo"/>
-		</div>
+            <span class="status"></span>
+        </div>
         <div class="counter">
             <label>Descripción del Torneo<span>&#32;*&#32;</span>:</label>
-            <textarea name="description" id="description" cols="50" rows="4" required="required" placeholder= "Descripción del Torneo"></textarea></p>
+            <textarea name="description" id="description" cols="50" rows="4" required="required" placeholder= "Descripción del Torneo"></textarea>
         </div>
 
             <label>Imagen:&#32;</label>
-            <input type="file" name="file" id="file" style="margin-left: -47px;" accept="image/gif,image/jpeg, image/png, image/jpg" size=30/>
+            <input type="file" name="file" id="file" accept="image/gif,image/jpeg, image/png, image/jpg" size=30/>
             <output id="list"></output>
 
 
@@ -33,7 +32,6 @@
     $(document).ready(function(){
         arg.countCharacters();
         arg.thumbnailImage();
-        arg.fileStyle()
+        arg.checkTournamentName();
     });
-
 </script>

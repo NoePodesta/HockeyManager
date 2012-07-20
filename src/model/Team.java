@@ -61,7 +61,7 @@ public class Team implements Comparable{
 	}
 
 	@Lob
-	@Column(name= "USER_IMAGE")
+	@Column(name= "TEAM_IMAGE")
 	public byte[] getPhoto() {
 		return photo;
 	}
@@ -70,14 +70,6 @@ public class Team implements Comparable{
 		this.photo = photo;
 	}
 
-	
-	@Column(name ="Team_History")
-	public String getHistory() {
-		return history;
-	}
-	public void setHistory(String history) {
-		this.history = history;
-	}
 
 	@Column(name ="Team_Description")
 	public String getDescription() {
